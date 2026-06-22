@@ -1,52 +1,47 @@
 <!-- FOOTER -->
-<footer class="bg-secondary text-slate-300 pt-16 pb-8 border-t border-slate-800">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-      <!-- Column 1: Brand & Description -->
-      <div class="space-y-4">
-        <div class="flex items-center gap-2 group cursor-default">
-          <div class="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center font-bold text-lg shadow-lg shadow-indigo-500/20">A</div>
-          <span class="font-bold text-xl text-white tracking-tight">All<span class="text-primary">.Dev</span></span>
-        </div>
-        <p class="text-slate-400 text-sm leading-relaxed max-w-xs">Membangun pengalaman digital yang fungsional, estetis, dan berorientasi pada pengguna.</p>
+<footer class="bg-secondary border-t border-slate-800 py-12 text-slate-400 text-sm">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2 group cursor-default">
+        <span class="font-extrabold text-xl text-white tracking-tight">Al<span class="text-pink-500">.</span></span>
       </div>
 
-      <!-- Column 2: Quick Links -->
-      <div>
-        <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">Menu</h4>
-        <ul class="space-y-3 text-sm">
-          <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
-          <li><a href="#about" class="hover:text-primary transition-colors">About Me</a></li>
-          <li><a href="#skills" class="hover:text-primary transition-colors">Skills</a></li>
-          <li><a href="#experience" class="hover:text-primary transition-colors">Experience</a></li>
-          <li><a href="#portfolio" class="hover:text-primary transition-colors">Portfolio</a></li>
-          <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
-        </ul>
+      <!-- Navigation Links -->
+      <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+        <a href="#home" class="text-slate-400 hover:text-white transition-colors">Beranda</a>
+        <a href="#about" class="text-slate-400 hover:text-white transition-colors">Tentang</a>
+        <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Keahlian</a>
+        <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Pengalaman</a>
+        <a href="#portfolio" class="text-slate-400 hover:text-white transition-colors">Proyek</a>
+        <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Kontak</a>
       </div>
 
-      <!-- Column 3: Socials -->
-      <div>
-        <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">Connect</h4>
-        <ul class="space-y-3 text-sm">
-          <li>
-            <a href="https://www.instagram.com/aldii_kurniawannnn?igsh=MWJ4c2I3dmIyM3gwdQ==" class="hover:text-[#E1306C] transition-colors flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a>
-          </li>
-          <li>
-            <a href="#" class="hover:text-[#0077B5] transition-colors flex items-center gap-2"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://github.com/Aldikurniawan19" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> GitHub</a>
-          </li>
-        </ul>
+      <!-- Socials -->
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-white hover:text-slate-950 hover:border-white transition-all duration-300">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+        <a href="https://www.instagram.com/aldii_kurniawannnn?igsh=MWJ4c2I3dmIyM3gwdQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C] transition-all duration-300">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#0077B5] hover:text-white hover:border-[#0077B5] transition-all duration-300">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+        </a>
       </div>
     </div>
 
-    <!-- Bottom Bar: Copyright -->
-    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-slate-500 text-xs">&copy; 2026 Al . Al rights reserved.</p>
-      <div class="flex items-center gap-6">
-        <span class="text-slate-600 text-xs">Designed with Tailwind CSS</span>
+    <!-- Bottom copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+      <p>&copy; {new Date().getFullYear()} Aldi Kurniawan. All rights reserved.</p>
+      <div class="flex items-center gap-1.5">
+        <span>Membangun dengan</span>
+        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Astro</a>
+        <span>&amp;</span>
+        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Tailwind CSS</a>
       </div>
     </div>
   </div>
 </footer>
+
+

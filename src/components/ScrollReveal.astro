@@ -1,10 +1,20 @@
 <!-- Scroll Reveal + Lucide Icons Initialization -->
 <script>
-  // Initialize Lucide Icons
-  // @ts-ignore
-  if (typeof lucide !== "undefined") {
+  // Initialize Lucide Icons with robust polling
+  function initializeLucide() {
     // @ts-ignore
-    lucide.createIcons();
+    if (typeof lucide !== "undefined") {
+      // @ts-ignore
+      lucide.createIcons();
+    } else {
+      setTimeout(initializeLucide, 100);
+    }
+  }
+
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initializeLucide();
+  } else {
+    document.addEventListener("DOMContentLoaded", initializeLucide);
   }
 
   // Scroll Reveal Animation Observer
@@ -26,3 +36,4 @@
     revealObserver.observe(element);
   });
 </script>
+
