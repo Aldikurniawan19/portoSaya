@@ -1,0 +1,72 @@
+---
+const row1Skills = [
+  { name: "Laravel", icon: "laravel" },
+  { name: "ReactJS", icon: "react" },
+  { name: "Tailwind CSS", icon: "tailwindcss" },
+  { name: "PostgreSQL", icon: "postgresql" },
+  { name: "Next.js", icon: "nextdotjs" },
+  { name: "HTML5", icon: "html5" },
+  { name: "CSS3", icon: "css3" },
+  { name: "JavaScript", icon: "javascript" },
+];
+
+const row2Skills = [
+  { name: "Figma", icon: "figma" },
+  { name: "Git", icon: "git" },
+  { name: "PHP", icon: "php" },
+  { name: "MySQL", icon: "mysql" },
+  { name: "TypeScript", icon: "typescript" },
+  { name: "Node.js", icon: "nodedotjs" },
+  { name: "Bootstrap", icon: "bootstrap" },
+  { name: "Python", icon: "python" },
+];
+---
+
+<!-- 3. TECH SKILLS SECTION -->
+<section id="skills" class="py-24 bg-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-30 -z-10"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-50/30 rounded-full blur-3xl -z-10"></div>
+
+  <div class="max-w-6xl mx-auto px-6 w-full mb-12">
+    <div class="text-center scroll-reveal">
+      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Tech Skills</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-secondary">Keahlian & Teknologi</h3>
+      <p class="text-slate-500 mt-4 max-w-lg mx-auto">Berikut adalah beberapa teknologi dan alat yang saya kuasai dan gunakan dalam mengembangkan proyek digital.</p>
+    </div>
+  </div>
+
+  <!-- Slider Marquee Container -->
+  <div class="w-full flex flex-col gap-6 scroll-reveal">
+    <!-- Row 1: Left -->
+    <div class="marquee-wrapper">
+      <div class="marquee-track animate-scroll-left">
+        {[0, 1].map(() => (
+          <div class="marquee-group">
+            {row1Skills.map((skill) => (
+              <div class="flex items-center gap-3 bg-white border border-slate-100/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 py-4 rounded-2xl shrink-0">
+                <img src={`https://cdn.simpleicons.org/${skill.icon}`} class="w-6 h-6 object-contain" alt={skill.name} />
+                <span class="font-bold text-slate-800">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Row 2: Right -->
+    <div class="marquee-wrapper">
+      <div class="marquee-track animate-scroll-right">
+        {[0, 1].map(() => (
+          <div class="marquee-group">
+            {row2Skills.map((skill) => (
+              <div class="flex items-center gap-3 bg-white border border-slate-100/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 py-4 rounded-2xl shrink-0">
+                <img src={`https://cdn.simpleicons.org/${skill.icon}`} class="w-6 h-6 object-contain" alt={skill.name} />
+                <span class="font-bold text-slate-800">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

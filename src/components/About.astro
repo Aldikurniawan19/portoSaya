@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import profileImage from '../assets/saya.png';
+---
+
+<!-- 2. ABOUT SECTION -->
+<section id="about" class="min-h-screen flex items-center bg-slate-50 relative py-24">
+  <div class="max-w-6xl mx-auto px-6 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Foto Profil (Kiri, 5 kolom) -->
+      <div class="lg:col-span-5 relative group flex justify-center scroll-reveal-left">
+        <!-- Decorative Frame Behind -->
+        <div class="absolute -bottom-3 -right-3 w-full h-full bg-[#fdf2d5] rounded-[2rem] -z-10 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+
+        <!-- Main Image Container -->
+        <div class="relative rounded-[2rem] overflow-hidden shadow-xl aspect-[3/4] w-full max-w-[360px] bg-[#fbbf24] border border-slate-100/50">
+          <Image
+            src={profileImage}
+            alt="Foto Profil Aldi Kurniawan"
+            class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+            widths={[360, 720]}
+            sizes="(max-width: 1024px) 360px, 360px"
+          />
+        </div>
+      </div>
+
+      <!-- Data Diri (Kanan, 7 kolom) -->
+      <div class="lg:col-span-7 space-y-6 flex flex-col justify-center scroll-reveal-right">
+        <!-- Title Badge Row -->
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center gap-3 text-3xl md:text-4xl font-extrabold text-secondary tracking-tight">
+            <span>SAYA</span>
+            <span class="bg-[#3b82f6] text-white px-4 py-1.5 rounded-xl text-2xl md:text-3xl font-extrabold tracking-wide uppercase">ALDI KURNIAWAN</span>
+          </div>
+          <div class="bg-[#10b981]/25 text-[#065f46] px-4 py-2 rounded-xl text-sm md:text-base font-black tracking-wider w-fit border border-[#10b981]/30">
+            FULLSTACK DEVELOPER
+          </div>
+        </div>
+
+        <!-- Bordered Paragraphs -->
+        <div class="border-l-4 border-indigo-500 pl-6 space-y-4">
+          <p class="text-slate-600 leading-relaxed text-base font-medium">
+            Sebagai lulusan Sistem Informasi dan Software Engineer, saya berfokus mengubah kebutuhan bisnis yang kompleks menjadi aplikasi web yang efisien.
+          </p>
+          <p class="text-slate-600 leading-relaxed text-base font-medium">
+            Dari digitalisasi alur kerja operasional hingga perancangan arsitektur frontend, saya menikmati proses membangun solusi full-stack dari nol yang terukur dan memberikan dampak nyata.
+          </p>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pt-2">
+          <a href="#" class="px-6 py-3.5 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 hover:shadow-lg shadow-md transition-all flex items-center gap-2 w-fit">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            UNDUH CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

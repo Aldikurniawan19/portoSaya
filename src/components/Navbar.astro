@@ -1,0 +1,130 @@
+<!-- NAVBAR -->
+<div class="fixed w-full top-6 left-0 z-50 flex justify-center px-4">
+  <nav class="w-full max-w-5xl bg-white/70 backdrop-blur-md rounded-full border border-slate-100 shadow-lg transition-all duration-300 px-6 py-2.5" id="navbar">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center cursor-pointer group" id="logo-btn">
+        <span class="font-extrabold text-xl text-slate-800 tracking-tight">Al<span class="text-pink-500">.</span></span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center">
+        <div class="h-5 w-[1px] bg-slate-200 mx-4"></div>
+        <div class="flex items-center gap-1 lg:gap-2">
+          <a href="#home" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="home" class="w-4 h-4"></i>
+            Beranda
+          </a>
+          <a href="#about" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            Tentang
+          </a>
+          <a href="#skills" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="code-2" class="w-4 h-4"></i>
+            Keahlian
+          </a>
+          <a href="#experience" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            Pengalaman
+          </a>
+          <a href="#portfolio" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="folder" class="w-4 h-4"></i>
+            Proyek
+          </a>
+          <a href="#contact" class="nav-link flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-slate-50 transition-all duration-200">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            Kontak
+          </a>
+        </div>
+
+        <div class="h-5 w-[1px] bg-slate-200 mx-4"></div>
+
+        <!-- Language Switcher Mockup -->
+        <div class="flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold cursor-default transition-colors">
+          <i data-lucide="globe" class="w-3.5 h-3.5 text-slate-500"></i>
+          ID
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-1 hover:bg-slate-50 rounded-lg transition-colors">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-slate-100 space-y-1">
+      <a href="#home" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Beranda</a>
+      <a href="#about" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Tentang</a>
+      <a href="#skills" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Keahlian</a>
+      <a href="#experience" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Pengalaman</a>
+      <a href="#portfolio" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Proyek</a>
+      <a href="#contact" class="nav-link block px-4 py-2 text-sm font-bold text-slate-600 rounded-xl hover:bg-slate-50">Kontak</a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  // Mobile Menu Toggle
+  const mobileBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  mobileBtn?.addEventListener("click", () => mobileMenu?.classList.toggle("hidden"));
+  document.querySelectorAll("#mobile-menu a").forEach((link) => {
+    link.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
+  });
+
+  // Logo scroll to top
+  document.getElementById("logo-btn")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Navbar Scroll Effect & Active Spy
+  const navbar = document.getElementById("navbar");
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function onScroll() {
+    if (window.scrollY > 20) {
+      navbar?.classList.add("shadow-md");
+      navbar?.classList.remove("shadow-lg");
+    } else {
+      navbar?.classList.add("shadow-lg");
+      navbar?.classList.remove("shadow-md");
+    }
+
+    let current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if (window.scrollY >= sectionTop - 150) {
+        current = section.getAttribute("id") || "";
+      }
+    });
+
+    if (window.scrollY < 100) current = "home";
+
+    navLinks.forEach((link) => {
+      const targetSection = link.getAttribute("href");
+      const isMobile = link.closest("#mobile-menu") !== null;
+
+      if (targetSection === "#" + current) {
+        if (isMobile) {
+          link.classList.add("text-[#3b82f6]", "bg-blue-50/50");
+          link.classList.remove("text-slate-600");
+        } else {
+          link.classList.add("bg-[#3b82f6]", "text-white");
+          link.classList.remove("text-slate-600", "hover:bg-slate-50");
+        }
+      } else {
+        if (isMobile) {
+          link.classList.remove("text-[#3b82f6]", "bg-blue-50/50");
+          link.classList.add("text-slate-600");
+        } else {
+          link.classList.remove("bg-[#3b82f6]", "text-white");
+          link.classList.add("text-slate-600", "hover:bg-slate-50");
+        }
+      }
+    });
+  }
+  window.addEventListener("scroll", onScroll);
+  onScroll();
+</script>

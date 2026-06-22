@@ -1,0 +1,90 @@
+---
+const experiences = [
+  {
+    type: "Freelance",
+    typeColor: "bg-primary/10 text-primary border-primary/20",
+    title: "Junior Web Developer",
+    period: "Jan 2025 - Sekarang",
+    icon: "building-2",
+    company: "CV. Creative Digital Solusindo",
+    description: "Mengembangkan, memelihara, dan mengoptimalkan aplikasi web berbasis klien. Bertanggung jawab dalam merancang antarmuka pengguna yang modern, responsif, dan memastikan kompatibilitas lintas browser serta kecepatan loading halaman yang optimal.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+  },
+  {
+    type: "Magang",
+    typeColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+    title: "IT Support & Web Administrator",
+    period: "Agt - Des 2024",
+    icon: "building-2",
+    company: "Lembaga Pendidikan Nusantara",
+    description: "Mengelola konten website institusi, merancang dan memperbarui layout web institusi, memantau kinerja server, melakukan backup berkala, dan memberikan troubleshoot dukungan teknis operasional harian untuk komputer dan jaringan.",
+    tags: ["Web Admin", "MySQL", "Troubleshooting"],
+  },
+  {
+    type: "Freelance",
+    typeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+    title: "Freelance Frontend Developer",
+    period: "2023 - 2024",
+    icon: "user",
+    company: "Proyek Mandiri / UMKM",
+    description: "Membuat website portofolio pribadi, halaman arahan (landing page) pemasaran, serta sistem informasi sederhana berbasis web untuk membantu digitalisasi bisnis UMKM lokal.",
+    tags: ["Responsive Web", "UI/UX Design", "HTML & CSS"],
+  },
+];
+---
+
+<!-- 4. WORK EXPERIENCE SECTION -->
+<section id="experience" class="py-24 bg-slate-50 relative overflow-hidden text-slate-600">
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-30 -z-10"></div>
+  <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl -z-10"></div>
+
+  <div class="max-w-4xl mx-auto px-6 w-full">
+    <!-- Section Header -->
+    <div class="text-center mb-20 scroll-reveal">
+      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Work Experience</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-secondary">Riwayat Profesional</h3>
+      <p class="text-slate-500 mt-4 max-w-lg mx-auto">Perjalanan karir dan kontribusi saya di dunia pengembangan perangkat lunak dan teknologi informasi.</p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative border-l border-slate-200 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
+      {experiences.map((exp) => (
+        <div class="relative group scroll-reveal">
+          <!-- Timeline Dot -->
+          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 bg-white rounded-full border-4 border-slate-200 group-hover:border-primary group-hover:shadow-[0_0_12px_rgba(79,70,229,0.2)] transition-all duration-300 flex items-center justify-center">
+            <div class="w-1.5 h-1.5 bg-slate-300 group-hover:bg-primary rounded-full transition-colors"></div>
+          </div>
+
+          <!-- Content Card -->
+          <div class="bg-white border border-slate-100 rounded-2xl p-6 md:p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+              <div>
+                <span class={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border mb-3 ${exp.typeColor}`}>
+                  {exp.type}
+                </span>
+                <h4 class="text-xl font-bold text-secondary">{exp.title}</h4>
+              </div>
+              <span class="text-xs font-bold text-slate-500 md:text-right bg-slate-50 border border-slate-200 px-3 py-1 rounded-full w-fit">
+                {exp.period}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 text-sm text-primary font-semibold mb-4">
+              <i data-lucide={exp.icon} class="w-4 h-4"></i>
+              <span>{exp.company}</span>
+            </div>
+
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">{exp.description}</p>
+
+            <div class="flex flex-wrap gap-2">
+              {exp.tags.map((tag) => (
+                <span class="text-xs font-medium px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-md text-slate-600">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
