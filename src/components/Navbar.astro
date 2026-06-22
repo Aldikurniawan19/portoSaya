@@ -1,6 +1,6 @@
 <!-- NAVBAR -->
 <div class="fixed w-full top-6 left-0 z-50 flex justify-center px-4">
-  <nav class="w-full max-w-5xl bg-white/70 backdrop-blur-md rounded-full border border-slate-100 shadow-lg transition-all duration-300 px-6 py-2.5" id="navbar">
+  <nav class="w-full max-w-5xl bg-white/70 backdrop-blur-md rounded-[2rem] border border-slate-100 shadow-lg transition-all duration-300 px-6 py-2.5" id="navbar">
     <div class="flex justify-between items-center">
       <!-- Logo -->
       <div class="flex items-center cursor-pointer group" id="logo-btn">
@@ -46,9 +46,11 @@
         </div>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-1 hover:bg-slate-50 rounded-lg transition-colors">
-        <i data-lucide="menu" class="w-6 h-6"></i>
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-2 hover:bg-slate-50 rounded-xl transition-colors focus:outline-none flex flex-col justify-center items-center gap-1.5 w-10 h-10" aria-label="Toggle Menu">
+        <span class="w-5 h-0.5 bg-slate-600 rounded transition-all duration-300 origin-center" id="hamburger-line-1"></span>
+        <span class="w-5 h-0.5 bg-slate-600 rounded transition-all duration-300 origin-center" id="hamburger-line-2"></span>
+        <span class="w-5 h-0.5 bg-slate-600 rounded transition-all duration-300 origin-center" id="hamburger-line-3"></span>
       </button>
     </div>
 
@@ -65,12 +67,52 @@
 </div>
 
 <script>
-  // Mobile Menu Toggle
+  // Elements
   const mobileBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
-  mobileBtn?.addEventListener("click", () => mobileMenu?.classList.toggle("hidden"));
+  const navbar = document.getElementById("navbar");
+  const line1 = document.getElementById("hamburger-line-1");
+  const line2 = document.getElementById("hamburger-line-2");
+  const line3 = document.getElementById("hamburger-line-3");
+
+  // Helper Functions
+  function openMenu() {
+    mobileMenu?.classList.remove("hidden");
+    line1?.classList.add("rotate-45", "translate-y-2");
+    line2?.classList.add("opacity-0", "scale-0");
+    line3?.classList.add("-rotate-45", "-translate-y-2");
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add("hidden");
+    line1?.classList.remove("rotate-45", "translate-y-2");
+    line2?.classList.remove("opacity-0", "scale-0");
+    line3?.classList.remove("-rotate-45", "-translate-y-2");
+  }
+
+  // Toggle button click handler
+  mobileBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (mobileMenu?.classList.contains("hidden")) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  // Close when clicking mobile menu links
   document.querySelectorAll("#mobile-menu a").forEach((link) => {
-    link.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
+    link.addEventListener("click", () => {
+      closeMenu();
+    });
+  });
+
+  // Close when clicking outside navbar container
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (navbar && !navbar.contains(target)) {
+      closeMenu();
+    }
   });
 
   // Logo scroll to top
@@ -79,7 +121,6 @@
   });
 
   // Navbar Scroll Effect & Active Spy
-  const navbar = document.getElementById("navbar");
   const sections = document.querySelectorAll("section");
   const navLinks = document.querySelectorAll(".nav-link");
 
