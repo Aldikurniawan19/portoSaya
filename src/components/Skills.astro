@@ -1,4 +1,9 @@
 ---
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
+
 const row1Skills = [
   { name: "Laravel", icon: "laravel/FF2D20" },
   { name: "ReactJS", icon: "react/61DAFB" },
@@ -32,14 +37,13 @@ const row2Skills = [
   <div class="max-w-6xl mx-auto px-6 w-full mb-12">
     <div class="text-center" data-aos="fade-up">
       <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">
-        Tech Skills
+        {t.skills.title}
       </h2>
       <h3 class="text-3xl md:text-4xl font-bold text-secondary">
-        Keahlian & Teknologi
+        {t.skills.subtitle}
       </h3>
       <p class="text-slate-500 mt-4 max-w-lg mx-auto">
-        Berikut adalah beberapa teknologi dan alat yang saya kuasai dan gunakan
-        dalam mengembangkan proyek digital.
+        {t.skills.description}
       </p>
     </div>
   </div>

@@ -1,36 +1,31 @@
 ---
-const experiences = [
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
+
+const meta = [
   {
-    type: "Freelance",
     typeColor: "bg-primary/10 text-primary border-primary/20",
-    title: "Junior Web Developer",
-    period: "Jan 2025 - Sekarang",
     icon: "building-2",
-    company: "CV. Creative Digital Solusindo",
-    description: "Mengembangkan, memelihara, dan mengoptimalkan aplikasi web berbasis klien. Bertanggung jawab dalam merancang antarmuka pengguna yang modern, responsif, dan memastikan kompatibilitas lintas browser serta kecepatan loading halaman yang optimal.",
     tags: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
   },
   {
-    type: "Magang",
     typeColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-    title: "IT Support & Web Administrator",
-    period: "Agt - Des 2024",
     icon: "building-2",
-    company: "Lembaga Pendidikan Nusantara",
-    description: "Mengelola konten website institusi, merancang dan memperbarui layout web institusi, memantau kinerja server, melakukan backup berkala, dan memberikan troubleshoot dukungan teknis operasional harian untuk komputer dan jaringan.",
     tags: ["Web Admin", "MySQL", "Troubleshooting"],
   },
   {
-    type: "Freelance",
     typeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-    title: "Freelance Frontend Developer",
-    period: "2023 - 2024",
     icon: "user",
-    company: "Proyek Mandiri / UMKM",
-    description: "Membuat website portofolio pribadi, halaman arahan (landing page) pemasaran, serta sistem informasi sederhana berbasis web untuk membantu digitalisasi bisnis UMKM lokal.",
     tags: ["Responsive Web", "UI/UX Design", "HTML & CSS"],
   },
 ];
+
+const experiences = t.experience.items.map((item, index) => ({
+  ...item,
+  ...meta[index],
+}));
 ---
 
 <!-- 4. WORK EXPERIENCE SECTION -->
@@ -42,9 +37,9 @@ const experiences = [
   <div class="max-w-4xl mx-auto px-6 w-full">
     <!-- Section Header -->
     <div class="text-center mb-20" data-aos="fade-up">
-      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Work Experience</h2>
-      <h3 class="text-3xl md:text-4xl font-bold text-secondary">Riwayat Profesional</h3>
-      <p class="text-slate-500 mt-4 max-w-lg mx-auto">Perjalanan karir dan kontribusi saya di dunia pengembangan perangkat lunak dan teknologi informasi.</p>
+      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">{t.experience.title}</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-secondary">{t.experience.subtitle}</h3>
+      <p class="text-slate-500 mt-4 max-w-lg mx-auto">{t.experience.description}</p>
     </div>
 
     <!-- Timeline Container -->

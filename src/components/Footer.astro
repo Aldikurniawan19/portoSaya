@@ -1,3 +1,10 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
+---
+
 <!-- FOOTER -->
 <footer class="bg-secondary border-t border-slate-800 py-12 text-slate-400 text-sm">
   <div class="max-w-6xl mx-auto px-6">
@@ -9,12 +16,12 @@
 
       <!-- Navigation Links -->
       <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-        <a href="#home" class="text-slate-400 hover:text-white transition-colors">Beranda</a>
-        <a href="#about" class="text-slate-400 hover:text-white transition-colors">Tentang</a>
-        <a href="#skills" class="text-slate-400 hover:text-white transition-colors">Keahlian</a>
-        <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Pengalaman</a>
-        <a href="#portfolio" class="text-slate-400 hover:text-white transition-colors">Proyek</a>
-        <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Kontak</a>
+        <a href="#home" class="text-slate-400 hover:text-white transition-colors">{t.navbar.home}</a>
+        <a href="#about" class="text-slate-400 hover:text-white transition-colors">{t.navbar.about}</a>
+        <a href="#skills" class="text-slate-400 hover:text-white transition-colors">{t.navbar.skills}</a>
+        <a href="#experience" class="text-slate-400 hover:text-white transition-colors">{t.navbar.experience}</a>
+        <a href="#portfolio" class="text-slate-400 hover:text-white transition-colors">{t.navbar.portfolio}</a>
+        <a href="#contact" class="text-slate-400 hover:text-white transition-colors">{t.navbar.contact}</a>
       </div>
 
       <!-- Socials -->
@@ -35,7 +42,7 @@
     <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
       <p>&copy; {new Date().getFullYear()} Aldi Kurniawan. All rights reserved.</p>
       <div class="flex items-center gap-1.5">
-        <span>Membangun dengan</span>
+        <span>{t.footer.builtWith}</span>
         <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Astro</a>
         <span>&amp;</span>
         <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Tailwind CSS</a>

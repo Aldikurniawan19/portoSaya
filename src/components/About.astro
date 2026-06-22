@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import profileImage from '../assets/saya.png';
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
 ---
 
 <!-- 2. ABOUT SECTION -->
@@ -16,7 +20,7 @@ import profileImage from '../assets/saya.png';
         <div class="relative rounded-[2rem] overflow-hidden shadow-xl aspect-[3/4] w-full max-w-[360px] bg-[#fbbf24] border border-slate-100/50">
           <Image
             src={profileImage}
-            alt="Foto Profil Aldi Kurniawan"
+            alt={t.about.altPhoto}
             class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
             widths={[360, 720]}
             sizes="(max-width: 1024px) 360px, 360px"
@@ -29,21 +33,21 @@ import profileImage from '../assets/saya.png';
         <!-- Title Badge Row -->
         <div class="space-y-4">
           <div class="flex flex-wrap items-center gap-3 text-3xl md:text-4xl font-extrabold text-secondary tracking-tight">
-            <span>SAYA</span>
-            <span class="bg-[#3b82f6] text-white px-4 py-1.5 rounded-xl text-2xl md:text-3xl font-extrabold tracking-wide uppercase">ALDI KURNIAWAN</span>
+            <span>{t.about.badge}</span>
+            <span class="bg-[#3b82f6] text-white px-4 py-1.5 rounded-xl text-2xl md:text-3xl font-extrabold tracking-wide uppercase">{t.about.name}</span>
           </div>
           <div class="bg-[#10b981]/25 text-[#065f46] px-4 py-2 rounded-xl text-sm md:text-base font-black tracking-wider w-fit border border-[#10b981]/30">
-            FULLSTACK DEVELOPER
+            {t.about.role}
           </div>
         </div>
 
         <!-- Bordered Paragraphs -->
         <div class="border-l-4 border-indigo-500 pl-6 space-y-4">
           <p class="text-slate-600 leading-relaxed text-base font-medium">
-            Sebagai lulusan Sistem Informasi dan Software Engineer, saya berfokus mengubah kebutuhan bisnis yang kompleks menjadi aplikasi web yang efisien.
+            {t.about.paragraph1}
           </p>
           <p class="text-slate-600 leading-relaxed text-base font-medium">
-            Dari digitalisasi alur kerja operasional hingga perancangan arsitektur frontend, saya menikmati proses membangun solusi full-stack dari nol yang terukur dan memberikan dampak nyata.
+            {t.about.paragraph2}
           </p>
         </div>
 
@@ -51,7 +55,7 @@ import profileImage from '../assets/saya.png';
         <div class="pt-2">
           <a href="#" class="px-6 py-3.5 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 hover:shadow-lg shadow-md transition-all flex items-center gap-2 w-fit">
             <i data-lucide="download" class="w-4 h-4"></i>
-            UNDUH CV
+            {t.about.downloadCV}
           </a>
         </div>
       </div>

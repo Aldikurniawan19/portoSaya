@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import projectImage from '../assets/project_portfolio_1782149727982.png';
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
 ---
 
 <!-- 5. PORTFOLIO SECTION (KARYA TERBAIK) -->
@@ -11,9 +15,9 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
   <div class="max-w-6xl mx-auto px-6 w-full">
     <!-- Section Header -->
     <div class="text-center mb-16" data-aos="fade-up">
-      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Karya Terbaik</h2>
-      <h3 class="text-3xl md:text-4xl font-bold text-secondary">Karya Terbaik & Implementasi Skills</h3>
-      <p class="text-slate-500 mt-4 max-w-lg mx-auto">Berikut adalah proyek terbaik yang mengintegrasikan seluruh keahlian saya dalam pengembangan web modern.</p>
+      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">{t.portfolio.title}</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-secondary">{t.portfolio.subtitle}</h3>
+      <p class="text-slate-500 mt-4 max-w-lg mx-auto">{t.portfolio.description}</p>
     </div>
 
     <!-- Project Showcase Container -->
@@ -50,11 +54,11 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
       <div class="lg:col-span-6 space-y-6" data-aos="fade-left">
         <div class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 bg-indigo-50 text-primary rounded-full border border-indigo-100">
           <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          Karya Unggulan
+          {t.portfolio.badge}
         </div>
         <h4 class="text-3xl font-extrabold text-secondary tracking-tight">All.Dev - Modern Developer Portfolio</h4>
         <p class="text-slate-600 leading-relaxed">
-          Platform website portofolio interaktif yang dirancang dengan estetika visual tinggi, tata letak modern responsif, serta penekanan pada aspek SEO dan performa. Proyek ini memvisualisasikan data diri, keterampilan teknologi, dan riwayat profesional secara dinamis.
+          {t.portfolio.descriptionProject}
         </p>
 
         <!-- Key Features List -->
@@ -64,8 +68,8 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
               <i data-lucide="layout" class="w-4 h-4"></i>
             </div>
             <div>
-              <h5 class="text-sm font-bold text-secondary">Desain Responsif</h5>
-              <p class="text-xs text-slate-500">Optimal di hp, tablet, laptop.</p>
+              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.responsive.title}</h5>
+              <p class="text-xs text-slate-500">{t.portfolio.features.responsive.desc}</p>
             </div>
           </div>
 
@@ -74,8 +78,8 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
               <i data-lucide="code-2" class="w-4 h-4"></i>
             </div>
             <div>
-              <h5 class="text-sm font-bold text-secondary">HTML Semantik</h5>
-              <p class="text-xs text-slate-500">Struktur ramah SEO & aksesibel.</p>
+              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.semantic.title}</h5>
+              <p class="text-xs text-slate-500">{t.portfolio.features.semantic.desc}</p>
             </div>
           </div>
 
@@ -84,8 +88,8 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
               <i data-lucide="zap" class="w-4 h-4"></i>
             </div>
             <div>
-              <h5 class="text-sm font-bold text-secondary">Active Scroll Spy</h5>
-              <p class="text-xs text-slate-500">Deteksi section otomatis saat scroll.</p>
+              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.scrollspy.title}</h5>
+              <p class="text-xs text-slate-500">{t.portfolio.features.scrollspy.desc}</p>
             </div>
           </div>
 
@@ -94,15 +98,15 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
               <i data-lucide="palette" class="w-4 h-4"></i>
             </div>
             <div>
-              <h5 class="text-sm font-bold text-secondary">Utility-First CSS</h5>
-              <p class="text-xs text-slate-500">Styling cepat & rapi dengan Tailwind.</p>
+              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.utilityCss.title}</h5>
+              <p class="text-xs text-slate-500">{t.portfolio.features.utilityCss.desc}</p>
             </div>
           </div>
         </div>
 
         <!-- Tech Stack Badges -->
         <div class="pt-4 border-t border-slate-100">
-          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Teknologi yang Digunakan</p>
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.portfolio.techHeading}</p>
           <div class="flex flex-wrap gap-2">
             <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">HTML5</span>
             <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">CSS3</span>
@@ -116,11 +120,11 @@ import projectImage from '../assets/project_portfolio_1782149727982.png';
         <div class="flex flex-wrap gap-4 pt-2">
           <a href="#home" class="px-6 py-3 bg-secondary text-white rounded-lg text-sm font-bold hover:bg-primary hover:shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center gap-2">
             <i data-lucide="external-link" class="w-4 h-4"></i>
-            Lihat Demo Live
+            {t.portfolio.liveDemo}
           </a>
           <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-bold hover:border-primary hover:text-primary transition-all flex items-center gap-2">
             <i data-lucide="github" class="w-4 h-4"></i>
-            Source Code
+            {t.portfolio.sourceCode}
           </a>
         </div>
       </div>

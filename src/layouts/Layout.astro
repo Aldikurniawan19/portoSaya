@@ -1,17 +1,22 @@
 ---
+import { getTranslations } from '../i18n/translations';
+
 interface Props {
   title?: string;
   description?: string;
 }
 
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
+
 const {
-  title = "Portofolio Aldi Kurniawan",
-  description = "Membangun aplikasi web yang fungsional, interaktif, dan berpusat pada pengalaman pengguna.",
+  title = t.meta.title,
+  description = t.meta.description,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
