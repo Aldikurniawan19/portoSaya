@@ -41,7 +41,7 @@ const experiences = [
 
   <div class="max-w-4xl mx-auto px-6 w-full">
     <!-- Section Header -->
-    <div class="text-center mb-20 scroll-reveal">
+    <div class="text-center mb-20" data-aos="fade-up">
       <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">Work Experience</h2>
       <h3 class="text-3xl md:text-4xl font-bold text-secondary">Riwayat Profesional</h3>
       <p class="text-slate-500 mt-4 max-w-lg mx-auto">Perjalanan karir dan kontribusi saya di dunia pengembangan perangkat lunak dan teknologi informasi.</p>
@@ -49,8 +49,8 @@ const experiences = [
 
     <!-- Timeline Container -->
     <div class="relative border-l border-slate-200 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
-      {experiences.map((exp) => (
-        <div class="relative group scroll-reveal">
+      {experiences.map((exp, index) => (
+        <div class="relative group" data-aos="fade-up" data-aos-delay={index * 100}>
           <!-- Timeline Dot -->
           <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 bg-white rounded-full border-4 border-slate-200 group-hover:border-primary group-hover:shadow-[0_0_12px_rgba(79,70,229,0.2)] transition-all duration-300 flex items-center justify-center">
             <div class="w-1.5 h-1.5 bg-slate-300 group-hover:bg-primary rounded-full transition-colors"></div>
