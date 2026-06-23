@@ -45,14 +45,14 @@ const experiences = t.experience.items.map((item, index) => ({
     <!-- Timeline Container -->
     <div class="relative border-l border-slate-200 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
       {experiences.map((exp, index) => (
-        <div class="relative group" data-aos="fade-up" data-aos-delay={index * 100}>
+        <div class="relative group timeline-item" data-aos="fade-up" data-aos-delay={index * 100}>
           <!-- Timeline Dot -->
-          <div class="absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 bg-white rounded-full border-4 border-slate-200 group-hover:border-primary group-hover:shadow-[0_0_12px_rgba(79,70,229,0.2)] transition-all duration-300 flex items-center justify-center">
-            <div class="w-1.5 h-1.5 bg-slate-300 group-hover:bg-primary rounded-full transition-colors"></div>
+          <div class="timeline-dot absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 bg-white rounded-full border-4 border-slate-200 group-hover:border-primary group-hover:shadow-[0_0_12px_rgba(79,70,229,0.2)] transition-all duration-300 flex items-center justify-center">
+            <div class="timeline-dot-inner w-1.5 h-1.5 bg-slate-300 group-hover:bg-primary rounded-full transition-colors"></div>
           </div>
 
           <!-- Content Card -->
-          <div class="bg-white border border-slate-100 rounded-2xl p-6 md:p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1 shadow-sm">
+          <div class="experience-card bg-white border border-slate-100 rounded-2xl p-6 md:p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1 shadow-sm">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
               <div>
                 <span class={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border mb-3 ${exp.typeColor}`}>
@@ -83,3 +83,50 @@ const experiences = t.experience.items.map((item, index) => ({
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Active timeline dot styles when card is in viewport */
+  .timeline-item.active .timeline-dot {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 12px rgba(79, 70, 229, 0.4) !important;
+  }
+  .timeline-item.active .timeline-dot-inner {
+    background-color: #4f46e5 !important;
+  }
+
+  /* Active card styles when card is in viewport */
+  .timeline-item.active .experience-card {
+    border-color: rgba(79, 70, 229, 0.3) !important;
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.08), 0 10px 10px -5px rgba(99, 102, 241, 0.08) !important;
+    transform: translateY(-6px) !important;
+  }
+</style>
+
+<script>
+  function initObserver() {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -25% 0px", // Trigger when the item is around the middle of the screen
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".timeline-item").forEach((item) => {
+      observer.observe(item);
+    });
+  }
+
+  // Initialize on load
+  initObserver();
+  // Also run on page transitions if standard SPA or dynamic loads are used
+  document.addEventListener("astro:page-load", initObserver);
+</script>
