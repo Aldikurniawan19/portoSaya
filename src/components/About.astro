@@ -43,10 +43,10 @@ const t = getTranslations(lang);
 
         <!-- Bordered Paragraphs -->
         <div class="border-l-4 border-indigo-500 pl-6 space-y-4">
-          <p class="text-slate-600 leading-relaxed text-base font-medium">
+          <p id="about-text-1" class="text-slate-600 leading-relaxed text-base font-medium" data-text={t.about.paragraph1}>
             {t.about.paragraph1}
           </p>
-          <p class="text-slate-600 leading-relaxed text-base font-medium">
+          <p id="about-text-2" class="text-slate-600 leading-relaxed text-base font-medium" data-text={t.about.paragraph2}>
             {t.about.paragraph2}
           </p>
         </div>
@@ -62,3 +62,91 @@ const t = getTranslations(lang);
     </div>
   </div>
 </section>
+
+<script>
+  function initAboutTypewriter() {
+    const p1 = document.getElementById("about-text-1");
+    const p2 = document.getElementById("about-text-2");
+    if (!p1 || !p2) return;
+
+    // Grab correct text content from data attributes or innerText
+    const text1 = p1.getAttribute("data-text") || p1.innerText.trim();
+    const text2 = p2.getAttribute("data-text") || p2.innerText.trim();
+
+    // Ensure data attribute contains the clean text
+    p1.setAttribute("data-text", text1);
+    p2.setAttribute("data-text", text2);
+
+    // Empty contents initially
+    p1.innerHTML = "";
+    p2.innerHTML = "";
+
+    // Create a blinking cursor element
+    const cursor = document.createElement("span");
+    cursor.className = "inline-block w-[2px] h-[1em] bg-indigo-500 ml-1 align-middle animate-pulse";
+    cursor.style.animationDuration = "0.8s";
+
+    let hasStarted = false;
+
+    // Setup intersection observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasStarted) {
+          hasStarted = true;
+          startTyping();
+          observer.disconnect();
+        }
+      });
+    }, { rootMargin: "-10% 0px -15% 0px", threshold: 0.1 });
+
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+
+    function startTyping() {
+      let index1 = 0;
+      let index2 = 0;
+      const speed = 20; // Typing speed in ms per character (fast and smooth)
+
+      function typeP1() {
+        if (index1 < text1.length) {
+          p1.innerHTML = text1.substring(0, index1 + 1);
+          p1.appendChild(cursor);
+          index1++;
+          setTimeout(typeP1, speed);
+        } else {
+          // Remove cursor from p1
+          if (p1.contains(cursor)) {
+            p1.removeChild(cursor);
+          }
+          // Start p2
+          setTimeout(typeP2, 200);
+        }
+      }
+
+      function typeP2() {
+        if (index2 < text2.length) {
+          p2.innerHTML = text2.substring(0, index2 + 1);
+          p2.appendChild(cursor);
+          index2++;
+          setTimeout(typeP2, speed);
+        } else {
+          // Keep cursor blinking for 2 seconds after completion, then remove
+          setTimeout(() => {
+            if (p2.contains(cursor)) {
+              p2.removeChild(cursor);
+            }
+          }, 2000);
+        }
+      }
+
+      typeP1();
+    }
+  }
+
+  // Load typewriter
+  initAboutTypewriter();
+  // Support Astro SPA transition events
+  document.addEventListener("astro:page-load", initAboutTypewriter);
+</script>
