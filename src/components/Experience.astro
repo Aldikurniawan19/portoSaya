@@ -43,7 +43,13 @@ const experiences = t.experience.items.map((item, index) => ({
     </div>
 
     <!-- Timeline Container -->
-    <div class="relative border-l border-slate-200 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
+    <div class="relative ml-4 md:ml-6 pl-8 md:pl-12 space-y-12" id="timeline-container">
+      <!-- Static Timeline Line (Background) -->
+      <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200"></div>
+      <!-- Animated Timeline Line (Fills on scroll) -->
+      <div id="timeline-progress" class="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 transition-[height] duration-300 ease-out" style="height: 0%;"></div>
+      <!-- Glowing tip at the bottom of the progress line -->
+      <div id="timeline-glow" class="absolute left-[-3px] w-[8px] h-[8px] rounded-full bg-blue-500 shadow-[0_0_12px_4px_rgba(59,130,246,0.5)] transition-[top] duration-300 ease-out opacity-0" style="top: 0px;"></div>
       {experiences.map((exp, index) => (
         <div class="relative group timeline-item" data-aos="fade-up" data-aos-delay={index * 100}>
           <!-- Timeline Dot -->
@@ -100,13 +106,22 @@ const experiences = t.experience.items.map((item, index) => ({
     box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.08), 0 10px 10px -5px rgba(99, 102, 241, 0.08) !important;
     transform: translateY(-6px) !important;
   }
+
+  /* Timeline progress line glow pulse */
+  #timeline-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 12px 4px rgba(59, 130, 246, 0.5); }
+    50% { box-shadow: 0 0 20px 6px rgba(99, 102, 241, 0.7); }
+  }
 </style>
 
 <script>
   function initObserver() {
     const observerOptions = {
       root: null,
-      rootMargin: "-25% 0px -25% 0px", // Trigger when the item is around the middle of the screen
+      rootMargin: "-25% 0px -25% 0px",
       threshold: 0.1,
     };
 
@@ -125,8 +140,50 @@ const experiences = t.experience.items.map((item, index) => ({
     });
   }
 
+  function initTimelineScroll() {
+    const container = document.getElementById("timeline-container");
+    const progressLine = document.getElementById("timeline-progress");
+    const glowDot = document.getElementById("timeline-glow");
+
+    if (!container || !progressLine || !glowDot) return;
+
+    function updateProgress() {
+      const rect = container!.getBoundingClientRect();
+      const containerHeight = container!.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      // Calculate how far we've scrolled through the container
+      // Start filling when the top of the container reaches 70% of viewport
+      const startOffset = windowHeight * 0.7;
+      const scrolled = startOffset - rect.top;
+      const progress = Math.min(Math.max(scrolled / containerHeight, 0), 1);
+
+      const heightPx = progress * containerHeight;
+      progressLine!.style.height = heightPx + "px";
+
+      if (progress > 0 && progress < 1) {
+        glowDot!.style.opacity = "1";
+        glowDot!.style.top = heightPx + "px";
+      } else if (progress >= 1) {
+        glowDot!.style.opacity = "0";
+        glowDot!.style.top = containerHeight + "px";
+      } else {
+        glowDot!.style.opacity = "0";
+        glowDot!.style.top = "0px";
+      }
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress, { passive: true });
+    updateProgress();
+  }
+
   // Initialize on load
   initObserver();
-  // Also run on page transitions if standard SPA or dynamic loads are used
-  document.addEventListener("astro:page-load", initObserver);
+  initTimelineScroll();
+  // Also run on page transitions
+  document.addEventListener("astro:page-load", () => {
+    initObserver();
+    initTimelineScroll();
+  });
 </script>
