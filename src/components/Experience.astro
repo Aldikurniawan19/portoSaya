@@ -47,9 +47,9 @@ const experiences = t.experience.items.map((item, index) => ({
       <!-- Static Timeline Line (Background) -->
       <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200"></div>
       <!-- Animated Timeline Line (Fills on scroll) -->
-      <div id="timeline-progress" class="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 transition-[height] duration-300 ease-out" style="height: 0%;"></div>
+      <div id="timeline-progress" class="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500" style="height: 0px;"></div>
       <!-- Glowing tip at the bottom of the progress line -->
-      <div id="timeline-glow" class="absolute left-[-3px] w-[8px] h-[8px] rounded-full bg-blue-500 shadow-[0_0_12px_4px_rgba(59,130,246,0.5)] transition-[top] duration-300 ease-out opacity-0" style="top: 0px;"></div>
+      <div id="timeline-glow" class="absolute left-[-3px] w-[8px] h-[8px] rounded-full bg-blue-500 shadow-[0_0_12px_4px_rgba(59,130,246,0.5)] opacity-0" style="top: 0px;"></div>
       {experiences.map((exp, index) => (
         <div class="relative group timeline-item" data-aos="fade-up" data-aos-delay={index * 100}>
           <!-- Timeline Dot -->
@@ -147,35 +147,58 @@ const experiences = t.experience.items.map((item, index) => ({
 
     if (!container || !progressLine || !glowDot) return;
 
-    function updateProgress() {
+    let currentHeight = 0;
+    let targetHeight = 0;
+    let currentOpacity = 0;
+    let targetOpacity = 0;
+    let rafId: number | null = null;
+
+    // Lerp helper for smooth interpolation
+    function lerp(start: number, end: number, factor: number): number {
+      return start + (end - start) * factor;
+    }
+
+    function calculateTarget() {
       const rect = container!.getBoundingClientRect();
       const containerHeight = container!.offsetHeight;
       const windowHeight = window.innerHeight;
 
-      // Calculate how far we've scrolled through the container
-      // Start filling when the top of the container reaches 70% of viewport
-      const startOffset = windowHeight * 0.7;
+      const startOffset = windowHeight * 0.65;
       const scrolled = startOffset - rect.top;
       const progress = Math.min(Math.max(scrolled / containerHeight, 0), 1);
 
-      const heightPx = progress * containerHeight;
-      progressLine!.style.height = heightPx + "px";
+      targetHeight = progress * containerHeight;
 
-      if (progress > 0 && progress < 1) {
-        glowDot!.style.opacity = "1";
-        glowDot!.style.top = heightPx + "px";
-      } else if (progress >= 1) {
-        glowDot!.style.opacity = "0";
-        glowDot!.style.top = containerHeight + "px";
+      if (progress > 0.01 && progress < 0.99) {
+        targetOpacity = 1;
       } else {
-        glowDot!.style.opacity = "0";
-        glowDot!.style.top = "0px";
+        targetOpacity = 0;
       }
     }
 
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress, { passive: true });
-    updateProgress();
+    function animate() {
+      // Smooth lerp — factor 0.08 for silky smooth follow
+      currentHeight = lerp(currentHeight, targetHeight, 0.08);
+      currentOpacity = lerp(currentOpacity, targetOpacity, 0.1);
+
+      // Apply styles directly (no CSS transition needed)
+      progressLine!.style.height = currentHeight + "px";
+      glowDot!.style.top = currentHeight + "px";
+      glowDot!.style.opacity = String(currentOpacity);
+
+      // Keep the loop running
+      rafId = requestAnimationFrame(animate);
+    }
+
+    // Listen to scroll for target updates only
+    window.addEventListener("scroll", calculateTarget, { passive: true });
+    window.addEventListener("resize", calculateTarget, { passive: true });
+
+    // Initial calculation and start animation loop
+    calculateTarget();
+    currentHeight = targetHeight; // snap to initial position
+    currentOpacity = targetOpacity;
+    rafId = requestAnimationFrame(animate);
   }
 
   // Initialize on load
