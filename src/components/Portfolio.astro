@@ -1,10 +1,46 @@
 ---
 import { Image } from 'astro:assets';
-import projectImage from '../assets/project_portfolio_1782149727982.png';
+import projectImage from '../assets/projek1.png';
+import rentalImage from '../assets/rentalimg.png';
 import { getTranslations } from '../i18n/translations';
 
 const lang = Astro.currentLocale || 'id';
 const t = getTranslations(lang);
+
+const projects = [
+  {
+    title: "All.Dev - Modern Developer Portfolio",
+    badge: t.portfolio.badge,
+    image: projectImage,
+    url: "alldev.portfolio.io",
+    description: t.portfolio.descriptionProject,
+    features: [
+      { title: t.portfolio.features.responsive.title, desc: t.portfolio.features.responsive.desc, icon: "layout" },
+      { title: t.portfolio.features.semantic.title, desc: t.portfolio.features.semantic.desc, icon: "code-2" },
+      { title: t.portfolio.features.scrollspy.title, desc: t.portfolio.features.scrollspy.desc, icon: "zap" },
+      { title: t.portfolio.features.utilityCss.title, desc: t.portfolio.features.utilityCss.desc, icon: "palette" },
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+    liveDemoUrl: "#home",
+    sourceCodeUrl: "https://github.com/Aldikurniawan19",
+  },
+  {
+    title: t.portfolio.rentalTitle,
+    badge: t.portfolio.rentalBadge,
+    image: rentalImage,
+    url: "rental-go.io",
+    description: t.portfolio.rentalDesc,
+    features: [
+      { title: t.portfolio.features.catalogTitle, desc: t.portfolio.features.catalogDesc, icon: "car" },
+      { title: t.portfolio.features.bookingTitle, desc: t.portfolio.features.bookingDesc, icon: "calendar" },
+      { title: t.portfolio.features.adminTitle, desc: t.portfolio.features.adminDesc, icon: "sliders" },
+      { title: t.portfolio.features.invoiceTitle, desc: t.portfolio.features.invoiceDesc, icon: "file-text" },
+    ],
+    tech: ["Laravel", "Tailwind CSS", "MySQL"],
+    liveDemoUrl: "#home",
+    sourceCodeUrl: "https://github.com/Aldikurniawan19",
+  }
+];
 ---
 
 <!-- 5. PORTFOLIO SECTION (KARYA TERBAIK) -->
@@ -13,121 +49,186 @@ const t = getTranslations(lang);
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-50/40 rounded-full blur-3xl -z-10"></div>
 
   <div class="max-w-6xl mx-auto px-6 w-full">
-    <!-- Section Header -->
-    <div class="text-center mb-16" data-aos="fade-up">
-      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">{t.portfolio.title}</h2>
-      <h3 class="text-3xl md:text-4xl font-bold text-secondary">{t.portfolio.subtitle}</h3>
-      <p class="text-slate-500 mt-4 max-w-lg mx-auto">{t.portfolio.description}</p>
-    </div>
-
-    <!-- Project Showcase Container -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <!-- Left Column: Browser Mockup -->
-      <div class="lg:col-span-6 relative group" data-aos="fade-right">
-        <div class="absolute -inset-2 bg-gradient-to-r from-primary to-indigo-600 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
-
-        <div class="relative bg-slate-900 rounded-xl shadow-2xl overflow-hidden border border-slate-700/80 transition-transform duration-500 group-hover:-translate-y-2">
-          <!-- Browser Window Header -->
-          <div class="bg-slate-800 px-4 py-3 flex items-center gap-2 border-b border-slate-700/80">
-            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-            <div class="ml-4 text-[10px] text-slate-400 font-mono flex items-center gap-1.5 bg-slate-900 px-3 py-0.5 rounded-md border border-slate-700">
-              <i data-lucide="globe" class="w-3 h-3"></i>
-              alldev.portfolio.io
-            </div>
-          </div>
-          <!-- Image Wrapper -->
-          <div class="overflow-hidden aspect-video relative bg-slate-950 flex items-center justify-center">
-            <Image
-              src={projectImage}
-              alt="All Dev Portfolio Project"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              widths={[600, 1200]}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-        </div>
+    <!-- Header Row (Matches Mockup) -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="space-y-4 max-w-xl" data-aos="fade-right">
+        <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-1">{t.portfolio.title}</h2>
+        <h3 class="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight">
+          {lang === 'id' ? 'Karya' : 'Featured'} <span class="text-amber-500">{lang === 'id' ? 'Unggulan.' : 'Works.'}</span>
+        </h3>
+        <p class="text-slate-500 text-base md:text-lg leading-relaxed">
+          {t.portfolio.description}
+        </p>
       </div>
 
-      <!-- Right Column: Project Information -->
-      <div class="lg:col-span-6 space-y-6" data-aos="fade-left">
-        <div class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 bg-indigo-50 text-primary rounded-full border border-indigo-100">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          {t.portfolio.badge}
-        </div>
-        <h4 class="text-3xl font-extrabold text-secondary tracking-tight">All.Dev - Modern Developer Portfolio</h4>
-        <p class="text-slate-600 leading-relaxed">
-          {t.portfolio.descriptionProject}
-        </p>
+      <!-- Controls (Top Right - Matches Mockup) -->
+      <div class="flex items-center gap-3" data-aos="fade-left">
+        <button id="portfolio-prev" class="w-12 h-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-400 hover:text-secondary flex items-center justify-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="portfolio-next" class="w-12 h-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-400 hover:text-secondary flex items-center justify-center shadow-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
 
-        <!-- Key Features List -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="flex gap-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-primary shrink-0">
-              <i data-lucide="layout" class="w-4 h-4"></i>
-            </div>
-            <div>
-              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.responsive.title}</h5>
-              <p class="text-xs text-slate-500">{t.portfolio.features.responsive.desc}</p>
+    <!-- Carousel Slider Track Wrapper (Matches Mockup Card Carousel) -->
+    <div class="relative w-full overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+      <div id="portfolio-track" class="flex transition-transform duration-500 ease-in-out gap-6 w-full">
+        {projects.map((project, idx) => (
+          <div class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] xl:w-[380px] shrink-0" data-slide-index={idx}>
+            <!-- Single Card Box with rounded-[2rem] -->
+            <div class="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group cursor-pointer">
+              <!-- Top Mockup Image (Bleed) -->
+              <div class="w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-auto block group-hover:scale-102 transition-transform duration-500"
+                  widths={[380, 760]}
+                  sizes="(max-width: 1024px) 100vw, 380px"
+                />
+              </div>
+
+              <!-- Bottom Content Area -->
+              <div class="p-6 flex flex-col flex-grow justify-between gap-6">
+                <div class="space-y-3">
+                  <!-- Heading Title (Turns blue on card hover) -->
+                  <h4 class="text-xl md:text-2xl font-bold text-secondary group-hover:text-blue-600 transition-colors duration-300 tracking-tight leading-snug">
+                    {project.title}
+                  </h4>
+                  <!-- Description -->
+                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+                </div>
+
+                <!-- Spacing divider -->
+                <div class="h-[1px] bg-slate-100 w-full"></div>
+
+                <!-- Bottom Section: Tech Stack Badges (Matches Mockup) -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    {project.tech.map((tItem) => (
+                      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-50 border border-slate-150 rounded-full text-xs font-bold text-slate-600">
+                        {tItem === "HTML5" || tItem === "HTML" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                        ) : tItem === "CSS3" || tItem === "CSS" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                        ) : tItem === "JavaScript" || tItem === "JS" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                        ) : tItem === "Laravel" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                        ) : tItem === "Tailwind CSS" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+                        ) : tItem === "MySQL" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+                        ) : (
+                          <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                        )}
+                        {tItem}
+                      </span>
+                    ))}
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="flex items-center gap-2">
+                    <a href={project.liveDemoUrl} class="px-4 py-2 bg-[linear-gradient(to_right,#0f172a_50%,#2563eb_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-white rounded-full text-xs font-bold hover:shadow-md transition-all duration-500 ease-out flex items-center gap-1.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                      {t.portfolio.liveDemo}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="flex gap-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-primary shrink-0">
-              <i data-lucide="code-2" class="w-4 h-4"></i>
-            </div>
-            <div>
-              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.semantic.title}</h5>
-              <p class="text-xs text-slate-500">{t.portfolio.features.semantic.desc}</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-primary shrink-0">
-              <i data-lucide="zap" class="w-4 h-4"></i>
-            </div>
-            <div>
-              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.scrollspy.title}</h5>
-              <p class="text-xs text-slate-500">{t.portfolio.features.scrollspy.desc}</p>
-            </div>
-          </div>
-
-          <div class="flex gap-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-primary shrink-0">
-              <i data-lucide="palette" class="w-4 h-4"></i>
-            </div>
-            <div>
-              <h5 class="text-sm font-bold text-secondary">{t.portfolio.features.utilityCss.title}</h5>
-              <p class="text-xs text-slate-500">{t.portfolio.features.utilityCss.desc}</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tech Stack Badges -->
-        <div class="pt-4 border-t border-slate-100">
-          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.portfolio.techHeading}</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">HTML5</span>
-            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">CSS3</span>
-            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-semibold">JavaScript (ES6+)</span>
-            <span class="px-2.5 py-1 bg-indigo-50 text-primary rounded-md text-xs font-semibold">Tailwind CSS</span>
-            <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded-md text-xs font-semibold">Lucide Icons</span>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap gap-4 pt-2">
-          <a href="#home" class="px-6 py-3 bg-[linear-gradient(to_right,#0f172a_50%,#2563eb_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-white rounded-lg text-sm font-bold hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-500 ease-out flex items-center gap-2">
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-            {t.portfolio.liveDemo}
-          </a>
-          <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-bold hover:border-primary hover:text-primary transition-all flex items-center gap-2">
-            <i data-lucide="github" class="w-4 h-4"></i>
-            {t.portfolio.sourceCode}
-          </a>
-        </div>
+        ))}
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function initPortfolioCarousel() {
+    const track = document.getElementById("portfolio-track");
+    const prevBtn = document.getElementById("portfolio-prev") as HTMLButtonElement | null;
+    const nextBtn = document.getElementById("portfolio-next") as HTMLButtonElement | null;
+    
+    if (!track || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+
+    function getVisibleCount() {
+      if (window.innerWidth >= 1024) {
+        return 2; // 2 cards visible on desktop
+      }
+      return 1; // 1 card visible on tablet/mobile
+    }
+
+    function updateCarousel() {
+      const cards = track.querySelectorAll('[data-slide-index]');
+      if (cards.length === 0) return;
+
+      const cardWidth = (cards[0] as HTMLElement).offsetWidth;
+      const gap = 24; // gap-6 is 24px
+
+      const translateAmount = currentIndex * (cardWidth + gap);
+      track.style.transform = `translateX(-${translateAmount}px)`;
+
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visibleCount);
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= maxIndex;
+
+      // Update style of buttons
+      if (prevBtn.disabled) {
+        prevBtn.classList.add("opacity-40", "cursor-not-allowed");
+      } else {
+        prevBtn.classList.remove("opacity-40", "cursor-not-allowed");
+      }
+
+      if (nextBtn.disabled) {
+        nextBtn.classList.add("opacity-40", "cursor-not-allowed");
+      } else {
+        nextBtn.classList.remove("opacity-40", "cursor-not-allowed");
+      }
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const cards = track.querySelectorAll('[data-slide-index]');
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visibleCount);
+
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      const cards = track.querySelectorAll('[data-slide-index]');
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visibleCount);
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
+      }
+      updateCarousel();
+    });
+
+    // Run initial state setup
+    setTimeout(updateCarousel, 100);
+  }
+
+  // Load carousel
+  initPortfolioCarousel();
+  // Support Astro page transitions
+  document.addEventListener("astro:page-load", initPortfolioCarousel);
+</script>

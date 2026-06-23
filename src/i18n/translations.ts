@@ -67,6 +67,9 @@ export const translations = {
       description: "Berikut adalah proyek terbaik yang mengintegrasikan seluruh keahlian saya dalam pengembangan web modern.",
       badge: "Karya Unggulan",
       descriptionProject: "Platform website portofolio interaktif yang dirancang dengan estetika visual tinggi, tata letak modern responsif, serta penekanan pada aspek SEO dan performa. Proyek ini memvisualisasikan data diri, keterampilan teknologi, dan riwayat profesional secara dinamis.",
+      rentalTitle: "RentalGo - Aplikasi Sewa Mobil",
+      rentalBadge: "Sistem Manajemen",
+      rentalDesc: "Aplikasi persewaan mobil berbasis web yang mempermudah pelanggan memilih armada secara online, menghitung estimasi biaya sewa, melakukan pemesanan (booking), serta menyediakan dasbor admin lengkap untuk mengelola ketersediaan kendaraan.",
       features: {
         responsive: {
           title: "Desain Responsif",
@@ -83,7 +86,15 @@ export const translations = {
         utilityCss: {
           title: "Utility-First CSS",
           desc: "Styling cepat & rapi dengan Tailwind."
-        }
+        },
+        catalogTitle: "Katalog Armada",
+        catalogDesc: "Pilihan armada lengkap dengan filter tipe.",
+        bookingTitle: "Pemesanan Instan",
+        bookingDesc: "Formulir sewa interaktif & estimasi biaya sewa.",
+        adminTitle: "Dasbor Manajemen",
+        adminDesc: "Pengelolaan ketersediaan & jadwal armada.",
+        invoiceTitle: "Cetak Tagihan",
+        invoiceDesc: "Generator invoice pemesanan PDF otomatis."
       },
       techHeading: "Teknologi yang Digunakan",
       liveDemo: "Lihat Demo Live",
@@ -179,6 +190,9 @@ export const translations = {
       description: "Here is the featured project that integrates all of my skills in modern web development.",
       badge: "Featured Work",
       descriptionProject: "An interactive portfolio website platform designed with high visual aesthetics, a modern responsive layout, and an emphasis on SEO and performance. This project dynamically visualizes personal details, technology skills, and professional history.",
+      rentalTitle: "RentalGo - Car Rental App",
+      rentalBadge: "Management System",
+      rentalDesc: "A web-based car rental application that simplifies online vehicle selection, calculates rental estimates, handles bookings, and provides a full admin dashboard to manage fleet availability.",
       features: {
         responsive: {
           title: "Responsive Design",
@@ -195,7 +209,15 @@ export const translations = {
         utilityCss: {
           title: "Utility-First CSS",
           desc: "Fast & neat styling using Tailwind CSS."
-        }
+        },
+        catalogTitle: "Online Catalog",
+        catalogDesc: "Complete fleet selection with class filters.",
+        bookingTitle: "Instant Booking",
+        bookingDesc: "Interactive booking form & rate calculator.",
+        adminTitle: "Management Dashboard",
+        adminDesc: "Vehicle availability & schedule management.",
+        invoiceTitle: "Invoice Printing",
+        invoiceDesc: "Automated booking PDF invoice generator."
       },
       techHeading: "Technologies Used",
       liveDemo: "Live Demo",
