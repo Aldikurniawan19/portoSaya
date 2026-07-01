@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import projectImage from '../assets/projek1.png';
 import rentalImage from '../assets/rentalimg.png';
+import hotelImage from '../assets/projek2.png';
 import { getTranslations } from '../i18n/translations';
 
 const lang = Astro.currentLocale || 'id';
@@ -39,6 +40,22 @@ const projects = [
     tech: ["Laravel", "Tailwind CSS", "MySQL"],
     liveDemoUrl: "https://rental-mobil-rho.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
+  },
+  {
+    title: t.portfolio.hotelTitle,
+    badge: t.portfolio.hotelBadge,
+    image: hotelImage,
+    url: "hotel-ui.vercel.app",
+    description: t.portfolio.hotelDesc,
+    features: [
+      { title: t.portfolio.features.hotelRoomTitle, desc: t.portfolio.features.hotelRoomDesc, icon: "bed" },
+      { title: t.portfolio.features.hotelBookingTitle, desc: t.portfolio.features.hotelBookingDesc, icon: "calendar" },
+      { title: t.portfolio.features.hotelGalleryTitle, desc: t.portfolio.features.hotelGalleryDesc, icon: "image" },
+      { title: t.portfolio.features.hotelResponsiveTitle, desc: t.portfolio.features.hotelResponsiveDesc, icon: "layout" },
+    ],
+    tech: ["React", "Tailwind CSS", "Vite"],
+    liveDemoUrl: "https://hotel-ui-l2f8.vercel.app/",
+    sourceCodeUrl: "https://github.com/Aldikurniawan19",
   }
 ];
 ---
@@ -73,7 +90,7 @@ const projects = [
     </div>
 
     <!-- Carousel Slider Track Wrapper (Matches Mockup Card Carousel) -->
-    <div class="relative w-full overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+    <div id="portfolio-slider" class="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none" data-aos="fade-up" data-aos-delay="200">
       <div id="portfolio-track" class="flex transition-transform duration-500 ease-in-out gap-6 w-full">
         {projects.map((project, idx) => (
           <div class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] xl:w-[380px] shrink-0" data-slide-index={idx}>
@@ -123,6 +140,10 @@ const projects = [
                           <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
                         ) : tItem === "MySQL" ? (
                           <span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+                        ) : tItem === "React" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                        ) : tItem === "Vite" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
                         ) : (
                           <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
                         )}
@@ -150,38 +171,53 @@ const projects = [
 
 <script>
   function initPortfolioCarousel() {
+    const slider = document.getElementById("portfolio-slider");
     const track = document.getElementById("portfolio-track");
     const prevBtn = document.getElementById("portfolio-prev") as HTMLButtonElement | null;
     const nextBtn = document.getElementById("portfolio-next") as HTMLButtonElement | null;
     
-    if (!track || !prevBtn || !nextBtn) return;
+    if (!slider || !track || !prevBtn || !nextBtn) return;
 
     let currentIndex = 0;
 
+    // --- Drag / Swipe state ---
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let dragMoved = false;
+    const DRAG_THRESHOLD = 50; // px needed to count as a slide
+
     function getVisibleCount() {
       if (window.innerWidth >= 1024) {
-        return 2; // 2 cards visible on desktop
+        return 2;
       }
-      return 1; // 1 card visible on tablet/mobile
+      return 1;
+    }
+
+    function getCardMetrics() {
+      const cards = track!.querySelectorAll('[data-slide-index]');
+      if (cards.length === 0) return { cardWidth: 0, gap: 24, count: 0, maxIndex: 0 };
+      const cardWidth = (cards[0] as HTMLElement).offsetWidth;
+      const gap = 24;
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visibleCount);
+      return { cardWidth, gap, count: cards.length, maxIndex };
     }
 
     function updateCarousel() {
-      const cards = track.querySelectorAll('[data-slide-index]');
-      if (cards.length === 0) return;
-
-      const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-      const gap = 24; // gap-6 is 24px
+      if (!track || !prevBtn || !nextBtn) return;
+      const { cardWidth, gap, maxIndex } = getCardMetrics();
+      if (cardWidth === 0) return;
 
       const translateAmount = currentIndex * (cardWidth + gap);
       track.style.transform = `translateX(-${translateAmount}px)`;
-
-      const visibleCount = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visibleCount);
+      prevTranslate = -translateAmount;
+      currentTranslate = -translateAmount;
 
       prevBtn.disabled = currentIndex === 0;
       nextBtn.disabled = currentIndex >= maxIndex;
 
-      // Update style of buttons
       if (prevBtn.disabled) {
         prevBtn.classList.add("opacity-40", "cursor-not-allowed");
       } else {
@@ -195,6 +231,7 @@ const projects = [
       }
     }
 
+    // --- Button controls ---
     prevBtn.addEventListener("click", () => {
       if (currentIndex > 0) {
         currentIndex--;
@@ -203,20 +240,88 @@ const projects = [
     });
 
     nextBtn.addEventListener("click", () => {
-      const cards = track.querySelectorAll('[data-slide-index]');
-      const visibleCount = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visibleCount);
-
+      const { maxIndex } = getCardMetrics();
       if (currentIndex < maxIndex) {
         currentIndex++;
         updateCarousel();
       }
     });
 
+    // --- Touch events ---
+    function getPointerX(e: TouchEvent | MouseEvent): number {
+      return 'touches' in e ? e.touches[0].clientX : e.clientX;
+    }
+
+    function dragStart(e: TouchEvent | MouseEvent) {
+      isDragging = true;
+      dragMoved = false;
+      startX = getPointerX(e);
+      prevTranslate = currentTranslate;
+      track!.style.transition = 'none'; // disable smooth transition while dragging
+      slider!.classList.add('cursor-grabbing');
+      slider!.classList.remove('cursor-grab');
+    }
+
+    function dragMove(e: TouchEvent | MouseEvent) {
+      if (!isDragging) return;
+      const currentX = getPointerX(e);
+      const diff = currentX - startX;
+      if (Math.abs(diff) > 5) dragMoved = true;
+      currentTranslate = prevTranslate + diff;
+      track!.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    function dragEnd(e: TouchEvent | MouseEvent) {
+      if (!isDragging) return;
+      isDragging = false;
+      track!.style.transition = ''; // re-enable smooth transition
+      slider!.classList.remove('cursor-grabbing');
+      slider!.classList.add('cursor-grab');
+
+      const movedBy = currentTranslate - prevTranslate;
+      const { maxIndex } = getCardMetrics();
+
+      if (Math.abs(movedBy) > DRAG_THRESHOLD) {
+        if (movedBy < 0 && currentIndex < maxIndex) {
+          currentIndex++;
+        } else if (movedBy > 0 && currentIndex > 0) {
+          currentIndex--;
+        }
+      }
+
+      updateCarousel();
+    }
+
+    // Prevent clicks on links/buttons after dragging
+    slider.addEventListener('click', (e) => {
+      if (dragMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragMoved = false;
+      }
+    }, true);
+
+    // Prevent native image drag
+    slider.querySelectorAll('img').forEach(img => {
+      img.draggable = false;
+    });
+
+    // Touch
+    slider.addEventListener('touchstart', dragStart, { passive: true });
+    slider.addEventListener('touchmove', dragMove, { passive: true });
+    slider.addEventListener('touchend', dragEnd);
+
+    // Mouse
+    slider.addEventListener('mousedown', dragStart);
+    slider.addEventListener('mousemove', dragMove);
+    slider.addEventListener('mouseup', dragEnd);
+    slider.addEventListener('mouseleave', () => {
+      if (isDragging) dragEnd(new MouseEvent('mouseup'));
+    });
+
+    // --- Resize ---
     window.addEventListener("resize", () => {
-      const cards = track.querySelectorAll('[data-slide-index]');
-      const visibleCount = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visibleCount);
+      const { maxIndex } = getCardMetrics();
       if (currentIndex > maxIndex) {
         currentIndex = maxIndex;
       }

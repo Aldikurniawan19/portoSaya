@@ -70,6 +70,9 @@ export const translations = {
       rentalTitle: "RentalGo - Aplikasi Sewa Mobil",
       rentalBadge: "Sistem Manajemen",
       rentalDesc: "Aplikasi persewaan mobil berbasis web yang mempermudah pelanggan memilih armada secara online, menghitung estimasi biaya sewa, melakukan pemesanan (booking), serta menyediakan dasbor admin lengkap untuk mengelola ketersediaan kendaraan.",
+      hotelTitle: "LuxeStay - Hotel Landing Page",
+      hotelBadge: "UI/UX Design",
+      hotelDesc: "Landing page hotel modern dengan desain elegan dan mewah. Menampilkan katalog kamar, galeri visual imersif, serta antarmuka responsif yang memberikan pengalaman premium bagi pengunjung.",
       features: {
         responsive: {
           title: "Desain Responsif",
@@ -94,7 +97,15 @@ export const translations = {
         adminTitle: "Dasbor Manajemen",
         adminDesc: "Pengelolaan ketersediaan & jadwal armada.",
         invoiceTitle: "Cetak Tagihan",
-        invoiceDesc: "Generator invoice pemesanan PDF otomatis."
+        invoiceDesc: "Generator invoice pemesanan PDF otomatis.",
+        hotelRoomTitle: "Katalog Kamar",
+        hotelRoomDesc: "Pilihan kamar lengkap dengan harga & fasilitas.",
+        hotelBookingTitle: "Reservasi Online",
+        hotelBookingDesc: "Formulir pemesanan kamar yang interaktif.",
+        hotelGalleryTitle: "Galeri Visual",
+        hotelGalleryDesc: "Foto hotel berkualitas tinggi & imersif.",
+        hotelResponsiveTitle: "Desain Responsif",
+        hotelResponsiveDesc: "Tampilan optimal di semua ukuran layar."
       },
       techHeading: "Teknologi yang Digunakan",
       liveDemo: "Lihat Demo Live",
@@ -193,6 +204,9 @@ export const translations = {
       rentalTitle: "RentalGo - Car Rental App",
       rentalBadge: "Management System",
       rentalDesc: "A web-based car rental application that simplifies online vehicle selection, calculates rental estimates, handles bookings, and provides a full admin dashboard to manage fleet availability.",
+      hotelTitle: "LuxeStay - Hotel Landing Page",
+      hotelBadge: "UI/UX Design",
+      hotelDesc: "A modern hotel landing page with an elegant and luxurious design. Showcasing a room catalog, immersive visual gallery, and a responsive interface that delivers a premium experience for visitors.",
       features: {
         responsive: {
           title: "Responsive Design",
@@ -217,7 +231,15 @@ export const translations = {
         adminTitle: "Management Dashboard",
         adminDesc: "Vehicle availability & schedule management.",
         invoiceTitle: "Invoice Printing",
-        invoiceDesc: "Automated booking PDF invoice generator."
+        invoiceDesc: "Automated booking PDF invoice generator.",
+        hotelRoomTitle: "Room Catalog",
+        hotelRoomDesc: "Complete room selection with pricing & amenities.",
+        hotelBookingTitle: "Online Reservation",
+        hotelBookingDesc: "Interactive room booking form.",
+        hotelGalleryTitle: "Visual Gallery",
+        hotelGalleryDesc: "High-quality & immersive hotel photography.",
+        hotelResponsiveTitle: "Responsive Design",
+        hotelResponsiveDesc: "Optimal display on all screen sizes."
       },
       techHeading: "Technologies Used",
       liveDemo: "Live Demo",
