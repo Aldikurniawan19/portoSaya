@@ -89,11 +89,11 @@ const projects = [
       </div>
     </div>
 
-    <!-- Carousel Slider Track Wrapper (Matches Mockup Card Carousel) -->
-    <div id="portfolio-slider" class="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none" data-aos="fade-up" data-aos-delay="200">
-      <div id="portfolio-track" class="flex transition-transform duration-500 ease-in-out gap-6 w-full">
+    <!-- Smooth Scroll Slider -->
+    <div class="relative w-full" data-aos="fade-up" data-aos-delay="200">
+      <div id="portfolio-slider" class="portfolio-slider flex gap-6 pb-4 cursor-grab select-none">
         {projects.map((project, idx) => (
-          <div class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] xl:w-[380px] shrink-0" data-slide-index={idx}>
+          <div class="portfolio-card shrink-0" data-slide-index={idx}>
             <!-- Single Card Box with rounded-[2rem] -->
             <div class="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group cursor-pointer">
               <!-- Top Mockup Image (Bleed) -->
@@ -101,7 +101,7 @@ const projects = [
                 <Image
                   src={project.image}
                   alt={project.title}
-                  class="w-full h-auto block group-hover:scale-102 transition-transform duration-500"
+                  class="w-full h-auto block group-hover:scale-102 transition-transform duration-500 pointer-events-none"
                   widths={[380, 760]}
                   sizes="(max-width: 1024px) 100vw, 380px"
                 />
@@ -165,134 +165,197 @@ const projects = [
           </div>
         ))}
       </div>
+
+      <!-- Scroll Progress Dots -->
+      <div id="portfolio-dots" class="flex justify-center gap-2 mt-4">
+        {projects.map((_, idx) => (
+          <button
+            class="portfolio-dot w-2.5 h-2.5 rounded-full bg-slate-200 transition-all duration-300 hover:bg-slate-400"
+            data-dot-index={idx}
+            aria-label={`Go to project ${idx + 1}`}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
+<style>
+  .portfolio-slider {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .portfolio-slider::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .portfolio-slider.is-dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    cursor: grabbing;
+  }
+  .portfolio-card {
+    scroll-snap-align: start;
+    width: 85%;
+    min-width: 300px;
+    max-width: 420px;
+  }
+  @media (min-width: 768px) {
+    .portfolio-card {
+      width: calc(50% - 12px);
+      max-width: none;
+    }
+  }
+  .portfolio-dot.active {
+    background-color: #2563eb;
+    width: 1.5rem;
+    border-radius: 9999px;
+  }
+</style>
+
 <script>
-  function initPortfolioCarousel() {
+  function initPortfolioSlider() {
     const slider = document.getElementById("portfolio-slider");
-    const track = document.getElementById("portfolio-track");
     const prevBtn = document.getElementById("portfolio-prev") as HTMLButtonElement | null;
     const nextBtn = document.getElementById("portfolio-next") as HTMLButtonElement | null;
-    
-    if (!slider || !track || !prevBtn || !nextBtn) return;
+    const dots = document.querySelectorAll('.portfolio-dot');
+    const cards = document.querySelectorAll('.portfolio-card');
 
-    let currentIndex = 0;
+    if (!slider || !prevBtn || !nextBtn || cards.length === 0) return;
 
-    // --- Drag / Swipe state ---
+    // --- Momentum Drag State ---
     let isDragging = false;
     let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
+    let scrollStart = 0;
     let dragMoved = false;
-    const DRAG_THRESHOLD = 50; // px needed to count as a slide
+    let velocityX = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let momentumId: number | null = null;
 
-    function getVisibleCount() {
-      if (window.innerWidth >= 1024) {
-        return 2;
-      }
-      return 1;
+    // --- Helper: get card scroll distance ---
+    function getScrollStep(): number {
+      const card = cards[0] as HTMLElement;
+      return card.offsetWidth + 24; // card width + gap
     }
 
-    function getCardMetrics() {
-      const cards = track!.querySelectorAll('[data-slide-index]');
-      if (cards.length === 0) return { cardWidth: 0, gap: 24, count: 0, maxIndex: 0 };
-      const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-      const gap = 24;
-      const visibleCount = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visibleCount);
-      return { cardWidth, gap, count: cards.length, maxIndex };
+    // --- Helper: get active card index ---
+    function getActiveIndex(): number {
+      const scrollPos = slider!.scrollLeft;
+      const step = getScrollStep();
+      return Math.round(scrollPos / step);
     }
 
-    function updateCarousel() {
-      if (!track || !prevBtn || !nextBtn) return;
-      const { cardWidth, gap, maxIndex } = getCardMetrics();
-      if (cardWidth === 0) return;
+    // --- Update UI (buttons + dots) ---
+    function updateUI() {
+      if (!slider || !prevBtn || !nextBtn) return;
+      const idx = getActiveIndex();
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
 
-      const translateAmount = currentIndex * (cardWidth + gap);
-      track.style.transform = `translateX(-${translateAmount}px)`;
-      prevTranslate = -translateAmount;
-      currentTranslate = -translateAmount;
+      prevBtn.disabled = slider.scrollLeft <= 2;
+      nextBtn.disabled = slider.scrollLeft >= maxScroll - 2;
 
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= maxIndex;
+      prevBtn.classList.toggle("opacity-40", prevBtn.disabled);
+      prevBtn.classList.toggle("cursor-not-allowed", prevBtn.disabled);
+      nextBtn.classList.toggle("opacity-40", nextBtn.disabled);
+      nextBtn.classList.toggle("cursor-not-allowed", nextBtn.disabled);
 
-      if (prevBtn.disabled) {
-        prevBtn.classList.add("opacity-40", "cursor-not-allowed");
-      } else {
-        prevBtn.classList.remove("opacity-40", "cursor-not-allowed");
-      }
-
-      if (nextBtn.disabled) {
-        nextBtn.classList.add("opacity-40", "cursor-not-allowed");
-      } else {
-        nextBtn.classList.remove("opacity-40", "cursor-not-allowed");
-      }
+      // Update dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
     }
 
-    // --- Button controls ---
+    // --- Button scroll ---
     prevBtn.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
+      slider!.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     });
 
     nextBtn.addEventListener("click", () => {
-      const { maxIndex } = getCardMetrics();
-      if (currentIndex < maxIndex) {
-        currentIndex++;
-        updateCarousel();
-      }
+      slider!.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     });
 
-    // --- Touch events ---
-    function getPointerX(e: TouchEvent | MouseEvent): number {
-      return 'touches' in e ? e.touches[0].clientX : e.clientX;
+    // --- Dot click ---
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        slider!.scrollTo({ left: i * getScrollStep(), behavior: 'smooth' });
+      });
+    });
+
+    // --- Scroll event (update UI on any scroll) ---
+    let scrollTimer: ReturnType<typeof setTimeout>;
+    slider.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateUI, 50);
+    }, { passive: true });
+
+    // --- Momentum physics ---
+    function applyMomentum() {
+      if (Math.abs(velocityX) < 0.5) {
+        momentumId = null;
+        // After momentum stops, let snap take over
+        slider!.classList.remove('is-dragging');
+        return;
+      }
+      slider!.scrollLeft -= velocityX;
+      velocityX *= 0.92; // friction
+      momentumId = requestAnimationFrame(applyMomentum);
     }
 
-    function dragStart(e: TouchEvent | MouseEvent) {
+    function stopMomentum() {
+      if (momentumId !== null) {
+        cancelAnimationFrame(momentumId);
+        momentumId = null;
+      }
+    }
+
+    // --- Drag handlers ---
+    function pointerDown(e: MouseEvent | TouchEvent) {
+      stopMomentum();
       isDragging = true;
       dragMoved = false;
-      startX = getPointerX(e);
-      prevTranslate = currentTranslate;
-      track!.style.transition = 'none'; // disable smooth transition while dragging
-      slider!.classList.add('cursor-grabbing');
-      slider!.classList.remove('cursor-grab');
+      const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      startX = x;
+      lastX = x;
+      lastTime = Date.now();
+      scrollStart = slider!.scrollLeft;
+      velocityX = 0;
+      slider!.classList.add('is-dragging');
     }
 
-    function dragMove(e: TouchEvent | MouseEvent) {
+    function pointerMove(e: MouseEvent | TouchEvent) {
       if (!isDragging) return;
-      const currentX = getPointerX(e);
-      const diff = currentX - startX;
+      const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const diff = x - startX;
       if (Math.abs(diff) > 5) dragMoved = true;
-      currentTranslate = prevTranslate + diff;
-      track!.style.transform = `translateX(${currentTranslate}px)`;
-    }
 
-    function dragEnd(e: TouchEvent | MouseEvent) {
-      if (!isDragging) return;
-      isDragging = false;
-      track!.style.transition = ''; // re-enable smooth transition
-      slider!.classList.remove('cursor-grabbing');
-      slider!.classList.add('cursor-grab');
-
-      const movedBy = currentTranslate - prevTranslate;
-      const { maxIndex } = getCardMetrics();
-
-      if (Math.abs(movedBy) > DRAG_THRESHOLD) {
-        if (movedBy < 0 && currentIndex < maxIndex) {
-          currentIndex++;
-        } else if (movedBy > 0 && currentIndex > 0) {
-          currentIndex--;
-        }
+      // Track velocity
+      const now = Date.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        velocityX = (x - lastX) / dt * 16; // normalize to ~60fps
+        lastX = x;
+        lastTime = now;
       }
 
-      updateCarousel();
+      slider!.scrollLeft = scrollStart - diff;
     }
 
-    // Prevent clicks on links/buttons after dragging
+    function pointerUp() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      // Apply momentum if fast enough
+      if (Math.abs(velocityX) > 1) {
+        momentumId = requestAnimationFrame(applyMomentum);
+      } else {
+        slider!.classList.remove('is-dragging');
+      }
+    }
+
+    // Prevent link clicks after drag
     slider.addEventListener('click', (e) => {
       if (dragMoved) {
         e.preventDefault();
@@ -301,39 +364,22 @@ const projects = [
       }
     }, true);
 
-    // Prevent native image drag
-    slider.querySelectorAll('img').forEach(img => {
-      img.draggable = false;
-    });
+    // Mouse events
+    slider.addEventListener('mousedown', pointerDown);
+    window.addEventListener('mousemove', pointerMove);
+    window.addEventListener('mouseup', pointerUp);
 
-    // Touch
-    slider.addEventListener('touchstart', dragStart, { passive: true });
-    slider.addEventListener('touchmove', dragMove, { passive: true });
-    slider.addEventListener('touchend', dragEnd);
+    // Touch events
+    slider.addEventListener('touchstart', pointerDown, { passive: true });
+    slider.addEventListener('touchmove', pointerMove, { passive: true });
+    slider.addEventListener('touchend', pointerUp);
 
-    // Mouse
-    slider.addEventListener('mousedown', dragStart);
-    slider.addEventListener('mousemove', dragMove);
-    slider.addEventListener('mouseup', dragEnd);
-    slider.addEventListener('mouseleave', () => {
-      if (isDragging) dragEnd(new MouseEvent('mouseup'));
-    });
-
-    // --- Resize ---
-    window.addEventListener("resize", () => {
-      const { maxIndex } = getCardMetrics();
-      if (currentIndex > maxIndex) {
-        currentIndex = maxIndex;
-      }
-      updateCarousel();
-    });
-
-    // Run initial state setup
-    setTimeout(updateCarousel, 100);
+    // Initial UI
+    updateUI();
   }
 
-  // Load carousel
-  initPortfolioCarousel();
-  // Support Astro page transitions
-  document.addEventListener("astro:page-load", initPortfolioCarousel);
+  // Boot
+  initPortfolioSlider();
+  document.addEventListener("astro:page-load", initPortfolioSlider);
 </script>
+
