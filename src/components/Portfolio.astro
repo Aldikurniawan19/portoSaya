@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import projectImage from '../assets/projek1.png';
 import rentalImage from '../assets/rentalimg.png';
 import hotelImage from '../assets/projek2.png';
+import barberImage from '../assets/projek3.png';
 import { getTranslations } from '../i18n/translations';
 
 const lang = Astro.currentLocale || 'id';
@@ -55,6 +56,20 @@ const projects = [
     ],
     tech: ["React", "Tailwind CSS", "Vite"],
     liveDemoUrl: "https://hotel-ui-l2f8.vercel.app/",
+    sourceCodeUrl: "https://github.com/Aldikurniawan19",
+  },
+  {
+    title: t.portfolio.barberTitle,
+    badge: t.portfolio.barberBadge,
+    image: barberImage,
+    url: "barber-492x.vercel.app",
+    description: t.portfolio.barberDesc,
+    features: [
+      { title: "Reservasi Online", desc: "Pemesanan jadwal barbershop online.", icon: "calendar" },
+      { title: "Katalog Layanan", desc: "Layanan potong rambut & perawatan pria.", icon: "scissors" },
+    ],
+    tech: ["Astro", "Tailwind CSS", "TypeScript"],
+    liveDemoUrl: "https://barber-492x.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
   }
 ];
@@ -144,6 +159,10 @@ const projects = [
                           <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
                         ) : tItem === "Vite" ? (
                           <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                        ) : tItem === "Astro" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                        ) : tItem === "TypeScript" || tItem === "TS" ? (
+                          <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                         ) : (
                           <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
                         )}

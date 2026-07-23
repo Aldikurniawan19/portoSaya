@@ -73,6 +73,9 @@ export const translations = {
       hotelTitle: "LuxeStay - Hotel Landing Page",
       hotelBadge: "UI/UX Design",
       hotelDesc: "Landing page hotel modern dengan desain elegan dan mewah. Menampilkan katalog kamar, galeri visual imersif, serta antarmuka responsif yang memberikan pengalaman premium bagi pengunjung.",
+      barberTitle: "Titik Fokus - Barbershop Landing Page",
+      barberBadge: "Web Application",
+      barberDesc: "Landing page modern untuk Barbershop eksklusif. Menampilkan katalog layanan, sistem reservasi jadwal online, rating pelanggan, serta antarmuka responsif dengan estetika visual tinggi.",
       features: {
         responsive: {
           title: "Desain Responsif",
@@ -207,6 +210,9 @@ export const translations = {
       hotelTitle: "LuxeStay - Hotel Landing Page",
       hotelBadge: "UI/UX Design",
       hotelDesc: "A modern hotel landing page with an elegant and luxurious design. Showcasing a room catalog, immersive visual gallery, and a responsive interface that delivers a premium experience for visitors.",
+      barberTitle: "Titik Fokus - Barbershop Landing Page",
+      barberBadge: "Web Application",
+      barberDesc: "A modern landing page for an exclusive barbershop. Features service catalog, online schedule reservation system, customer ratings, and a responsive interface with high visual aesthetics.",
       features: {
         responsive: {
           title: "Responsive Design",
