@@ -4,6 +4,7 @@ import projectImage from '../assets/projek1.png';
 import rentalImage from '../assets/rentalimg.png';
 import hotelImage from '../assets/projek2.png';
 import barberImage from '../assets/projek3.png';
+import ramadhanImage from '../assets/projek4.png';
 import { getTranslations } from '../i18n/translations';
 
 const lang = Astro.currentLocale || 'id';
@@ -71,6 +72,20 @@ const projects = [
     tech: ["Astro", "Tailwind CSS", "TypeScript"],
     liveDemoUrl: "https://barber-492x.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
+  },
+  {
+    title: t.portfolio.ramadhanTitle,
+    badge: t.portfolio.ramadhanBadge,
+    image: ramadhanImage,
+    url: "ramadhan-app-puce.vercel.app",
+    description: t.portfolio.ramadhanDesc,
+    features: [
+      { title: "Jadwal Sholat", desc: "Jadwal imsakiyah & ibadah harian.", icon: "clock" },
+      { title: "Jurnal Ibadah", desc: "Pencatatan aktivitas ibadah.", icon: "book-open" },
+    ],
+    tech: ["Next.js", "Tailwind CSS", "PostgreSQL"],
+    liveDemoUrl: "https://ramadhan-app-puce.vercel.app/",
+    sourceCodeUrl: "https://github.com/Aldikurniawan19",
   }
 ];
 ---
@@ -106,79 +121,126 @@ const projects = [
 
     <!-- Smooth Scroll Slider -->
     <div class="relative w-full" data-aos="fade-up" data-aos-delay="200">
-      <div id="portfolio-slider" class="portfolio-slider flex gap-6 pb-4 cursor-grab select-none">
+      <div id="portfolio-slider" class="portfolio-slider flex gap-6 pb-6 cursor-grab select-none">
         {projects.map((project, idx) => (
           <div class="portfolio-card shrink-0" data-slide-index={idx}>
-            <!-- Single Card Box with rounded-[2rem] -->
-            <div class="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group cursor-pointer">
-              <!-- Top Mockup Image (Bleed) -->
-              <div class="w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-auto block group-hover:scale-102 transition-transform duration-500 pointer-events-none"
-                  widths={[380, 760]}
-                  sizes="(max-width: 1024px) 100vw, 380px"
-                />
-              </div>
+            <!-- Outer Card Container with Gradient Border & Glow -->
+            <div class="h-full rounded-[2.25rem] p-[1px] bg-gradient-to-b from-slate-200/80 via-slate-100 to-slate-200/60 hover:from-blue-500/50 hover:via-indigo-500/40 hover:to-blue-500/30 transition-all duration-500 group shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_45px_-12px_rgba(37,99,235,0.15)] hover:-translate-y-2">
+              
+              <!-- Inner Card Wrapper -->
+              <div class="bg-white/95 backdrop-blur-sm rounded-[2.2rem] overflow-hidden flex flex-col h-full">
+                
+                <!-- Top Image Showcase Area -->
+                <div class="relative w-full overflow-hidden bg-slate-900 aspect-[16/10]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                    widths={[420, 840]}
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                  />
+                  <!-- Gradient Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-black/10 opacity-70 group-hover:opacity-40 transition-opacity duration-500"></div>
 
-              <!-- Bottom Content Area -->
-              <div class="p-6 flex flex-col flex-grow justify-between gap-6">
-                <div class="space-y-3">
-                  <!-- Heading Title (Turns blue on card hover) -->
-                  <h4 class="text-xl md:text-2xl font-bold text-secondary group-hover:text-blue-600 transition-colors duration-300 tracking-tight leading-snug">
-                    {project.title}
-                  </h4>
-                  <!-- Description -->
-                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                </div>
-
-                <!-- Spacing divider -->
-                <div class="h-[1px] bg-slate-100 w-full"></div>
-
-                <!-- Bottom Section: Tech Stack Badges (Matches Mockup) -->
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                  <div class="flex flex-wrap gap-2">
-                    {project.tech.map((tItem) => (
-                      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-50 border border-slate-150 rounded-full text-xs font-bold text-slate-600">
-                        {tItem === "HTML5" || tItem === "HTML" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-                        ) : tItem === "CSS3" || tItem === "CSS" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                        ) : tItem === "JavaScript" || tItem === "JS" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
-                        ) : tItem === "Laravel" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                        ) : tItem === "Tailwind CSS" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-                        ) : tItem === "MySQL" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
-                        ) : tItem === "React" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
-                        ) : tItem === "Vite" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                        ) : tItem === "Astro" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
-                        ) : tItem === "TypeScript" || tItem === "TS" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                        ) : (
-                          <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-                        )}
-                        {tItem}
+                  <!-- Top Left Badge Pill -->
+                  {project.badge && (
+                    <div class="absolute top-4 left-4 z-10">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-900/85 backdrop-blur-md border border-white/20 rounded-full text-[11px] font-bold text-white tracking-wide shadow-lg">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                        {project.badge}
                       </span>
-                    ))}
-                  </div>
+                    </div>
+                  )}
 
-                  <!-- Action Buttons -->
-                  <div class="flex items-center gap-2">
-                    <a href={project.liveDemoUrl} class="px-4 py-2 bg-[linear-gradient(to_right,#0f172a_50%,#2563eb_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-white rounded-full text-xs font-bold hover:shadow-md transition-all duration-500 ease-out flex items-center gap-1.5">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  <!-- Top Right Live URL Chip -->
+                  {project.url && (
+                    <div class="absolute top-4 right-4 z-10">
+                      <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-full text-[11px] font-semibold text-slate-700 hover:text-blue-600 hover:bg-white transition-all shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 -ml-3"></span>
+                        {project.url}
+                      </a>
+                    </div>
+                  )}
+
+                  <!-- Hover Action Quick Button Overlay (Center) -->
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 bg-slate-900/30 backdrop-blur-[2px]">
+                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-white text-slate-900 hover:bg-blue-600 hover:text-white rounded-full text-xs font-extrabold shadow-xl backdrop-blur-md transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                       {t.portfolio.liveDemo}
                     </a>
                   </div>
                 </div>
+
+                <!-- Card Body -->
+                <div class="p-6 md:p-7 flex flex-col flex-grow justify-between gap-6">
+                  <div class="space-y-3">
+                    <h4 class="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-300 tracking-tight leading-snug">
+                      {project.title}
+                    </h4>
+                    <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <!-- Divider with gradient glow accent -->
+                  <div class="h-[1px] bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100 w-full"></div>
+
+                  <!-- Tech Badges & Action Link Footer -->
+                  <div class="space-y-4">
+                    <!-- Tech Badges -->
+                    <div class="flex flex-wrap gap-2">
+                      {project.tech.map((tItem) => (
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100/80 border border-slate-200/60 rounded-full text-xs font-bold text-slate-700 hover:bg-blue-50/80 hover:border-blue-200 transition-colors">
+                          {tItem === "HTML5" || tItem === "HTML" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                          ) : tItem === "CSS3" || tItem === "CSS" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                          ) : tItem === "JavaScript" || tItem === "JS" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          ) : tItem === "Laravel" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                          ) : tItem === "Tailwind CSS" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                          ) : tItem === "MySQL" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+                          ) : tItem === "React" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                          ) : tItem === "Vite" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                          ) : tItem === "Astro" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                          ) : tItem === "TypeScript" || tItem === "TS" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                          ) : tItem === "Next.js" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                          ) : tItem === "PostgreSQL" ? (
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                          ) : (
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                          )}
+                          {tItem}
+                        </span>
+                      ))}
+                    </div>
+
+                    <!-- Footer Action Row -->
+                    <div class="flex items-center justify-between pt-1">
+                      <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-extrabold text-blue-600 hover:text-blue-700 group/link transition-colors">
+                        <span>{t.portfolio.liveDemo}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </a>
+
+                      {project.sourceCodeUrl && (
+                        <a href={project.sourceCodeUrl} target="_blank" rel="noopener noreferrer" aria-label="Source Code" class="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>

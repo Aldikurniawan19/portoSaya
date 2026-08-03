@@ -76,6 +76,9 @@ export const translations = {
       barberTitle: "Titik Fokus - Barbershop Landing Page",
       barberBadge: "Web Application",
       barberDesc: "Landing page modern untuk Barbershop eksklusif. Menampilkan katalog layanan, sistem reservasi jadwal online, rating pelanggan, serta antarmuka responsif dengan estetika visual tinggi.",
+      ramadhanTitle: "Ramadhan App - Aplikasi Jadwal & Ibadah",
+      ramadhanBadge: "Web Application",
+      ramadhanDesc: "Aplikasi web interaktif bertema Ramadhan yang menyediakan informasi jadwal sholat, imsakiyah, pencatatan ibadah harian, serta fitur pendukung ibadah yang responsif dan mudah digunakan.",
       features: {
         responsive: {
           title: "Desain Responsif",
@@ -213,6 +216,9 @@ export const translations = {
       barberTitle: "Titik Fokus - Barbershop Landing Page",
       barberBadge: "Web Application",
       barberDesc: "A modern landing page for an exclusive barbershop. Features service catalog, online schedule reservation system, customer ratings, and a responsive interface with high visual aesthetics.",
+      ramadhanTitle: "Ramadhan App - Prayer & Worship Schedule",
+      ramadhanBadge: "Web Application",
+      ramadhanDesc: "An interactive Ramadhan-themed web application providing prayer schedules, imsakiyah, daily worship logging, and responsive features to support worship activities.",
       features: {
         responsive: {
           title: "Responsive Design",
