@@ -1,0 +1,115 @@
+---
+import { getTranslations } from '../i18n/translations';
+
+const currentLang = Astro.currentLocale || 'id';
+const t = getTranslations(currentLang);
+---
+
+<!-- MODERN MINIMALIST MULTI-LANGUAGE SPLASH SCREEN -->
+<div
+  id="splash-screen"
+  class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-50 text-slate-900 select-none overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]"
+>
+  <!-- Background Grid Pattern & Ambient Glows (Matches Web Theme) -->
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-70 pointer-events-none"></div>
+  <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- Central Greeting Container -->
+  <div class="relative z-10 flex flex-col items-center justify-center px-6 text-center">
+    <!-- Main Word Text Display -->
+    <div class="h-16 sm:h-20 flex items-center justify-center">
+      <h1
+        id="splash-text"
+        class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 transition-all duration-150 transform scale-100 opacity-100 drop-shadow-sm"
+      >
+        {currentLang === 'en' ? 'Welcome' : 'Selamat Datang'}
+      </h1>
+    </div>
+
+    <!-- Minimalist Web Accent Line -->
+    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-500 rounded-full mt-6 opacity-80"></div>
+  </div>
+</div>
+
+<script>
+  function initSplashScreen() {
+    const splash = document.getElementById('splash-screen');
+    const textEl = document.getElementById('splash-text');
+
+    if (!splash || !textEl) return;
+
+    // Lock body scroll during splash animation
+    document.body.style.overflow = 'hidden';
+
+    // List of "Welcome" greetings in unique world scripts & languages
+    const greetings = [
+      'Welcome',             // English
+      'Добро пожаловать',     // Russian (Cyrillic)
+      '欢迎',                 // Chinese (Hanzi)
+      'ようこそ',             // Japanese (Hiragana/Kanji)
+      'नमस्ते',              // Hindi (Devanagari)
+      'أهلاً وسهلاً',         // Arabic (Arabic Script)
+      'Καλώς ήρθατε',        // Greek (Greek Alphabet)
+      'ยินดีต้อนรับ',         // Thai (Thai Script)
+      '환영합니다',           // Korean (Hangul)
+      'Selamat Datang'       // Indonesian
+    ];
+
+    // Get final greeting based on current document locale
+    const currentLocale = document.documentElement.lang || 'id';
+    const finalGreeting = currentLocale === 'en' ? 'Welcome' : 'Selamat Datang';
+
+    let index = 0;
+    const intervalTime = 170; // Time per word in ms
+
+    function animateNextWord() {
+      if (!splash || !textEl) return;
+
+      if (index < greetings.length) {
+        const word = greetings[index];
+        textEl.style.opacity = '0';
+        textEl.style.transform = 'translateY(8px) scale(0.98)';
+
+        setTimeout(() => {
+          textEl.textContent = word;
+          textEl.style.opacity = '1';
+          textEl.style.transform = 'translateY(0px) scale(1)';
+        }, 40);
+
+        index++;
+        setTimeout(animateNextWord, intervalTime);
+      } else {
+        // Set final target language word & pause briefly before slide-up exit
+        textEl.style.opacity = '0';
+        setTimeout(() => {
+          textEl.textContent = finalGreeting;
+          textEl.style.opacity = '1';
+          textEl.style.transform = 'scale(1.05)';
+
+          setTimeout(() => {
+            // Slide up curtain exit animation
+            splash.style.transform = 'translateY(-100%)';
+            document.body.style.overflow = '';
+
+            // Remove splash from pointer events after slide up
+            setTimeout(() => {
+              splash.style.display = 'none';
+            }, 750);
+          }, 400);
+        }, 40);
+      }
+    }
+
+    // Start greeting sequence
+    animateNextWord();
+  }
+
+  // Run splash screen initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplashScreen);
+  } else {
+    initSplashScreen();
+  }
+</script>

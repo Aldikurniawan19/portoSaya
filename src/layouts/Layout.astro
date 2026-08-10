@@ -1,5 +1,6 @@
 ---
 import { getTranslations } from '../i18n/translations';
+import SplashScreen from '../components/SplashScreen.astro';
 
 interface Props {
   title?: string;
@@ -78,6 +79,7 @@ const {
   <body
     class="bg-white text-slate-600 antialiased selection:bg-primary selection:text-white"
   >
+    <SplashScreen />
     <slot />
 
     <!-- AOS Scroll Animations -->
