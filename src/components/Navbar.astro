@@ -8,50 +8,49 @@ const t = getTranslations(currentLang);
 <!-- Mobile: Bottom Floating Dock Bar | Desktop: Top Floating Glass Navbar -->
 <div class="fixed w-full bottom-4 md:bottom-auto md:top-6 left-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none">
   <nav
-    class="pointer-events-auto w-auto max-w-full md:w-full md:max-w-5xl bg-white/85 backdrop-blur-xl md:backdrop-blur-md rounded-full md:rounded-[2rem] border border-slate-200/80 md:border-slate-100 shadow-2xl md:shadow-lg transition-all duration-300 px-2.5 sm:px-4 md:px-6 py-2 md:py-2.5"
+    class="pointer-events-auto w-auto max-w-full md:w-fit bg-white/90 backdrop-blur-xl md:backdrop-blur-md rounded-full border border-slate-200/80 shadow-2xl md:shadow-lg transition-all duration-300 px-3 sm:px-4 py-2"
     id="navbar"
   >
-    <div class="flex items-center justify-between gap-1 sm:gap-2 md:gap-3">
-      <!-- Logo (Desktop Only) -->
-      <div class="hidden md:flex items-center cursor-pointer group" id="logo-btn">
-        <span class="font-extrabold text-xl text-slate-800 tracking-tight">All<span class="text-pink-500">.</span></span>
+    <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3.5">
+      <!-- Logo (Visible on Mobile & Desktop) -->
+      <div class="flex items-center cursor-pointer group px-0.5 sm:px-1" id="logo-btn">
+        <span class="font-extrabold text-base sm:text-xl text-slate-800 tracking-tight">All<span class="text-pink-500">.</span></span>
       </div>
 
+      <!-- Left Divider -->
+      <div class="block h-4 sm:h-5 w-[1px] bg-slate-200/90 mx-0.5"></div>
+
       <!-- Navigation Links (Mobile: Icon-Only | Desktop: Icon + Text) -->
-      <div class="flex items-center gap-0.5 sm:gap-1 lg:gap-2">
-        <a href="#home" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.home}>
-          <i data-lucide="home" class="w-5 h-5 md:w-4 md:h-4"></i>
+      <div class="flex items-center gap-1.5 sm:gap-2 md:gap-2">
+        <a href="#home" class="nav-link w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:h-auto flex items-center justify-center text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 md:px-4 md:py-2 transition-all duration-200" title={t.navbar.home}>
+          <i data-lucide="home" class="w-4.5 h-4.5 md:w-4 md:h-4"></i>
           <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.home}</span>
         </a>
-        <a href="#about" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.about}>
-          <i data-lucide="user" class="w-5 h-5 md:w-4 md:h-4"></i>
+        <a href="#about" class="nav-link w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:h-auto flex items-center justify-center text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 md:px-4 md:py-2 transition-all duration-200" title={t.navbar.about}>
+          <i data-lucide="user" class="w-4.5 h-4.5 md:w-4 md:h-4"></i>
           <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.about}</span>
         </a>
-        <a href="#skills" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.skills}>
-          <i data-lucide="code-2" class="w-5 h-5 md:w-4 md:h-4"></i>
-          <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.skills}</span>
-        </a>
-        <a href="#experience" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.experience}>
-          <i data-lucide="briefcase" class="w-5 h-5 md:w-4 md:h-4"></i>
+        <a href="#experience" class="nav-link w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:h-auto flex items-center justify-center text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 md:px-4 md:py-2 transition-all duration-200" title={t.navbar.experience}>
+          <i data-lucide="briefcase" class="w-4.5 h-4.5 md:w-4 md:h-4"></i>
           <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.experience}</span>
         </a>
-        <a href="#portfolio" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.portfolio}>
-          <i data-lucide="folder" class="w-5 h-5 md:w-4 md:h-4"></i>
+        <a href="#portfolio" class="nav-link w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:h-auto flex items-center justify-center text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 md:px-4 md:py-2 transition-all duration-200" title={t.navbar.portfolio}>
+          <i data-lucide="folder" class="w-4.5 h-4.5 md:w-4 md:h-4"></i>
           <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.portfolio}</span>
         </a>
-        <a href="#contact" class="nav-link flex items-center justify-center p-2.5 md:px-4 md:py-2 text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 transition-all duration-200" title={t.navbar.contact}>
-          <i data-lucide="mail" class="w-5 h-5 md:w-4 md:h-4"></i>
+        <a href="#contact" class="nav-link w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:h-auto flex items-center justify-center text-slate-600 rounded-full hover:bg-slate-100/80 md:hover:bg-slate-50 md:px-4 md:py-2 transition-all duration-200" title={t.navbar.contact}>
+          <i data-lucide="mail" class="w-4.5 h-4.5 md:w-4 md:h-4"></i>
           <span class="hidden md:inline ml-1.5 text-sm font-bold">{t.navbar.contact}</span>
         </a>
       </div>
 
-      <!-- Divider (Desktop Only) -->
-      <div class="hidden md:block h-5 w-[1px] bg-slate-200 mx-1"></div>
+      <!-- Right Divider -->
+      <div class="block h-4 sm:h-5 w-[1px] bg-slate-200/90 mx-0.5"></div>
 
       <!-- Language Switcher Pill Button -->
       <a
         href={currentLang === 'id' ? '/en/' : '/'}
-        class="flex items-center gap-1.5 px-2.5 py-1.5 md:px-3.5 md:py-1.5 bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/80 text-slate-800 rounded-full shadow-sm text-xs font-bold transition-all duration-200 group ml-0.5"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 md:px-3.5 md:py-1.5 bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/80 text-slate-800 rounded-full shadow-sm text-xs font-bold transition-all duration-200 group"
         title={currentLang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
       >
         <i data-lucide="globe" class="w-4 h-4 text-slate-600 group-hover:rotate-12 transition-transform duration-300"></i>
