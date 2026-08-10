@@ -1,0 +1,378 @@
+---
+import { Image } from 'astro:assets';
+import profileImage from '../assets/saya.png';
+import { getTranslations } from '../i18n/translations';
+
+const lang = Astro.currentLocale || 'id';
+const t = getTranslations(lang);
+---
+
+<div class="relative w-full max-w-[380px] mx-auto min-h-[580px] flex flex-col items-center justify-start select-none touch-none py-2" id="lanyard-container">
+  <!-- Top Metal Wall Anchor Pin -->
+  <div class="relative z-30 flex flex-col items-center">
+    <div class="w-14 h-3.5 rounded-full bg-gradient-to-r from-slate-600 via-slate-200 to-slate-700 shadow-lg border border-slate-300/60"></div>
+    <div class="w-5 h-5 -mt-1.5 rounded-full bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 shadow-inner flex items-center justify-center border border-slate-400">
+      <div class="w-2 h-2 rounded-full bg-slate-950 shadow-inner"></div>
+    </div>
+  </div>
+
+  <!-- Physics Canvas for Lanyard Ribbon Strap -->
+  <canvas id="lanyard-canvas" class="absolute top-3 left-0 w-full h-[220px] pointer-events-none z-10"></canvas>
+
+  <!-- Interactive Draggable 3D Lanyard Card -->
+  <div
+    id="lanyard-card"
+    class="relative z-20 mt-[115px] w-full max-w-[310px] cursor-grab active:cursor-grabbing transform-gpu will-change-transform"
+    style="perspective: 1000px;"
+  >
+    <!-- Metallic Hook & Card Top Slot -->
+    <div class="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none">
+      <!-- Metallic Clip Ring -->
+      <div class="w-8 h-8 rounded-full border-2 border-slate-300/80 bg-gradient-to-tr from-slate-700 via-slate-200 to-slate-100 shadow-md flex items-center justify-center">
+        <div class="w-3 h-3 rounded-full bg-slate-900 border border-slate-400"></div>
+      </div>
+      <!-- Metal Swivel Joint -->
+      <div class="w-4.5 h-3.5 bg-gradient-to-r from-slate-500 via-slate-200 to-slate-600 rounded-sm -mt-1 shadow-md"></div>
+    </div>
+
+    <!-- Modern Clean Glassmorphism Badge Card Body -->
+    <div
+      id="card-inner"
+      class="relative rounded-[1.75rem] p-5 bg-slate-900/90 text-white shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(99,102,241,0.15)] border border-white/10 backdrop-blur-2xl overflow-hidden transition-all duration-300 hover:border-indigo-500/40 hover:shadow-indigo-500/25 group"
+    >
+      <!-- Dynamic Holographic Specular Glare -->
+      <div
+        id="holographic-glare"
+        class="absolute inset-0 pointer-events-none rounded-[1.75rem] opacity-25 mix-blend-overlay"
+        style="background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,1) 0%, rgba(99,102,241,0.5) 45%, transparent 75%);"
+      ></div>
+
+      <!-- Modern Ambient Soft Gradient Glows -->
+      <div class="absolute -top-24 -right-24 w-52 h-52 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-52 h-52 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none"></div>
+
+      <!-- Card Security Header -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3.5">
+        <div class="flex items-center gap-2">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-[10px] font-mono tracking-widest text-slate-300 uppercase font-semibold">VERIFIED ID</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-[10px] font-mono font-bold tracking-wider">
+          PASSPORT
+        </div>
+      </div>
+
+      <!-- Profile Photo Frame -->
+      <div class="relative rounded-xl overflow-hidden shadow-lg aspect-[4/4.5] w-full bg-slate-950 border border-white/10 mb-3.5">
+        <Image
+          src={profileImage}
+          alt={t.about.altPhoto}
+          class="w-full h-full object-cover object-top filter brightness-105 contrast-105 pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+          widths={[320, 640]}
+          sizes="320px"
+        />
+        <!-- Photo Bottom Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
+        
+        <!-- Name & Badge Overlay -->
+        <div class="absolute bottom-3 left-3.5 right-3.5 flex justify-between items-end">
+          <div>
+            <div class="text-[9px] font-mono text-indigo-300 font-semibold tracking-widest uppercase">FULL STACK DEVELOPER</div>
+            <div class="text-sm font-extrabold text-white tracking-wide drop-shadow-md">{t.about.name}</div>
+          </div>
+          <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 backdrop-blur-md flex items-center justify-center text-emerald-400">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Security IC Chip & Barcode Section -->
+      <div class="pt-1">
+        <div class="flex items-center justify-between pt-2.5 border-t border-white/10">
+          <!-- Smart IC Security Chip Graphic -->
+          <div class="w-9 h-6.5 rounded-md bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 border border-amber-300/80 flex flex-col justify-around p-1 shadow-inner relative overflow-hidden">
+            <div class="w-full h-[1px] bg-slate-900/50"></div>
+            <div class="w-full h-[1px] bg-slate-900/50"></div>
+            <div class="w-full h-[1px] bg-slate-900/50"></div>
+          </div>
+
+          <!-- Barcode Graphic & ID Number -->
+          <div class="flex flex-col items-end gap-0.5">
+            <div class="flex gap-[2px] h-4.5 items-center opacity-75">
+              <div class="w-1 h-full bg-slate-300"></div>
+              <div class="w-[2px] h-full bg-slate-300"></div>
+              <div class="w-[3px] h-full bg-slate-300"></div>
+              <div class="w-1 h-full bg-slate-300"></div>
+              <div class="w-[2px] h-full bg-slate-300"></div>
+              <div class="w-[1px] h-full bg-slate-300"></div>
+              <div class="w-1 h-full bg-slate-300"></div>
+              <div class="w-[2px] h-full bg-slate-300"></div>
+              <div class="w-[3px] h-full bg-slate-300"></div>
+            </div>
+            <span class="text-[9px] font-mono text-slate-400 tracking-widest font-medium">ID: AK-2026-DEV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initLanyardPhysics() {
+    const container = document.getElementById('lanyard-container');
+    const card = document.getElementById('lanyard-card') as HTMLElement;
+    const cardInner = document.getElementById('card-inner') as HTMLElement;
+    const canvas = document.getElementById('lanyard-canvas') as HTMLCanvasElement;
+
+    if (!container || !card || !canvas || !cardInner) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Resize canvas to match container size
+    function resizeCanvas() {
+      if (!container || !canvas) return;
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = 240 * window.devicePixelRatio;
+      ctx?.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Physics State - starts with a drop from top!
+    let cardX = 0; // Displacement X from center
+    let cardY = -180; // Start position above natural rest position for spring drop-in animation
+    let velX = 0;
+    let velY = 0;
+
+    let targetX = 0;
+    let targetY = 0;
+
+    let rotX = 0; // Tilt pitch
+    let rotY = 0; // Tilt yaw
+    let rotZ = 0; // Swing roll
+
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let cardStartX = 0;
+    let cardStartY = 0;
+
+    let animationFrameId: number;
+    let time = 0;
+
+    // Physics parameters
+    const stiffness = 0.08;
+    const damping = 0.82;
+    const gravity = 0.35;
+
+    // Handle Pointer Down
+    function onPointerDown(e: PointerEvent) {
+      isDragging = true;
+      card.setPointerCapture(e.pointerId);
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      cardStartX = cardX;
+      cardStartY = cardY;
+    }
+
+    // Handle Pointer Move
+    function onPointerMove(e: PointerEvent) {
+      if (!isDragging) return;
+
+      const deltaX = e.clientX - dragStartX;
+      const deltaY = e.clientY - dragStartY;
+
+      // Limit max drag bounds so string doesn't break unrealistically
+      targetX = Math.max(-160, Math.min(160, cardStartX + deltaX));
+      targetY = Math.max(-60, Math.min(180, cardStartY + deltaY));
+    }
+
+    // Handle Pointer Up / Cancel
+    function onPointerUp(e: PointerEvent) {
+      if (!isDragging) return;
+      isDragging = false;
+      try {
+        card.releasePointerCapture(e.pointerId);
+      } catch (_) {}
+
+      // Target snaps back to origin (0, 0)
+      targetX = 0;
+      targetY = 0;
+    }
+
+    card.addEventListener('pointerdown', onPointerDown);
+    card.addEventListener('pointermove', onPointerMove);
+    card.addEventListener('pointerup', onPointerUp);
+    card.addEventListener('pointercancel', onPointerUp);
+
+    // Main Physics Loop
+    function updatePhysics() {
+      time += 0.03;
+
+      if (isDragging) {
+        // Smoothly follow pointer target
+        const dx = targetX - cardX;
+        const dy = targetY - cardY;
+        velX = dx * 0.3;
+        velY = dy * 0.3;
+        cardX += velX;
+        cardY += velY;
+      } else {
+        // Natural idle sway oscillation when released
+        const idleSwayX = Math.sin(time * 1.5) * 6;
+        const idleSwayY = Math.cos(time * 2.0) * 3;
+
+        const forceX = (targetX + idleSwayX - cardX) * stiffness;
+        const forceY = (targetY + idleSwayY - cardY) * stiffness + gravity;
+
+        velX = (velX + forceX) * damping;
+        velY = (velY + forceY) * damping;
+
+        cardX += velX;
+        cardY += velY;
+      }
+
+      // Calculate 3D rotations based on displacement and velocity
+      rotZ = cardX * 0.15 + velX * 0.8; // Roll swing angle
+      rotY = Math.max(-25, Math.min(25, cardX * 0.12 + velX * 1.2)); // Yaw tilt
+      rotX = Math.max(-20, Math.min(20, -cardY * 0.1 - velY * 1.2)); // Pitch tilt
+
+      // Apply 3D Transform to Card
+      card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
+
+      // Update Holographic Glare Position
+      const glareX = 50 + (rotY / 25) * 40;
+      const glareY = 50 - (rotX / 20) * 40;
+      cardInner.style.setProperty('--glare-x', `${glareX}%`);
+      cardInner.style.setProperty('--glare-y', `${glareY}%`);
+
+      // Draw Lanyard Canvas Ribbon
+      drawStrap();
+
+      animationFrameId = requestAnimationFrame(updatePhysics);
+    }
+
+    // Draw the flexible Lanyard Strap Ribbon on Canvas
+    function drawStrap() {
+      if (!ctx || !container) return;
+
+      const rect = container.getBoundingClientRect();
+      const width = rect.width;
+      const height = 240;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Top anchor position
+      const anchorX = width / 2;
+      const anchorY = 18;
+
+      // Card top slot hook position
+      const cardHookX = anchorX + cardX;
+      const cardHookY = 120 + cardY - 24;
+
+      // Draw shadow for lanyard strap
+      ctx.beginPath();
+      ctx.moveTo(anchorX - 12, anchorY);
+      ctx.quadraticCurveTo(
+        (anchorX + cardHookX) / 2 - 20,
+        (anchorY + cardHookY) / 2 + 10,
+        cardHookX - 6,
+        cardHookY
+      );
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+      ctx.lineWidth = 14;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Left Strap Ribbon
+      const gradLeft = ctx.createLinearGradient(anchorX - 14, anchorY, cardHookX - 6, cardHookY);
+      gradLeft.addColorStop(0, '#312e81'); // Indigo 900
+      gradLeft.addColorStop(0.5, '#4338ca'); // Indigo 700
+      gradLeft.addColorStop(1, '#1e1b4b'); // Dark Indigo
+
+      ctx.beginPath();
+      ctx.moveTo(anchorX - 12, anchorY);
+      ctx.quadraticCurveTo(
+        (anchorX + cardHookX) / 2 - 16,
+        (anchorY + cardHookY) / 2,
+        cardHookX - 6,
+        cardHookY
+      );
+      ctx.strokeStyle = gradLeft;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Right Strap Ribbon
+      const gradRight = ctx.createLinearGradient(anchorX + 14, anchorY, cardHookX + 6, cardHookY);
+      gradRight.addColorStop(0, '#3730a3');
+      gradRight.addColorStop(0.5, '#4f46e5');
+      gradRight.addColorStop(1, '#312e81');
+
+      ctx.beginPath();
+      ctx.moveTo(anchorX + 12, anchorY);
+      ctx.quadraticCurveTo(
+        (anchorX + cardHookX) / 2 + 16,
+        (anchorY + cardHookY) / 2,
+        cardHookX + 6,
+        cardHookY
+      );
+      ctx.strokeStyle = gradRight;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Inner Accent Stitching Lines on Lanyard Ribbon
+      ctx.beginPath();
+      ctx.moveTo(anchorX - 12, anchorY);
+      ctx.quadraticCurveTo(
+        (anchorX + cardHookX) / 2 - 16,
+        (anchorY + cardHookY) / 2,
+        cardHookX - 6,
+        cardHookY
+      );
+      ctx.strokeStyle = 'rgba(251, 191, 36, 0.6)'; // Amber stitch line
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(anchorX + 12, anchorY);
+      ctx.quadraticCurveTo(
+        (anchorX + cardHookX) / 2 + 16,
+        (anchorY + cardHookY) / 2,
+        cardHookX + 6,
+        cardHookY
+      );
+      ctx.strokeStyle = 'rgba(251, 191, 36, 0.6)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+
+      ctx.setLineDash([]); // Reset line dash
+    }
+
+    // Start physics animation loop
+    updatePhysics();
+
+    // Cleanup on page unload (for SPA Astro navigation)
+    document.addEventListener('astro:before-preparation', () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', resizeCanvas);
+    }, { once: true });
+  }
+
+  // Initialize
+  initLanyardPhysics();
+  // Support Astro SPA View Transitions
+  document.addEventListener('astro:page-load', initLanyardPhysics);
+</script>
