@@ -96,15 +96,31 @@ const t = getTranslations(currentLang);
     navLinks.forEach((link) => {
       const targetSection = link.getAttribute("href");
       if (targetSection === "#" + current) {
-        link.classList.add("bg-[#3b82f6]", "text-white");
+        link.classList.add("active", "bg-blue-600", "text-white");
         link.classList.remove("text-slate-600");
       } else {
-        link.classList.remove("bg-[#3b82f6]", "text-white");
+        link.classList.remove("active", "bg-blue-600", "text-white");
         link.classList.add("text-slate-600");
       }
     });
   }
 
   window.addEventListener("scroll", onScroll);
+  document.addEventListener("DOMContentLoaded", onScroll);
+  window.addEventListener("load", onScroll);
   onScroll();
 </script>
+
+<style is:global>
+  .nav-link.active {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px -2px rgba(37, 99, 235, 0.4) !important;
+  }
+  .nav-link.active i,
+  .nav-link.active svg,
+  .nav-link.active span {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+  }
+</style>

@@ -8,7 +8,7 @@ const t = getTranslations(lang);
 ---
 
 <!-- 1. HOME SECTION -->
-<section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<section id="home" class="relative min-h-[100dvh] lg:min-h-screen flex items-center pt-14 pb-20 sm:pt-16 lg:pt-20 sm:pb-16 lg:pb-0 overflow-hidden">
   <!-- Background Grid Pattern -->
   <div class="absolute inset-0 bg-grid-pattern bg-grid -z-10">
     <!-- Horizontal Beams -->
@@ -25,17 +25,17 @@ const t = getTranslations(lang);
     <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 800px; animation: beam-v 7s linear infinite; animation-delay: 4s;"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
     <!-- Left Content: Typography Focused -->
-    <div class="space-y-6 order-2 lg:order-1 fade-in-up">
+    <div class="space-y-4 sm:space-y-6 order-2 lg:order-1 fade-in-up">
       <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{t.hero.hello}</span>
 
-      <h1 class="text-5xl lg:text-6xl font-extrabold text-secondary leading-[1.1] tracking-tight">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary leading-[1.1] tracking-tight">
         Aldi <br />
         <span class="text-blue-600">Kurniawan</span><span class="text-secondary">.</span>
       </h1>
 
-      <p class="text-lg font-bold text-secondary">{t.hero.role}</p>
+      <p class="text-base sm:text-lg font-bold text-secondary">{t.hero.role}</p>
 
       <div class="flex items-center gap-4 text-slate-400">
         <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-slate-900 transition-all duration-300 transform hover:scale-110 inline-block">
@@ -49,16 +49,16 @@ const t = getTranslations(lang);
         </a>
       </div>
 
-      <p class="text-base text-slate-500 max-w-md leading-relaxed">
+      <p class="text-sm sm:text-base text-slate-500 max-w-md leading-relaxed">
         {t.hero.description}
       </p>
 
-      <div class="flex flex-wrap gap-4 pt-2">
-        <a href="#portfolio" class="px-6 py-3.5 bg-[linear-gradient(to_right,#7c3aed_50%,#090d16_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-white rounded-full font-bold hover:shadow-lg hover:shadow-violet-500/20 transition-all duration-500 ease-out flex items-center gap-2">
+      <div class="flex flex-wrap gap-3 sm:gap-4 pt-1 sm:pt-2">
+        <a href="#portfolio" class="px-5 py-3 sm:px-6 sm:py-3.5 bg-[linear-gradient(to_right,#7c3aed_50%,#090d16_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-white rounded-full font-bold hover:shadow-lg hover:shadow-violet-500/20 transition-all duration-500 ease-out flex items-center gap-2 text-sm sm:text-base">
           <i data-lucide="briefcase" class="w-4 h-4"></i>
           {t.hero.viewProjects}
         </a>
-        <a href="#contact" class="px-6 py-3.5 bg-[linear-gradient(to_right,#ffffff_50%,#2563eb_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-slate-700 hover:text-white border border-slate-200 hover:border-blue-600 rounded-full font-bold hover:shadow-lg shadow-sm transition-all duration-500 ease-out flex items-center gap-2">
+        <a href="#contact" class="px-5 py-3 sm:px-6 sm:py-3.5 bg-[linear-gradient(to_right,#ffffff_50%,#2563eb_50%)] bg-[length:200%_100%] bg-[position:0%_0%] hover:bg-[position:100%_0%] text-slate-700 hover:text-white border border-slate-200 hover:border-blue-600 rounded-full font-bold hover:shadow-lg shadow-sm transition-all duration-500 ease-out flex items-center gap-2 text-sm sm:text-base">
           <i data-lucide="mail" class="w-4 h-4"></i>
           {t.hero.contactMe}
         </a>
