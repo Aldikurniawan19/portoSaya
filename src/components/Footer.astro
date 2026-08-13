@@ -1,69 +1,183 @@
 ---
-import { Image } from 'astro:assets';
-import logoPorto from '../assets/LogoPorto.png';
-import { getTranslations } from '../i18n/translations';
+import { Image } from "astro:assets";
+import logoPorto from "../assets/LogoPorto.png";
+import { getTranslations } from "../i18n/translations";
 
-const lang = Astro.currentLocale || 'id';
+const lang = Astro.currentLocale || "id";
 const t = getTranslations(lang);
 ---
 
 <!-- FOOTER -->
-<footer class="border-t border-slate-800 py-12 text-slate-400 text-sm relative overflow-hidden">
+<footer
+  class="border-t border-slate-800 py-12 text-slate-400 text-sm relative overflow-hidden"
+>
   <!-- Dark Background Color Layer -->
   <div class="absolute inset-0 bg-secondary -z-20"></div>
 
   <!-- Background Grid Pattern -->
   <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10">
     <!-- Horizontal Beams -->
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent" style="top: 40px; animation: beam-h 6s linear infinite; animation-delay: 1s;"></div>
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent" style="top: 120px; animation: beam-h-reverse 8s linear infinite; animation-delay: 3s;"></div>
+    <div
+      class="absolute h-[3px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent"
+      style="top: 40px; animation: beam-h 6s linear infinite; animation-delay: 1s;"
+    >
+    </div>
+    <div
+      class="absolute h-[3px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent"
+      style="top: 120px; animation: beam-h-reverse 8s linear infinite; animation-delay: 3s;"
+    >
+    </div>
 
     <!-- Vertical Beams -->
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 160px; animation: beam-v 7s linear infinite; animation-delay: 2s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent" style="left: 400px; animation: beam-v-reverse 9s linear infinite; animation-delay: 4s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 720px; animation: beam-v 8s linear infinite; animation-delay: 1s;"></div>
+    <div
+      class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent"
+      style="left: 160px; animation: beam-v 7s linear infinite; animation-delay: 2s;"
+    >
+    </div>
+    <div
+      class="absolute w-[3px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent"
+      style="left: 400px; animation: beam-v-reverse 9s linear infinite; animation-delay: 4s;"
+    >
+    </div>
+    <div
+      class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent"
+      style="left: 720px; animation: beam-v 8s linear infinite; animation-delay: 1s;"
+    >
+    </div>
   </div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800"
+    >
       <!-- Brand Logo -->
       <div class="flex items-center gap-2 group cursor-default">
-        <Image src={logoPorto} alt="Logo" class="h-7 sm:h-8 w-auto object-contain" />
+        <Image
+          src={logoPorto}
+          alt="Logo"
+          class="h-7 sm:h-8 w-auto object-contain"
+        />
       </div>
 
       <!-- Navigation Links -->
       <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-        <a href="#home" class="text-slate-400 hover:text-white transition-colors">{t.navbar.home}</a>
-        <a href="#about" class="text-slate-400 hover:text-white transition-colors">{t.navbar.about}</a>
-        <a href="#skills" class="text-slate-400 hover:text-white transition-colors">{t.navbar.skills}</a>
-        <a href="#experience" class="text-slate-400 hover:text-white transition-colors">{t.navbar.experience}</a>
-        <a href="#portfolio" class="text-slate-400 hover:text-white transition-colors">{t.navbar.portfolio}</a>
-        <a href="#contact" class="text-slate-400 hover:text-white transition-colors">{t.navbar.contact}</a>
+        <a
+          href="#home"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.home}</a
+        >
+        <a
+          href="#about"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.about}</a
+        >
+        <a
+          href="#skills"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.skills}</a
+        >
+        <a
+          href="#experience"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.experience}</a
+        >
+        <a
+          href="#portfolio"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.portfolio}</a
+        >
+        <a
+          href="#contact"
+          class="text-slate-400 hover:text-white transition-colors"
+          >{t.navbar.contact}</a
+        >
       </div>
 
       <!-- Socials -->
       <div class="flex items-center gap-4">
-        <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white hover:text-slate-950 hover:border-white transition-all duration-300 transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        <a
+          href="https://github.com/Aldikurniawan19"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white hover:text-slate-950 hover:border-white transition-all duration-300 transform hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+            ><path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+            ></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
+          >
         </a>
-        <a href="https://www.instagram.com/aldii_kurniawannnn?igsh=MWJ4c2I3dmIyM3gwdQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C] transition-all duration-300 transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+        <a
+          href="https://www.instagram.com/aldii_kurniawannnn?igsh=MWJ4c2I3dmIyM3gwdQ=="
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C] transition-all duration-300 transform hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+            ><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path
+              d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
+              x1="17.5"
+              x2="17.51"
+              y1="6.5"
+              y2="6.5"></line></svg
+          >
         </a>
-        <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#0077B5] hover:text-white hover:border-[#0077B5] transition-all duration-300 transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <a
+          href="#"
+          aria-label="LinkedIn"
+          class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#0077B5] hover:text-white hover:border-[#0077B5] transition-all duration-300 transform hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+            ><path
+              d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+            ></path><rect width="4" height="12" x="2" y="9"></rect><circle
+              cx="4"
+              cy="4"
+              r="2"></circle></svg
+          >
         </a>
       </div>
     </div>
 
     <!-- Bottom copyright -->
-    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-      <p>&copy; {new Date().getFullYear()} Aldi Kurniawan. All rights reserved.</p>
-      <div class="flex items-center gap-1.5">
-        <span>{t.footer.builtWith}</span>
-        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Astro</a>
-        <span>&amp;</span>
-        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-400 hover:text-white transition-colors">Tailwind CSS</a>
-      </div>
+    <div
+      class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+    >
+      <p>
+        &copy; {new Date().getFullYear()} Aldi Kurniawan. All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
