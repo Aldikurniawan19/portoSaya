@@ -14,15 +14,15 @@ export const translations = {
     },
     hero: {
       hello: "HALO, SAYA",
-      role: "Fullstack Developer",
       description: "Membangun aplikasi web yang fungsional, interaktif, dan berpusat pada pengalaman pengguna.",
+      role: "FRONTEND DEVELOPER",
       viewProjects: "Lihat Proyek",
       contactMe: "Hubungi Saya"
     },
     about: {
       badge: "SAYA",
       name: "ALDI KURNIAWAN",
-      role: "FULLSTACK DEVELOPER",
+      role: "FRONTEND DEVELOPER",
       paragraph1: "Sebagai lulusan Sistem Informasi dan Software Engineer, saya berfokus mengubah kebutuhan bisnis yang kompleks menjadi aplikasi web yang efisien.",
       paragraph2: "Dari digitalisasi alur kerja operasional hingga perancangan arsitektur frontend, saya menikmati proses membangun solusi full-stack dari nol yang terukur dan memberikan dampak nyata.",
       downloadCV: "UNDUH CV",
@@ -162,7 +162,7 @@ export const translations = {
     },
     hero: {
       hello: "HELLO, I'M",
-      role: "Fullstack Developer",
+      role: "FRONTEND DEVELOPER",
       description: "Building functional, interactive, and user-centered web applications.",
       viewProjects: "View Projects",
       contactMe: "Contact Me"
@@ -170,7 +170,7 @@ export const translations = {
     about: {
       badge: "I AM",
       name: "ALDI KURNIAWAN",
-      role: "FULLSTACK DEVELOPER",
+      role: "FRONTEND DEVELOPER",
       paragraph1: "As an Information Systems graduate and Software Engineer, I focus on turning complex business needs into efficient web applications.",
       paragraph2: "From digitalizing operational workflows to designing frontend architecture, I enjoy the process of building scalable, full-stack solutions from scratch that make a real impact.",
       downloadCV: "DOWNLOAD CV",

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoPorto from '../assets/LogoPorto.png';
 import { getTranslations } from '../i18n/translations';
 
 const lang = Astro.currentLocale || 'id';
@@ -26,7 +28,7 @@ const t = getTranslations(lang);
     <div class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800">
       <!-- Brand Logo -->
       <div class="flex items-center gap-2 group cursor-default">
-        <span class="font-extrabold text-xl text-white tracking-tight">All<span class="text-pink-500">.</span></span>
+        <Image src={logoPorto} alt="Logo" class="h-7 sm:h-8 w-auto object-contain" />
       </div>
 
       <!-- Navigation Links -->

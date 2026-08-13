@@ -1,23 +1,34 @@
 ---
-import { Image } from 'astro:assets';
-import profileImage from '../assets/saya.png';
-import { getTranslations } from '../i18n/translations';
+import { Image } from "astro:assets";
+import profileImage from "../assets/saya.png";
+import { getTranslations } from "../i18n/translations";
 
-const lang = Astro.currentLocale || 'id';
+const lang = Astro.currentLocale || "id";
 const t = getTranslations(lang);
 ---
 
-<div class="relative w-full max-w-[380px] mx-auto min-h-[580px] flex flex-col items-center justify-start select-none touch-none py-2" id="lanyard-container">
+<div
+  class="relative w-full max-w-[380px] mx-auto min-h-[580px] flex flex-col items-center justify-start select-none touch-none py-2"
+  id="lanyard-container"
+>
   <!-- Top Metal Wall Anchor Pin -->
   <div class="relative z-30 flex flex-col items-center">
-    <div class="w-14 h-3.5 rounded-full bg-gradient-to-r from-slate-600 via-slate-200 to-slate-700 shadow-lg border border-slate-300/60"></div>
-    <div class="w-5 h-5 -mt-1.5 rounded-full bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 shadow-inner flex items-center justify-center border border-slate-400">
+    <div
+      class="w-14 h-3.5 rounded-full bg-gradient-to-r from-slate-600 via-slate-200 to-slate-700 shadow-lg border border-slate-300/60"
+    >
+    </div>
+    <div
+      class="w-5 h-5 -mt-1.5 rounded-full bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 shadow-inner flex items-center justify-center border border-slate-400"
+    >
       <div class="w-2 h-2 rounded-full bg-slate-950 shadow-inner"></div>
     </div>
   </div>
 
   <!-- Physics Canvas for Lanyard Ribbon Strap -->
-  <canvas id="lanyard-canvas" class="absolute top-3 left-0 w-full h-[220px] pointer-events-none z-10"></canvas>
+  <canvas
+    id="lanyard-canvas"
+    class="absolute top-3 left-0 w-full h-[220px] pointer-events-none z-10"
+  ></canvas>
 
   <!-- Interactive Draggable 3D Lanyard Card -->
   <div
@@ -26,13 +37,21 @@ const t = getTranslations(lang);
     style="perspective: 1000px;"
   >
     <!-- Metallic Hook & Card Top Slot -->
-    <div class="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none">
+    <div
+      class="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none"
+    >
       <!-- Metallic Clip Ring -->
-      <div class="w-8 h-8 rounded-full border-2 border-slate-300/80 bg-gradient-to-tr from-slate-700 via-slate-200 to-slate-100 shadow-md flex items-center justify-center">
-        <div class="w-3 h-3 rounded-full bg-slate-900 border border-slate-400"></div>
+      <div
+        class="w-8 h-8 rounded-full border-2 border-slate-300/80 bg-gradient-to-tr from-slate-700 via-slate-200 to-slate-100 shadow-md flex items-center justify-center"
+      >
+        <div class="w-3 h-3 rounded-full bg-slate-900 border border-slate-400">
+        </div>
       </div>
       <!-- Metal Swivel Joint -->
-      <div class="w-4.5 h-3.5 bg-gradient-to-r from-slate-500 via-slate-200 to-slate-600 rounded-sm -mt-1 shadow-md"></div>
+      <div
+        class="w-4.5 h-3.5 bg-gradient-to-r from-slate-500 via-slate-200 to-slate-600 rounded-sm -mt-1 shadow-md"
+      >
+      </div>
     </div>
 
     <!-- Modern Clean Glassmorphism Badge Card Body -->
@@ -45,29 +64,47 @@ const t = getTranslations(lang);
         id="holographic-glare"
         class="absolute inset-0 pointer-events-none rounded-[1.75rem] opacity-25 mix-blend-overlay"
         style="background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,1) 0%, rgba(99,102,241,0.5) 45%, transparent 75%);"
-      ></div>
+      >
+      </div>
 
       <!-- Modern Ambient Soft Gradient Glows -->
-      <div class="absolute -top-24 -right-24 w-52 h-52 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-52 h-52 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none"></div>
+      <div
+        class="absolute -top-24 -right-24 w-52 h-52 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute -bottom-24 -left-24 w-52 h-52 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none"
+      >
+      </div>
 
       <!-- Card Security Header -->
-      <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3.5">
+      <div
+        class="flex items-center justify-between border-b border-white/10 pb-3 mb-3.5"
+      >
         <div class="flex items-center gap-2">
           <span class="relative flex h-2.5 w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+            ></span>
           </span>
-          <span class="text-[10px] font-mono tracking-widest text-slate-300 uppercase font-semibold">VERIFIED ID</span>
-        </div>
-        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-[10px] font-mono font-bold tracking-wider">
-          PASSPORT
+          <span
+            class="text-[10px] font-mono tracking-widest text-slate-300 uppercase font-semibold"
+            >VERIFIED ID</span
+          >
         </div>
       </div>
 
       <!-- Profile Photo Frame -->
-      <div class="relative rounded-xl overflow-hidden shadow-lg aspect-[4/4.5] w-full bg-slate-950 border border-white/10 mb-3.5">
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg aspect-[4/4.5] w-full bg-slate-950 border border-white/10 mb-3.5"
+      >
         <Image
           src={profileImage}
           alt={t.about.altPhoto}
@@ -76,17 +113,41 @@ const t = getTranslations(lang);
           sizes="320px"
         />
         <!-- Photo Bottom Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
-        
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"
+        >
+        </div>
+
         <!-- Name & Badge Overlay -->
-        <div class="absolute bottom-3 left-3.5 right-3.5 flex justify-between items-end">
+        <div
+          class="absolute bottom-3 left-3.5 right-3.5 flex justify-between items-end"
+        >
           <div>
-            <div class="text-[9px] font-mono text-indigo-300 font-semibold tracking-widest uppercase">FULL STACK DEVELOPER</div>
-            <div class="text-sm font-extrabold text-white tracking-wide drop-shadow-md">{t.about.name}</div>
+            <div
+              class="text-[9px] font-mono text-indigo-300 font-semibold tracking-widest uppercase"
+            >
+              FRONTEND DEVELOPER
+            </div>
+            <div
+              class="text-sm font-extrabold text-white tracking-wide drop-shadow-md"
+            >
+              {t.about.name}
+            </div>
           </div>
-          <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 backdrop-blur-md flex items-center justify-center text-emerald-400">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          <div
+            class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 backdrop-blur-md flex items-center justify-center text-emerald-400"
+          >
+            <svg
+              class="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
         </div>
@@ -94,9 +155,13 @@ const t = getTranslations(lang);
 
       <!-- Bottom Security IC Chip & Barcode Section -->
       <div class="pt-1">
-        <div class="flex items-center justify-between pt-2.5 border-t border-white/10">
+        <div
+          class="flex items-center justify-between pt-2.5 border-t border-white/10"
+        >
           <!-- Smart IC Security Chip Graphic -->
-          <div class="w-9 h-6.5 rounded-md bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 border border-amber-300/80 flex flex-col justify-around p-1 shadow-inner relative overflow-hidden">
+          <div
+            class="w-9 h-6.5 rounded-md bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 border border-amber-300/80 flex flex-col justify-around p-1 shadow-inner relative overflow-hidden"
+          >
             <div class="w-full h-[1px] bg-slate-900/50"></div>
             <div class="w-full h-[1px] bg-slate-900/50"></div>
             <div class="w-full h-[1px] bg-slate-900/50"></div>
@@ -115,7 +180,10 @@ const t = getTranslations(lang);
               <div class="w-[2px] h-full bg-slate-300"></div>
               <div class="w-[3px] h-full bg-slate-300"></div>
             </div>
-            <span class="text-[9px] font-mono text-slate-400 tracking-widest font-medium">ID: AK-2026-DEV</span>
+            <span
+              class="text-[9px] font-mono text-slate-400 tracking-widest font-medium"
+              >ID: AK-2026-DEV</span
+            >
           </div>
         </div>
       </div>
@@ -125,14 +193,16 @@ const t = getTranslations(lang);
 
 <script>
   function initLanyardPhysics() {
-    const container = document.getElementById('lanyard-container');
-    const card = document.getElementById('lanyard-card') as HTMLElement;
-    const cardInner = document.getElementById('card-inner') as HTMLElement;
-    const canvas = document.getElementById('lanyard-canvas') as HTMLCanvasElement;
+    const container = document.getElementById("lanyard-container");
+    const card = document.getElementById("lanyard-card") as HTMLElement;
+    const cardInner = document.getElementById("card-inner") as HTMLElement;
+    const canvas = document.getElementById(
+      "lanyard-canvas",
+    ) as HTMLCanvasElement;
 
     if (!container || !card || !canvas || !cardInner) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Resize canvas to match container size
@@ -145,7 +215,7 @@ const t = getTranslations(lang);
     }
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
     // Physics State - starts with a drop from top!
     let cardX = 0; // Displacement X from center
@@ -209,10 +279,10 @@ const t = getTranslations(lang);
       targetY = 0;
     }
 
-    card.addEventListener('pointerdown', onPointerDown);
-    card.addEventListener('pointermove', onPointerMove);
-    card.addEventListener('pointerup', onPointerUp);
-    card.addEventListener('pointercancel', onPointerUp);
+    card.addEventListener("pointerdown", onPointerDown);
+    card.addEventListener("pointermove", onPointerMove);
+    card.addEventListener("pointerup", onPointerUp);
+    card.addEventListener("pointercancel", onPointerUp);
 
     // Main Physics Loop
     function updatePhysics() {
@@ -252,8 +322,8 @@ const t = getTranslations(lang);
       // Update Holographic Glare Position
       const glareX = 50 + (rotY / 25) * 40;
       const glareY = 50 - (rotX / 20) * 40;
-      cardInner.style.setProperty('--glare-x', `${glareX}%`);
-      cardInner.style.setProperty('--glare-y', `${glareY}%`);
+      cardInner.style.setProperty("--glare-x", `${glareX}%`);
+      cardInner.style.setProperty("--glare-y", `${glareY}%`);
 
       // Draw Lanyard Canvas Ribbon
       drawStrap();
@@ -286,18 +356,23 @@ const t = getTranslations(lang);
         (anchorX + cardHookX) / 2 - 20,
         (anchorY + cardHookY) / 2 + 10,
         cardHookX - 6,
-        cardHookY
+        cardHookY,
       );
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.15)";
       ctx.lineWidth = 14;
-      ctx.lineCap = 'round';
+      ctx.lineCap = "round";
       ctx.stroke();
 
       // Left Strap Ribbon
-      const gradLeft = ctx.createLinearGradient(anchorX - 14, anchorY, cardHookX - 6, cardHookY);
-      gradLeft.addColorStop(0, '#312e81'); // Indigo 900
-      gradLeft.addColorStop(0.5, '#4338ca'); // Indigo 700
-      gradLeft.addColorStop(1, '#1e1b4b'); // Dark Indigo
+      const gradLeft = ctx.createLinearGradient(
+        anchorX - 14,
+        anchorY,
+        cardHookX - 6,
+        cardHookY,
+      );
+      gradLeft.addColorStop(0, "#312e81"); // Indigo 900
+      gradLeft.addColorStop(0.5, "#4338ca"); // Indigo 700
+      gradLeft.addColorStop(1, "#1e1b4b"); // Dark Indigo
 
       ctx.beginPath();
       ctx.moveTo(anchorX - 12, anchorY);
@@ -305,18 +380,23 @@ const t = getTranslations(lang);
         (anchorX + cardHookX) / 2 - 16,
         (anchorY + cardHookY) / 2,
         cardHookX - 6,
-        cardHookY
+        cardHookY,
       );
       ctx.strokeStyle = gradLeft;
       ctx.lineWidth = 10;
-      ctx.lineCap = 'round';
+      ctx.lineCap = "round";
       ctx.stroke();
 
       // Right Strap Ribbon
-      const gradRight = ctx.createLinearGradient(anchorX + 14, anchorY, cardHookX + 6, cardHookY);
-      gradRight.addColorStop(0, '#3730a3');
-      gradRight.addColorStop(0.5, '#4f46e5');
-      gradRight.addColorStop(1, '#312e81');
+      const gradRight = ctx.createLinearGradient(
+        anchorX + 14,
+        anchorY,
+        cardHookX + 6,
+        cardHookY,
+      );
+      gradRight.addColorStop(0, "#3730a3");
+      gradRight.addColorStop(0.5, "#4f46e5");
+      gradRight.addColorStop(1, "#312e81");
 
       ctx.beginPath();
       ctx.moveTo(anchorX + 12, anchorY);
@@ -324,11 +404,11 @@ const t = getTranslations(lang);
         (anchorX + cardHookX) / 2 + 16,
         (anchorY + cardHookY) / 2,
         cardHookX + 6,
-        cardHookY
+        cardHookY,
       );
       ctx.strokeStyle = gradRight;
       ctx.lineWidth = 10;
-      ctx.lineCap = 'round';
+      ctx.lineCap = "round";
       ctx.stroke();
 
       // Inner Accent Stitching Lines on Lanyard Ribbon
@@ -338,9 +418,9 @@ const t = getTranslations(lang);
         (anchorX + cardHookX) / 2 - 16,
         (anchorY + cardHookY) / 2,
         cardHookX - 6,
-        cardHookY
+        cardHookY,
       );
-      ctx.strokeStyle = 'rgba(251, 191, 36, 0.6)'; // Amber stitch line
+      ctx.strokeStyle = "rgba(251, 191, 36, 0.6)"; // Amber stitch line
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4, 4]);
       ctx.stroke();
@@ -351,9 +431,9 @@ const t = getTranslations(lang);
         (anchorX + cardHookX) / 2 + 16,
         (anchorY + cardHookY) / 2,
         cardHookX + 6,
-        cardHookY
+        cardHookY,
       );
-      ctx.strokeStyle = 'rgba(251, 191, 36, 0.6)';
+      ctx.strokeStyle = "rgba(251, 191, 36, 0.6)";
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4, 4]);
       ctx.stroke();
@@ -365,14 +445,18 @@ const t = getTranslations(lang);
     updatePhysics();
 
     // Cleanup on page unload (for SPA Astro navigation)
-    document.addEventListener('astro:before-preparation', () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resizeCanvas);
-    }, { once: true });
+    document.addEventListener(
+      "astro:before-preparation",
+      () => {
+        cancelAnimationFrame(animationFrameId);
+        window.removeEventListener("resize", resizeCanvas);
+      },
+      { once: true },
+    );
   }
 
   // Initialize
   initLanyardPhysics();
   // Support Astro SPA View Transitions
-  document.addEventListener('astro:page-load', initLanyardPhysics);
+  document.addEventListener("astro:page-load", initLanyardPhysics);
 </script>

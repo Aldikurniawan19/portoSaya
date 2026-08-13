@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoPorto from '../assets/LogoPorto.png';
 import { getTranslations } from '../i18n/translations';
 const currentLang = Astro.currentLocale || 'id';
 const t = getTranslations(currentLang);
@@ -14,7 +16,7 @@ const t = getTranslations(currentLang);
     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3.5">
       <!-- Logo (Visible on Mobile & Desktop) -->
       <div class="flex items-center cursor-pointer group px-0.5 sm:px-1" id="logo-btn">
-        <span class="font-extrabold text-base sm:text-xl text-slate-800 tracking-tight">All<span class="text-pink-500">.</span></span>
+        <Image src={logoPorto} alt="Logo" class="h-6 sm:h-7 w-auto object-contain" />
       </div>
 
       <!-- Left Divider -->
