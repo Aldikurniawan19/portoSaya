@@ -1,19 +1,16 @@
 ---
-import { getTranslations } from '../i18n/translations';
-import SplashScreen from '../components/SplashScreen.astro';
+import { getTranslations } from "../i18n/translations";
+import SplashScreen from "../components/SplashScreen.astro";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const lang = Astro.currentLocale || 'id';
+const lang = Astro.currentLocale || "id";
 const t = getTranslations(lang);
 
-const {
-  title = t.meta.title,
-  description = t.meta.description,
-} = Astro.props;
+const { title = t.meta.title, description = t.meta.description } = Astro.props;
 ---
 
 <!doctype html>
@@ -103,7 +100,7 @@ const {
       if (typeof AOS !== "undefined") {
         AOS.init({
           duration: 1000,
-          easing: 'ease-out-cubic',
+          easing: "ease-out-cubic",
           once: true,
           offset: 80,
           delay: 50,
