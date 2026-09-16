@@ -11,26 +11,103 @@ const t = getTranslations(lang);
 <section id="about" class="min-h-screen flex items-center bg-slate-50 relative py-24 overflow-visible">
   <div class="max-w-6xl mx-auto px-6 w-full overflow-visible">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center overflow-visible">
-      <!-- Foto Profil (Kiri, 5 kolom - Animated 3D Photo Display) -->
-      <div class="lg:col-span-5 relative flex justify-center items-center w-full" data-aos="fade-right">
-        <!-- Multi-layer Ambient Backlight Auras -->
-        <div class="absolute w-72 h-72 sm:w-80 sm:h-80 bg-blue-500/20 rounded-full blur-3xl -top-6 -left-6 animate-pulse" style="animation-duration: 4s;"></div>
-        <div class="absolute w-72 h-72 sm:w-80 sm:h-80 bg-indigo-500/20 rounded-full blur-3xl -bottom-6 -right-6 animate-pulse" style="animation-duration: 6s;"></div>
+      <!-- Foto Profil (Kiri, 5 kolom - High-End Nuclear Fusion Reactor Photo Display) -->
+      <div class="lg:col-span-5 relative flex justify-center items-center w-full py-8 overflow-visible" data-aos="fade-right">
+        
+        <!-- ================= NUCLEAR REACTOR REACTION CORE ================= -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
+          <!-- 1. Cherenkov Deep Plasma Radiation Glows -->
+          <div class="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-cyan-400/25 blur-3xl reactor-core-glow"></div>
+          <div class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-blue-600/35 blur-2xl reactor-core-pulse"></div>
+          <div class="absolute w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-cyan-200/40 blur-xl reactor-fusion-spark"></div>
 
-        <!-- 3D Convex Photo Container with Tilt/Hover Animation -->
-        <div class="relative group/photo w-full max-w-[340px] sm:max-w-[380px] select-none">
-          <!-- Outer 3D Convex Frame Shell -->
-          <div class="photo-3d-wrapper relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white/95 via-slate-100/90 to-slate-200/95 border border-white/90 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.15),inset_0_2.5px_3px_0_rgba(255,255,255,1),inset_0_-2px_4px_0_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-500 transform group-hover/photo:-translate-y-2 group-hover/photo:shadow-[0_25px_60px_-10px_rgba(37,99,235,0.25)]">
+          <!-- 2. Relativistic Cherenkov Plasma Shockwaves -->
+          <div class="reactor-shockwave shockwave-1"></div>
+          <div class="reactor-shockwave shockwave-2"></div>
+          <div class="reactor-shockwave shockwave-3"></div>
+
+          <!-- 3. Radiating Energy Conduits / Plasma Beams -->
+          <div class="absolute w-[440px] h-[440px] sm:w-[520px] sm:h-[520px] flex items-center justify-center reactor-rays-container">
+            <div class="reactor-ray ray-1"></div>
+            <div class="reactor-ray ray-2"></div>
+            <div class="reactor-ray ray-3"></div>
+            <div class="reactor-ray ray-4"></div>
+          </div>
+
+          <!-- 4. Tokamak Reactor Magnetic Stator Chamber (Outer SVGs) -->
+          <div class="absolute w-[390px] h-[390px] sm:w-[470px] sm:h-[470px] flex items-center justify-center">
+            <!-- Outer Magnetic Containment Coil Ring (12 Sectors) -->
+            <svg class="w-full h-full text-cyan-400/35 animate-reactor-stator" viewBox="0 0 500 500" fill="none">
+              <circle cx="250" cy="250" r="236" stroke="currentColor" stroke-width="2" stroke-dasharray="24 16" stroke-linecap="round" />
+              <circle cx="250" cy="250" r="218" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" />
+              
+              <!-- 12 Magnetic Flux Nodes with Plasma Glow -->
+              <circle cx="250" cy="14" r="5" fill="#00f0ff" class="reactor-node node-1" />
+              <circle cx="368" cy="45" r="4.5" fill="#38bdf8" class="reactor-node node-2" />
+              <circle cx="455" cy="132" r="5" fill="#00f0ff" class="reactor-node node-3" />
+              <circle cx="486" cy="250" r="4.5" fill="#38bdf8" class="reactor-node node-4" />
+              <circle cx="455" cy="368" r="5" fill="#00f0ff" class="reactor-node node-5" />
+              <circle cx="368" cy="455" r="4.5" fill="#38bdf8" class="reactor-node node-6" />
+              <circle cx="250" cy="486" r="5" fill="#00f0ff" class="reactor-node node-7" />
+              <circle cx="132" cy="455" r="4.5" fill="#38bdf8" class="reactor-node node-8" />
+              <circle cx="45" cy="368" r="5" fill="#00f0ff" class="reactor-node node-9" />
+              <circle cx="14" cy="250" r="4.5" fill="#38bdf8" class="reactor-node node-10" />
+              <circle cx="45" cy="132" r="5" fill="#00f0ff" class="reactor-node node-11" />
+              <circle cx="132" cy="45" r="4.5" fill="#38bdf8" class="reactor-node node-12" />
+            </svg>
+
+            <!-- Mid Turbine Rotor / Fuel Assembly Ring -->
+            <svg class="absolute w-[82%] h-[82%] text-blue-500/30 animate-reactor-rotor" viewBox="0 0 400 400" fill="none">
+              <circle cx="200" cy="200" r="182" stroke="currentColor" stroke-width="1.5" stroke-dasharray="14 6" />
+              <circle cx="200" cy="200" r="156" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" />
+              <!-- Radiating Inward Energy Injector Pins -->
+              <path d="M 200 18 L 200 44 M 382 200 L 356 200 M 200 382 L 200 356 M 18 200 L 44 200 M 71 71 L 90 90 M 329 71 L 310 90 M 329 329 L 310 310 M 71 329 L 90 310" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" opacity="0.75" />
+            </svg>
+
+            <!-- Inner Confinement Accelerator Stream -->
+            <svg class="absolute w-[64%] h-[64%] text-cyan-300/35 animate-reactor-core-spin" viewBox="0 0 300 300" fill="none">
+              <circle cx="150" cy="150" r="136" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 12" stroke-linecap="round" />
+              <circle cx="150" cy="14" r="4" fill="#ffffff" />
+              <circle cx="286" cy="150" r="4" fill="#00ffff" />
+              <circle cx="150" cy="286" r="4" fill="#ffffff" />
+              <circle cx="14" cy="150" r="4" fill="#00ffff" />
+            </svg>
+          </div>
+        </div>
+        <!-- ================= END REACTOR CORE ================= -->
+
+        <!-- Interactive 3D Perspective Photo Card Container -->
+        <div id="about-photo-card" class="relative group/photo w-full max-w-[320px] sm:max-w-[360px] select-none perspective-[1000px] cursor-pointer animate-float-ambient z-10">
+          
+          <!-- Outer Revolving Conic Glow Ring -->
+          <div class="absolute -inset-1.5 rounded-[32px] overflow-hidden opacity-75 group-hover/photo:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none">
+            <div class="conic-glow-spinner"></div>
+          </div>
+
+          <!-- Futuristic Cyber HUD Corner Accents -->
+          <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg pointer-events-none transition-all duration-300 group-hover/photo:-top-3 group-hover/photo:-left-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
+          <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg pointer-events-none transition-all duration-300 group-hover/photo:-top-3 group-hover/photo:-right-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
+          <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg pointer-events-none transition-all duration-300 group-hover/photo:-bottom-3 group-hover/photo:-left-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
+          <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-cyan-400 rounded-br-lg pointer-events-none transition-all duration-300 group-hover/photo:-bottom-3 group-hover/photo:-right-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
+
+          <!-- Outer 3D Convex Frame Shell with Dynamic Tilt -->
+          <div class="photo-3d-wrapper relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white/95 via-slate-100/90 to-slate-200/95 border border-white/90 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.15),inset_0_2.5px_3px_0_rgba(255,255,255,1),inset_0_-2px_4px_0_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 transform-gpu group-hover/photo:shadow-[0_30px_70px_-10px_rgba(6,182,212,0.45)]">
             
             <!-- Photo Inner Container -->
             <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-slate-900 to-blue-950 shadow-inner">
               <Image
                 src={profileImage}
                 alt={t.about.name}
-                class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/photo:scale-105"
+                class="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover/photo:scale-105"
                 widths={[340, 680]}
                 sizes="(max-width: 640px) 340px, 380px"
               />
+
+              <!-- Laser Scanline Beam Animation -->
+              <div class="laser-scanline pointer-events-none"></div>
+
+              <!-- Dynamic Interactive Spotlight / Sheen Glare -->
+              <div id="photo-glare" class="absolute inset-0 pointer-events-none opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
 
               <!-- Subtle Gradient Vignette at bottom -->
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 group-hover/photo:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
@@ -162,10 +239,320 @@ const t = getTranslations(lang);
     }
   }
 
-  // Load typewriter
-  initAboutTypewriter();
+  // 3D Parallax Tilt & Light Glare Script
+  function initAboutPhotoTilt() {
+    const card = document.getElementById("about-photo-card");
+    const wrapper = card?.querySelector(".photo-3d-wrapper") as HTMLElement | null;
+    const glare = document.getElementById("photo-glare");
+    if (!card || !wrapper) return;
+
+    let isHovered = false;
+
+    card.addEventListener("mouseenter", () => {
+      isHovered = true;
+      wrapper.style.transition = "transform 0.15s ease-out, box-shadow 0.3s ease";
+    });
+
+    card.addEventListener("mousemove", (e) => {
+      if (!isHovered) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate tilt angles (Max +- 12deg)
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      wrapper.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+
+      if (glare) {
+        glare.style.background = `radial-gradient(circle 260px at ${x}px ${y}px, rgba(255, 255, 255, 0.35), transparent 70%)`;
+      }
+    });
+
+    card.addEventListener("mouseleave", () => {
+      isHovered = false;
+      wrapper.style.transition = "transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease";
+      wrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    });
+  }
+
+  function initAboutModule() {
+    initAboutTypewriter();
+    initAboutPhotoTilt();
+    if (typeof (window as any).lucide !== "undefined") {
+      (window as any).lucide.createIcons();
+    }
+  }
+
+  // Load modules
+  initAboutModule();
   // Support Astro SPA transition events
-  document.addEventListener("astro:page-load", initAboutTypewriter);
+  document.addEventListener("astro:page-load", initAboutModule);
 </script>
+
+<style>
+  /* ================= NUCLEAR REACTOR REACTION STYLES ================= */
+
+  /* 1. Cherenkov Deep Plasma Radiation Core */
+  .reactor-core-glow {
+    animation: reactor-glow-surge 3.5s ease-in-out infinite alternate;
+  }
+  @keyframes reactor-glow-surge {
+    0% {
+      transform: scale(0.88);
+      opacity: 0.3;
+      filter: blur(52px);
+    }
+    50% {
+      transform: scale(1.12);
+      opacity: 0.65;
+      filter: blur(40px);
+    }
+    100% {
+      transform: scale(0.92);
+      opacity: 0.38;
+      filter: blur(48px);
+    }
+  }
+
+  .reactor-core-pulse {
+    animation: reactor-pulse-intense 2.2s ease-in-out infinite alternate;
+  }
+  @keyframes reactor-pulse-intense {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.35;
+    }
+    100% {
+      transform: scale(1.22);
+      opacity: 0.7;
+    }
+  }
+
+  .reactor-fusion-spark {
+    animation: fusion-spark-pulse 1.4s ease-in-out infinite alternate;
+  }
+  @keyframes fusion-spark-pulse {
+    0% {
+      transform: scale(0.85);
+      opacity: 0.4;
+      filter: blur(16px);
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0.85;
+      filter: blur(12px);
+    }
+  }
+
+  /* 2. Relativistic Cherenkov Plasma Shockwaves */
+  .reactor-shockwave {
+    position: absolute;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(6, 182, 212, 0.7);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.45), inset 0 0 10px rgba(0, 240, 255, 0.3);
+    pointer-events: none;
+  }
+  .shockwave-1 {
+    width: 280px;
+    height: 280px;
+    animation: shockwave-expand 3.6s cubic-bezier(0.1, 0.8, 0.25, 1) infinite;
+  }
+  .shockwave-2 {
+    width: 280px;
+    height: 280px;
+    animation: shockwave-expand 3.6s cubic-bezier(0.1, 0.8, 0.25, 1) infinite 1.2s;
+  }
+  .shockwave-3 {
+    width: 280px;
+    height: 280px;
+    animation: shockwave-expand 3.6s cubic-bezier(0.1, 0.8, 0.25, 1) infinite 2.4s;
+  }
+  @keyframes shockwave-expand {
+    0% {
+      transform: scale(0.65);
+      opacity: 0.95;
+      border-color: rgba(255, 255, 255, 0.95);
+    }
+    75% {
+      opacity: 0.4;
+      border-color: rgba(6, 182, 212, 0.6);
+    }
+    100% {
+      transform: scale(1.95);
+      opacity: 0;
+      border-color: rgba(59, 130, 246, 0);
+    }
+  }
+
+  /* 3. Radiating Reactor Plasma Rays */
+  .reactor-rays-container {
+    animation: rays-slow-spin 40s linear infinite;
+  }
+  @keyframes rays-slow-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .reactor-ray {
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(6, 182, 212, 0.65) 20%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(6, 182, 212, 0.65) 80%,
+      transparent 100%
+    );
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.7);
+    opacity: 0.4;
+  }
+  .ray-1 {
+    transform: rotate(0deg);
+    animation: ray-flicker 3s ease-in-out infinite;
+  }
+  .ray-2 {
+    transform: rotate(45deg);
+    animation: ray-flicker 3s ease-in-out infinite 0.75s;
+  }
+  .ray-3 {
+    transform: rotate(90deg);
+    animation: ray-flicker 3s ease-in-out infinite 1.5s;
+  }
+  .ray-4 {
+    transform: rotate(135deg);
+    animation: ray-flicker 3s ease-in-out infinite 2.25s;
+  }
+  @keyframes ray-flicker {
+    0%, 100% { opacity: 0.25; transform: scaleX(0.88) rotate(var(--angle, 0deg)); }
+    50% { opacity: 0.75; transform: scaleX(1.12) rotate(var(--angle, 0deg)); }
+  }
+
+  /* 4. Tokamak Stator & Rotor Rotations */
+  .animate-reactor-stator {
+    animation: rotate-stator 28s linear infinite;
+  }
+  @keyframes rotate-stator {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .animate-reactor-rotor {
+    animation: rotate-rotor 16s linear infinite;
+  }
+  @keyframes rotate-rotor {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .animate-reactor-core-spin {
+    animation: rotate-core 7s linear infinite;
+  }
+  @keyframes rotate-core {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* 5. Reactor Magnetic Coil Nodes Pulsing */
+  .reactor-node {
+    animation: node-surge 1.8s ease-in-out infinite alternate;
+  }
+  .node-1, .node-5, .node-9 { animation-delay: 0s; }
+  .node-2, .node-6, .node-10 { animation-delay: 0.45s; }
+  .node-3, .node-7, .node-11 { animation-delay: 0.9s; }
+  .node-4, .node-8, .node-12 { animation-delay: 1.35s; }
+
+  @keyframes node-surge {
+    0% {
+      filter: drop-shadow(0 0 2px #00f0ff);
+      opacity: 0.55;
+    }
+    100% {
+      filter: drop-shadow(0 0 8px #00ffff) drop-shadow(0 0 16px #38bdf8);
+      opacity: 1;
+      transform: scale(1.35);
+    }
+  }
+
+  /* Conic Glowing Ring */
+  .conic-glow-spinner {
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(6, 182, 212, 0.95) 90deg,
+      rgba(59, 130, 246, 0.95) 180deg,
+      rgba(0, 240, 255, 0.95) 270deg,
+      transparent 360deg
+    );
+    animation: spin-conic 6s linear infinite;
+  }
+
+  @keyframes spin-conic {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Ambient Floating Levitation */
+  .animate-float-ambient {
+    animation: float-ambient 6s ease-in-out infinite;
+  }
+
+  @keyframes float-ambient {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Laser Scanline Beam */
+  .laser-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(6, 182, 212, 0.8) 20%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(59, 130, 246, 0.8) 80%,
+      transparent 100%
+    );
+    box-shadow: 0 0 12px 2px rgba(6, 182, 212, 0.6);
+    opacity: 0;
+    animation: scanline-sweep 4.5s ease-in-out infinite;
+  }
+
+  @keyframes scanline-sweep {
+    0% {
+      top: -5%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.85;
+    }
+    90% {
+      opacity: 0.85;
+    }
+    100% {
+      top: 105%;
+      opacity: 0;
+    }
+  }
+</style>
+
 
 

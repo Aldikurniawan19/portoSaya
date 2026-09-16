@@ -53,15 +53,16 @@ const t = getTranslations(lang);
         {t.hero.description}
       </p>
 
-      <div class="flex flex-wrap gap-3.5 sm:gap-4 pt-1 sm:pt-2">
-        <a href="#portfolio" class="btn-3d-blue px-6 py-3.5 text-sm sm:text-base font-bold">
-          <i data-lucide="briefcase" class="w-4 h-4"></i>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1 sm:pt-2 w-full max-w-[430px]">
+        <a href="#portfolio" class="btn-3d-blue w-full px-5 py-3.5 text-sm sm:text-base font-bold justify-center text-center">
+          <i data-lucide="briefcase" class="w-4 h-4 shrink-0"></i>
           <span>{t.hero.viewProjects}</span>
-          <i data-lucide="chevron-right" class="w-4 h-4 opacity-80"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-80 shrink-0"></i>
         </a>
-        <a href="#contact" class="btn-3d-light px-6 py-3.5 text-sm sm:text-base font-bold">
-          <i data-lucide="mail" class="w-4 h-4 text-blue-600"></i>
+        <a href="#contact" class="btn-3d-light w-full px-5 py-3.5 text-sm sm:text-base font-bold justify-center text-center">
+          <i data-lucide="mail" class="w-4 h-4 text-blue-600 shrink-0"></i>
           <span>{t.hero.contactMe}</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-80 shrink-0"></i>
         </a>
       </div>
     </div>
