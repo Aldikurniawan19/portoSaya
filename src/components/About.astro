@@ -75,7 +75,6 @@ const t = getTranslations(lang);
           <a href="#" class="btn-3d-blue px-7 py-3.5 text-sm md:text-base font-bold w-fit">
             <i data-lucide="download" class="w-4 h-4"></i>
             <span>{t.about.downloadCV}</span>
-            <i data-lucide="chevron-right" class="w-4 h-4 opacity-80"></i>
           </a>
         </div>
       </div>
@@ -209,7 +208,7 @@ const t = getTranslations(lang);
   }
 
   /* ========================================================
-     3D CONVEX BUTTON (ROLE BADGE - KEEPING EMERALD PALETTE)
+     3D CONVEX ROLE BADGE (FIXED ELEVATED LOOK, NO HOVER/CLICK)
      ======================================================== */
   .btn-3d-emerald {
     position: relative;
@@ -223,31 +222,19 @@ const t = getTranslations(lang);
     user-select: none;
     cursor: default;
     
-    /* 3D Convex Emerald Gradient Base */
-    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 45%, #a7f3d0 100%);
-    border: 1px solid rgba(52, 211, 153, 0.55);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+    /* Fixed 3D Convex Emerald Elevated State (as if hovered) */
+    background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 45%, #bbf7d0 100%);
+    border: 1px solid rgba(52, 211, 153, 0.75);
+    border-top: 1.5px solid rgba(255, 255, 255, 1);
     
     /* 3D Convex Lighting: Specular Top Highlight + Bottom Ambient Shadow + Elevation Shadow */
-    box-shadow: 
-      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -2.5px 3.5px 0 rgba(5, 150, 105, 0.22),
-      0 6px 14px -2px rgba(16, 185, 129, 0.28),
-      0 2px 5px -1px rgba(15, 23, 42, 0.08);
-    
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .btn-3d-emerald:hover {
-    background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 45%, #bbf7d0 100%);
-    border-color: rgba(52, 211, 153, 0.75);
     box-shadow: 
       inset 0 2.5px 3.5px 0 rgba(255, 255, 255, 1),
       inset 0 -2px 3px 0 rgba(5, 150, 105, 0.18),
       0 10px 22px -3px rgba(16, 185, 129, 0.38),
       0 4px 8px -1px rgba(15, 23, 42, 0.12);
-    transform: translateY(-1.5px);
+    
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
   }
 </style>
 

@@ -19,7 +19,7 @@ const t = getTranslations(lang);
         <span class="hero-name-timbul-blue">Kurniawan</span><span class="hero-name-timbul-blue">.</span>
       </h1>
 
-      <div class="btn-3d-light px-4 py-1.5 text-xs sm:text-sm font-extrabold text-secondary w-fit tracking-wider uppercase select-none cursor-default">
+      <div class="hero-role-badge-3d px-4 py-1.5 text-xs sm:text-sm font-extrabold text-secondary w-fit tracking-wider uppercase select-none cursor-default">
         {t.hero.role}
       </div>
 
@@ -43,12 +43,10 @@ const t = getTranslations(lang);
         <a href="#portfolio" class="btn-3d-blue w-full px-5 py-3.5 text-sm sm:text-base font-bold justify-center text-center">
           <i data-lucide="briefcase" class="w-4 h-4 shrink-0"></i>
           <span>{t.hero.viewProjects}</span>
-          <i data-lucide="chevron-right" class="w-4 h-4 opacity-80 shrink-0"></i>
         </a>
         <a href="#contact" class="btn-3d-light w-full px-5 py-3.5 text-sm sm:text-base font-bold justify-center text-center">
           <i data-lucide="mail" class="w-4 h-4 text-blue-600 shrink-0"></i>
           <span>{t.hero.contactMe}</span>
-          <i data-lucide="chevron-right" class="w-4 h-4 opacity-80 shrink-0"></i>
         </a>
       </div>
     </div>
@@ -141,6 +139,30 @@ const t = getTranslations(lang);
       drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
       drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
       drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45));
+  }
+
+  /* 3D Convex Role Badge (Fixed Elevated Look, No Hover/Click Effect) */
+  .hero-role-badge-3d {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    font-weight: 800;
+    color: #0f172a;
+    user-select: none;
+    cursor: default;
+    
+    /* Fixed 3D Convex Elevated State (as if hovered) */
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 45%, #cbd5e1 100%);
+    border: 1px solid #94a3b8;
+    border-top: 1.5px solid #ffffff;
+    
+    box-shadow: 
+      inset 0 2.5px 3.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.12),
+      0 10px 20px -3px rgba(0, 0, 0, 0.12),
+      0 4px 6px -1px rgba(0, 0, 0, 0.08);
   }
 
   @keyframes beam-h {
