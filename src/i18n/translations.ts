@@ -114,7 +114,7 @@ export const translations = {
         hotelResponsiveDesc: "Tampilan optimal di semua ukuran layar."
       },
       techHeading: "Teknologi yang Digunakan",
-      liveDemo: "Lihat Demo Live",
+      liveDemo: "Lihat Detail",
       sourceCode: "Source Code"
     },
     contact: {
@@ -262,7 +262,7 @@ export const translations = {
         hotelResponsiveDesc: "Optimal display on all screen sizes."
       },
       techHeading: "Technologies Used",
-      liveDemo: "Live Demo",
+      liveDemo: "View Details",
       sourceCode: "Source Code"
     },
     contact: {

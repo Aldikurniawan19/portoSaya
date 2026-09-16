@@ -48,22 +48,27 @@ const row2Skills = [
     </div>
   </div>
 
-  <!-- Slider Marquee Container -->
-  <div class="w-full flex flex-col gap-4" data-aos="fade-up" data-aos-delay="100">
+  <!-- Slider Marquee Container with 3D Skill Cards -->
+  <div class="w-full flex flex-col gap-6 py-2" data-aos="fade-up" data-aos-delay="100">
     <!-- Row 1: Left -->
-    <div class="marquee-wrapper">
+    <div class="marquee-wrapper py-2">
       <div class="marquee-track animate-scroll-left">
         {
           [0, 1].map(() => (
             <div class="marquee-group">
               {row1Skills.map((skill) => (
-                <div class="flex items-center gap-2.5 bg-white border border-slate-100/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-4 py-3 rounded-2xl shrink-0">
-                  <img
-                    src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    class="w-6 h-6 object-contain"
-                    alt={skill.name}
-                  />
-                  <span class="font-bold text-slate-800">{skill.name}</span>
+                <div class="skill-3d-card group flex items-center gap-3.5 px-5 py-3 rounded-2xl shrink-0 cursor-default select-none transition-all duration-300">
+                  <div class="skill-icon-plate w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <img
+                      src={`https://cdn.simpleicons.org/${skill.icon}`}
+                      class="w-6 h-6 object-contain filter drop-shadow-sm"
+                      alt={skill.name}
+                      loading="lazy"
+                    />
+                  </div>
+                  <span class="font-extrabold text-slate-800 text-sm tracking-tight group-hover:text-blue-600 transition-colors duration-200">
+                    {skill.name}
+                  </span>
                 </div>
               ))}
             </div>
@@ -73,19 +78,24 @@ const row2Skills = [
     </div>
 
     <!-- Row 2: Right -->
-    <div class="marquee-wrapper">
+    <div class="marquee-wrapper py-2">
       <div class="marquee-track animate-scroll-right">
         {
           [0, 1].map(() => (
             <div class="marquee-group">
               {row2Skills.map((skill) => (
-                <div class="flex items-center gap-2.5 bg-white border border-slate-100/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-4 py-3 rounded-2xl shrink-0">
-                  <img
-                    src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    class="w-6 h-6 object-contain"
-                    alt={skill.name}
-                  />
-                  <span class="font-bold text-slate-800">{skill.name}</span>
+                <div class="skill-3d-card group flex items-center gap-3.5 px-5 py-3 rounded-2xl shrink-0 cursor-default select-none transition-all duration-300">
+                  <div class="skill-icon-plate w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <img
+                      src={`https://cdn.simpleicons.org/${skill.icon}`}
+                      class="w-6 h-6 object-contain filter drop-shadow-sm"
+                      alt={skill.name}
+                      loading="lazy"
+                    />
+                  </div>
+                  <span class="font-extrabold text-slate-800 text-sm tracking-tight group-hover:text-blue-600 transition-colors duration-200">
+                    {skill.name}
+                  </span>
                 </div>
               ))}
             </div>
@@ -95,3 +105,53 @@ const row2Skills = [
     </div>
   </div>
 </section>
+
+<style>
+  /* 3D Convex Skill Card */
+  .skill-3d-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #eef2f6 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    border-bottom: 1.5px solid rgba(203, 213, 225, 0.9);
+    
+    /* 3D Convex Lighting & Shadow */
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -2.5px 3.5px 0 rgba(0, 0, 0, 0.06),
+      0 6px 16px -2px rgba(15, 23, 42, 0.06),
+      0 2px 5px -1px rgba(15, 23, 42, 0.04);
+      
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+  }
+
+  .skill-3d-card:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 45%, #e2e8f0 100%);
+    border-color: rgba(148, 163, 184, 0.6);
+    border-top-color: #ffffff;
+    box-shadow: 
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08),
+      0 14px 28px -4px rgba(37, 99, 235, 0.15),
+      0 6px 12px -2px rgba(15, 23, 42, 0.08);
+    transform: translateY(-4px) scale(1.04);
+  }
+
+  /* 3D Embossed Icon Plate */
+  .skill-icon-plate {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -1px rgba(15, 23, 42, 0.08);
+  }
+
+  .skill-3d-card:hover .skill-icon-plate {
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.1),
+      0 6px 12px -2px rgba(37, 99, 235, 0.2);
+  }
+</style>
