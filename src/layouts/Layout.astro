@@ -702,6 +702,49 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
       0 8px 20px -2px rgba(2, 132, 199, 0.5);
   }
 
+  .social-3d-dark.hover-github:hover {
+    background: linear-gradient(180deg, #1f2328 0%, #121517 50%, #000000 100%);
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #ffffff;
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.9),
+      0 8px 20px -2px rgba(0, 0, 0, 0.7);
+  }
+
+  .social-3d-circle.hover-github:hover {
+    background: linear-gradient(180deg, #1f2328 0%, #121517 50%, #000000 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.8),
+      0 8px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  .social-3d-circle.hover-ig:hover {
+    background: linear-gradient(180deg, #f43f5e 0%, #e11d48 50%, #be123c 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.65),
+      inset 0 -2px 3px 0 rgba(136, 19, 55, 0.5),
+      0 8px 20px -2px rgba(225, 29, 72, 0.5);
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  .social-3d-circle.hover-linkedin:hover {
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.65),
+      inset 0 -2px 3px 0 rgba(3, 105, 161, 0.5),
+      0 8px 20px -2px rgba(2, 132, 199, 0.5);
+    transform: translateY(-2px) scale(1.1);
+  }
+
   /* 3D Convex Light / White Card (e.g., Send Message Card) */
   .card-3d-white {
     position: relative;
