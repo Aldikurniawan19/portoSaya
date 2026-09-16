@@ -14,12 +14,14 @@ const t = getTranslations(lang);
     <div class="space-y-4 sm:space-y-6 order-2 lg:order-1 fade-in-up">
       <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{t.hero.hello}</span>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary leading-[1.1] tracking-tight">
-        Aldi <br />
-        <span class="text-blue-600">Kurniawan</span><span class="text-secondary">.</span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-secondary leading-[1.15] tracking-tight py-1">
+        <span class="hero-name-timbul">Aldi</span> <br />
+        <span class="hero-name-timbul-blue">Kurniawan</span><span class="hero-name-dot">.</span>
       </h1>
 
-      <p class="text-base sm:text-lg font-bold text-secondary">{t.hero.role}</p>
+      <div class="btn-3d-light px-4 py-1.5 text-xs sm:text-sm font-extrabold text-secondary w-fit tracking-wider uppercase select-none cursor-default">
+        {t.hero.role}
+      </div>
 
       <div class="flex items-center gap-4 text-slate-400">
         <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-slate-900 transition-all duration-300 transform hover:scale-110 inline-block">
@@ -75,6 +77,48 @@ const t = getTranslations(lang);
 </section>
 
 <style is:global>
+  /* ========================================================
+     3D TIMBUL OVAL FONT EFFECT (HERO SECTION - PERMANENT 3D)
+     ======================================================== */
+  .hero-name-timbul {
+    display: inline-block;
+    background: linear-gradient(180deg, #475569 0%, #1e293b 35%, #0f172a 75%, #020617 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
+      drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45))
+      drop-shadow(0 14px 26px rgba(15, 23, 42, 0.25));
+    cursor: default;
+    user-select: none;
+  }
+
+  .hero-name-timbul-blue {
+    display: inline-block;
+    background: linear-gradient(180deg, #93c5fd 0%, #3b82f6 25%, #2563eb 60%, #1d4ed8 85%, #172554 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(30, 58, 138, 0.7))
+      drop-shadow(3px 4.5px 2px rgba(29, 78, 216, 0.55))
+      drop-shadow(0 16px 30px rgba(37, 99, 235, 0.45));
+    cursor: default;
+    user-select: none;
+  }
+
+  .hero-name-dot {
+    display: inline-block;
+    background: linear-gradient(180deg, #475569 0%, #0f172a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
+      drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45));
+  }
+
   @keyframes beam-h {
     0% {
       transform: translate3d(-180px, 0, 0);

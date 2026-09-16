@@ -44,12 +44,12 @@ const t = getTranslations(lang);
       <!-- Data Diri (Kanan, 7 kolom) -->
       <div class="lg:col-span-7 space-y-6 flex flex-col justify-center">
         <!-- Title Badge Row -->
-        <div class="space-y-4">
-          <div class="flex flex-wrap items-center gap-3 text-3xl md:text-4xl font-extrabold text-secondary tracking-tight">
-            <span>{t.about.badge}</span>
-            <span class="bg-[#3b82f6] text-white px-4 py-1.5 rounded-xl text-2xl md:text-3xl font-extrabold tracking-wide uppercase">{t.about.name}</span>
+        <div class="space-y-3">
+          <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight py-1">
+            <span class="about-badge-timbul">{t.about.badge}</span>
+            <span class="about-name-timbul-blue">{t.about.name}</span>
           </div>
-          <div class="bg-[#10b981]/25 text-[#065f46] px-4 py-2 rounded-xl text-sm md:text-base font-black tracking-wider w-fit border border-[#10b981]/30">
+          <div class="btn-3d-emerald px-4 sm:px-5 py-2 text-xs sm:text-sm font-extrabold tracking-wider w-fit uppercase select-none">
             {t.about.role}
           </div>
         </div>
@@ -159,6 +159,82 @@ const t = getTranslations(lang);
   initAboutModule();
   document.addEventListener("astro:page-load", initAboutModule);
 </script>
+
+<style is:global>
+  /* ========================================================
+     3D TIMBUL FONT EFFECT (ABOUT SECTION - PURE TEXT NO BG)
+     ======================================================== */
+  .about-badge-timbul {
+    display: inline-block;
+    background: linear-gradient(180deg, #475569 0%, #1e293b 35%, #0f172a 75%, #020617 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
+      drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45))
+      drop-shadow(0 14px 26px rgba(15, 23, 42, 0.25));
+    cursor: default;
+    user-select: none;
+  }
+
+  .about-name-timbul-blue {
+    display: inline-block;
+    background: linear-gradient(180deg, #93c5fd 0%, #3b82f6 25%, #2563eb 60%, #1d4ed8 85%, #172554 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(30, 58, 138, 0.7))
+      drop-shadow(3px 4.5px 2px rgba(29, 78, 216, 0.55))
+      drop-shadow(0 16px 30px rgba(37, 99, 235, 0.45));
+    cursor: default;
+    user-select: none;
+  }
+
+  /* ========================================================
+     3D CONVEX BUTTON (ROLE BADGE - KEEPING EMERALD PALETTE)
+     ======================================================== */
+  .btn-3d-emerald {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    font-weight: 800;
+    color: #065f46;
+    user-select: none;
+    cursor: default;
+    
+    /* 3D Convex Emerald Gradient Base */
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 45%, #a7f3d0 100%);
+    border: 1px solid rgba(52, 211, 153, 0.55);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+    
+    /* 3D Convex Lighting: Specular Top Highlight + Bottom Ambient Shadow + Elevation Shadow */
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -2.5px 3.5px 0 rgba(5, 150, 105, 0.22),
+      0 6px 14px -2px rgba(16, 185, 129, 0.28),
+      0 2px 5px -1px rgba(15, 23, 42, 0.08);
+    
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-3d-emerald:hover {
+    background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 45%, #bbf7d0 100%);
+    border-color: rgba(52, 211, 153, 0.75);
+    box-shadow: 
+      inset 0 2.5px 3.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(5, 150, 105, 0.18),
+      0 10px 22px -3px rgba(16, 185, 129, 0.38),
+      0 4px 8px -1px rgba(15, 23, 42, 0.12);
+    transform: translateY(-1.5px);
+  }
+</style>
+
 
 
 

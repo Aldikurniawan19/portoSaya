@@ -116,6 +116,51 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
 </html>
 
 <style is:global>
+  /* ========================================================
+     GLOBAL 3D TIMBUL FONT STYLING (FOR SECTION HEADINGS)
+     ======================================================== */
+  .heading-timbul-dark,
+  .text-timbul-slate {
+    display: inline-block;
+    background: linear-gradient(180deg, #475569 0%, #1e293b 35%, #0f172a 75%, #020617 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
+      drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45))
+      drop-shadow(0 14px 26px rgba(15, 23, 42, 0.25));
+    cursor: default;
+    user-select: none;
+  }
+
+  .heading-timbul-blue,
+  .text-timbul-blue {
+    display: inline-block;
+    background: linear-gradient(180deg, #93c5fd 0%, #3b82f6 25%, #2563eb 60%, #1d4ed8 85%, #172554 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(30, 58, 138, 0.7))
+      drop-shadow(3px 4.5px 2px rgba(29, 78, 216, 0.55))
+      drop-shadow(0 16px 30px rgba(37, 99, 235, 0.45));
+    cursor: default;
+    user-select: none;
+  }
+
+  .heading-timbul-dot,
+  .text-timbul-dot {
+    display: inline-block;
+    background: linear-gradient(180deg, #475569 0%, #0f172a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
+      drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
+      drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45));
+  }
+
   /* Glass Navbar Update */
   .glass-nav {
     background: rgba(255, 255, 255, 0.9);
