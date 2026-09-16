@@ -10,17 +10,17 @@ const t = getTranslations(currentLang);
 <!-- Mobile: Bottom Floating Dock Bar | Desktop: Top Floating Glass Navbar -->
 <div class="fixed w-full bottom-3.5 sm:bottom-5 md:bottom-auto md:top-6 left-0 z-50 flex justify-center px-2 sm:px-4 md:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.5rem)]">
   <nav
-    class="pointer-events-auto w-auto max-w-[calc(100vw-1rem)] md:w-fit bg-white/95 backdrop-blur-xl md:backdrop-blur-md rounded-full border border-slate-200/90 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.16)] md:shadow-lg transition-all duration-300 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2"
+    class="nav-3d-shell pointer-events-auto w-auto max-w-[calc(100vw-1rem)] md:w-fit rounded-full transition-all duration-300 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2"
     id="navbar"
   >
     <div class="flex items-center gap-1 sm:gap-1.5 md:gap-2.5">
       <!-- Logo (Visible on Mobile & Desktop) -->
-      <div class="flex items-center justify-center cursor-pointer group h-9 sm:h-10 md:h-10 px-1 sm:px-1.5 shrink-0" id="logo-btn" title="Aldi Kurniawan">
+      <div class="nav-logo-3d flex items-center justify-center cursor-pointer group h-9 sm:h-10 md:h-10 px-2 sm:px-2.5 shrink-0 rounded-full transition-all duration-300 hover:scale-105" id="logo-btn" title="Aldi Kurniawan">
         <Image src={logoPorto} alt="Logo" class="h-5.5 sm:h-6 md:h-6 w-auto object-contain max-h-[24px] sm:max-h-[26px]" />
       </div>
 
       <!-- Left Divider -->
-      <div class="block h-5 sm:h-6 md:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
+      <div class="nav-divider block h-5 sm:h-6 md:h-5 w-[1.5px] shrink-0"></div>
 
       <!-- Navigation Links -->
       <div class="flex items-center gap-0.5 sm:gap-1 md:gap-2" id="nav-links-container">
@@ -47,7 +47,7 @@ const t = getTranslations(currentLang);
       </div>
 
       <!-- Right Divider -->
-      <div class="block h-5 sm:h-6 md:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
+      <div class="nav-divider block h-5 sm:h-6 md:h-5 w-[1.5px] shrink-0"></div>
 
       <!-- Language Switcher Pill Button -->
       <a
@@ -76,14 +76,6 @@ const t = getTranslations(currentLang);
     const navLinks = document.querySelectorAll(".nav-link");
 
     function onScroll() {
-      if (window.scrollY > 20) {
-        navbar?.classList.add("shadow-md");
-        navbar?.classList.remove("shadow-lg");
-      } else {
-        navbar?.classList.add("shadow-lg");
-        navbar?.classList.remove("shadow-md");
-      }
-
       const isMobile = window.innerWidth < 768;
       // On mobile bottom navbar, 'about' is hidden, so only track visible dock sections
       const validNavIds = isMobile
@@ -125,14 +117,53 @@ const t = getTranslations(currentLang);
 </script>
 
 <style is:global>
+  /* 3D Convex Navbar Shell */
+  .nav-3d-shell {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(248, 250, 252, 0.94) 45%, rgba(241, 245, 249, 0.96) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-top: 1.5px solid rgba(255, 255, 255, 1);
+    border-bottom: 2px solid rgba(203, 213, 225, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+      inset 0 -2.5px 3.5px 0 rgba(0, 0, 0, 0.05),
+      0 12px 35px -5px rgba(15, 23, 42, 0.14),
+      0 4px 10px -2px rgba(15, 23, 42, 0.06);
+  }
+
+  /* 3D Embossed Logo Plate */
+  .nav-logo-3d:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.06),
+      0 3px 8px -2px rgba(15, 23, 42, 0.08);
+  }
+
+  /* 3D Divider */
+  .nav-divider {
+    background: linear-gradient(180deg, rgba(203, 213, 225, 0.3) 0%, rgba(203, 213, 225, 0.9) 50%, rgba(203, 213, 225, 0.3) 100%);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
+  }
+
   /* Inactive nav links */
   .nav-link {
     color: #475569;
     flex-shrink: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .nav-link:hover:not(.active) {
-    background-color: rgba(241, 245, 249, 0.9);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #eef2f6 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.05),
+      0 3px 8px -2px rgba(15, 23, 42, 0.08);
     color: #0f172a;
+    transform: translateY(-1px);
   }
 
   /* On mobile: Hide text label by default on inactive links */
@@ -155,11 +186,14 @@ const t = getTranslations(currentLang);
     background: linear-gradient(180deg, #4d8df7 0%, #2b6cef 45%, #1d4ed8 100%) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+    border-bottom: 2px solid rgba(10, 30, 95, 0.45) !important;
     box-shadow: 
-      inset 0 2px 2px 0 rgba(255, 255, 255, 0.65),
-      inset 0 -2px 3px 0 rgba(10, 30, 95, 0.4),
-      0 4px 14px -2px rgba(37, 99, 235, 0.45) !important;
-    text-shadow: 0 1px 2px rgba(10, 35, 90, 0.3);
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -2.5px 3.5px 0 rgba(10, 30, 95, 0.45),
+      0 6px 18px -2px rgba(37, 99, 235, 0.45) !important;
+    text-shadow: 0 1px 2px rgba(10, 35, 90, 0.35);
+    transform: translateY(-0.5px);
   }
 
   @media (min-width: 640px) {

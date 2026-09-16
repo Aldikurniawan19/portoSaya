@@ -9,28 +9,11 @@ import Portfolio from './Portfolio.astro';
 import Contact from './Contact.astro';
 import Footer from './Footer.astro';
 import ScrollReveal from './ScrollReveal.astro';
-import AtomicReactor from './AtomicReactor.astro';
 ---
 
 <Layout>
-  <!-- ================= PERSISTENT FIXED PARALLAX BACKGROUND ================= -->
-  <div id="parallax-bg" class="fixed inset-0 pointer-events-none select-none overflow-hidden z-0">
-    <!-- 1. High-Tech Grid Matrix Canvas -->
-    <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-75"></div>
-
-    <!-- 2. Ambient Parallax Cosmic Nebula Orbs -->
-    <div id="parallax-orb-1" class="absolute -top-[10%] -left-[10%] w-[550px] h-[550px] rounded-full bg-cyan-400/10 blur-[120px] transform-gpu will-change-transform"></div>
-    <div id="parallax-orb-2" class="absolute top-[40%] -right-[15%] w-[650px] h-[650px] rounded-full bg-blue-600/10 blur-[140px] transform-gpu will-change-transform"></div>
-    <div id="parallax-orb-3" class="absolute -bottom-[10%] left-[20%] w-[600px] h-[600px] rounded-full bg-indigo-500/10 blur-[130px] transform-gpu will-change-transform"></div>
-
-    <!-- 3. Centered Persistent Atomic Reactor with Parallax Motion Engine -->
-    <div id="parallax-reactor-layer" class="absolute inset-0 flex items-center justify-center transform-gpu will-change-transform transition-opacity duration-300">
-      <AtomicReactor />
-    </div>
-  </div>
-
   <Navbar />
-  <main class="relative z-10">
+  <main>
     <Hero />
     <About />
     <Skills />
@@ -41,74 +24,3 @@ import AtomicReactor from './AtomicReactor.astro';
   <Footer />
   <ScrollReveal />
 </Layout>
-
-<script>
-  function initParallaxEngine() {
-    const reactor = document.getElementById("parallax-reactor-layer");
-    const orb1 = document.getElementById("parallax-orb-1");
-    const orb2 = document.getElementById("parallax-orb-2");
-    const orb3 = document.getElementById("parallax-orb-3");
-    const parallaxItems = document.querySelectorAll("[data-parallax]");
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
-
-    // Mouse movement parallax
-    window.addEventListener("mousemove", (e) => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      targetMouseX = (e.clientX - cx) / cx;
-      targetMouseY = (e.clientY - cy) / cy;
-    }, { passive: true });
-
-    function renderParallax() {
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const vh = window.innerHeight;
-
-      // Smooth mouse interpolation
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
-
-      // 1. Persistent Atomic Reactor Parallax Drift & Depth (Always clearly visible across all sections)
-      if (reactor) {
-        const reactorY = scrollY * 0.05 + mouseY * 15;
-        const reactorX = mouseX * 15;
-        const scale = Math.max(0.85, 1 - (scrollY / (vh * 6)) * 0.15);
-        const opacity = 0.95;
-        reactor.style.transform = `translate3d(${reactorX.toFixed(1)}px, ${reactorY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
-        reactor.style.opacity = opacity.toString();
-      }
-
-      // 2. Parallax Nebula Orbs
-      if (orb1) {
-        orb1.style.transform = `translate3d(${(mouseX * -20).toFixed(1)}px, ${(scrollY * -0.1 + mouseY * -15).toFixed(1)}px, 0)`;
-      }
-      if (orb2) {
-        orb2.style.transform = `translate3d(${(mouseX * 25).toFixed(1)}px, ${(scrollY * 0.12 + mouseY * 20).toFixed(1)}px, 0)`;
-      }
-      if (orb3) {
-        orb3.style.transform = `translate3d(${(mouseX * -15).toFixed(1)}px, ${(scrollY * -0.06 + mouseY * -10).toFixed(1)}px, 0)`;
-      }
-
-      // 3. Multi-layer Content Parallax on data-parallax elements
-      parallaxItems.forEach((el) => {
-        const speed = parseFloat(el.getAttribute("data-parallax") || "0.05");
-        const rect = el.getBoundingClientRect();
-        if (rect.top < vh + 100 && rect.bottom > -100) {
-          const relativeY = rect.top - vh / 2;
-          const offsetY = relativeY * speed;
-          (el as HTMLElement).style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
-        }
-      });
-
-      requestAnimationFrame(renderParallax);
-    }
-
-    renderParallax();
-  }
-
-  initParallaxEngine();
-  document.addEventListener("astro:page-load", initParallaxEngine);
-</script>

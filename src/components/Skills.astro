@@ -5,34 +5,38 @@ const lang = Astro.currentLocale || 'id';
 const t = getTranslations(lang);
 
 const row1Skills = [
-  { name: "Laravel", icon: "laravel/FF2D20" },
-  { name: "ReactJS", icon: "react/61DAFB" },
-  { name: "Tailwind CSS", icon: "tailwindcss/06B6D4" },
-  { name: "PostgreSQL", icon: "postgresql/4169E1" },
-  { name: "Next.js", icon: "nextdotjs/000000" },
-  { name: "HTML5", icon: "html5/E34F26" },
-  { name: "JavaScript", icon: "javascript/F7DF1E" },
+  { name: "PostgreSQL", icon: "postgresql/336791", color: "#336791" },
+  { name: "Figma", icon: "figma/F24E1E", color: "#F24E1E" },
+  { name: "Laravel", icon: "laravel/FF2D20", color: "#FF2D20" },
+  { name: "Next.js", icon: "nextdotjs/000000", color: "#000000" },
+  { name: "React", icon: "react/0284c7", color: "#0284c7" },
+  { name: "Tailwind CSS", icon: "tailwindcss/06B6D4", color: "#0ea5e9" },
+  { name: "TypeScript", icon: "typescript/3178C6", color: "#3178C6" },
 ];
 
 const row2Skills = [
-  { name: "Figma", icon: "figma/F24E1E" },
-  { name: "Git", icon: "git/F05032" },
-  { name: "PHP", icon: "php/777BB4" },
-  { name: "MySQL", icon: "mysql/4479A1" },
-  { name: "TypeScript", icon: "typescript/3178C6" },
-  { name: "Node.js", icon: "nodedotjs/339933" },
-  { name: "Bootstrap", icon: "bootstrap/7952B3" },
-  { name: "Python", icon: "python/3776AB" },
+  { name: "JavaScript", icon: "javascript/F7DF1E", color: "#d97706" },
+  { name: "PHP", icon: "php/777BB4", color: "#777BB4" },
+  { name: "MySQL", icon: "mysql/4479A1", color: "#4479A1" },
+  { name: "Node.js", icon: "nodedotjs/339933", color: "#16a34a" },
+  { name: "Python", icon: "python/3776AB", color: "#3776AB" },
+  { name: "Git", icon: "git/F05032", color: "#F05032" },
+  { name: "Bootstrap", icon: "bootstrap/7952B3", color: "#7952B3" },
 ];
 ---
 
 <!-- 3. TECH SKILLS SECTION -->
-<section id="skills" class="py-24 bg-transparent relative overflow-hidden">
+<section id="skills" class="py-24 bg-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-30 -z-10"></div>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-50/30 rounded-full blur-3xl -z-10"
+  >
+  </div>
 
   <div class="max-w-6xl mx-auto px-6 w-full mb-12">
     <div class="text-center" data-aos="fade-up">
-      <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">
-        {t.skills.title}
+      <h2 class="text-xs sm:text-sm font-extrabold text-slate-400 uppercase tracking-[0.2em] mb-2">
+        TEKNOLOGI UTAMA YANG SERING DIGUNAKAN
       </h2>
       <h3 class="text-3xl md:text-4xl font-bold text-secondary">
         {t.skills.subtitle}
@@ -43,7 +47,7 @@ const row2Skills = [
     </div>
   </div>
 
-  <!-- Slider Marquee Container with 3D Skill Cards -->
+  <!-- Slider Marquee Container with Balanced Spaced Skill Components -->
   <div class="w-full flex flex-col gap-6 py-2" data-aos="fade-up" data-aos-delay="100">
     <!-- Row 1: Left -->
     <div class="marquee-wrapper py-2">
@@ -52,16 +56,17 @@ const row2Skills = [
           [0, 1].map(() => (
             <div class="marquee-group">
               {row1Skills.map((skill) => (
-                <div class="skill-3d-card group flex items-center gap-3.5 px-5 py-3 rounded-2xl shrink-0 cursor-default select-none transition-all duration-300">
-                  <div class="skill-icon-plate w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
-                    <img
-                      src={`https://cdn.simpleicons.org/${skill.icon}`}
-                      class="w-6 h-6 object-contain filter drop-shadow-sm"
-                      alt={skill.name}
-                      loading="lazy"
-                    />
-                  </div>
-                  <span class="font-extrabold text-slate-800 text-sm tracking-tight group-hover:text-blue-600 transition-colors duration-200">
+                <div class="group flex items-center gap-3 shrink-0 cursor-default select-none transition-transform duration-300 hover:scale-105">
+                  <img
+                    src={`https://cdn.simpleicons.org/${skill.icon}`}
+                    class="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                    alt={skill.name}
+                    loading="lazy"
+                  />
+                  <span
+                    class="font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200"
+                    style={`color: ${skill.color};`}
+                  >
                     {skill.name}
                   </span>
                 </div>
@@ -79,16 +84,17 @@ const row2Skills = [
           [0, 1].map(() => (
             <div class="marquee-group">
               {row2Skills.map((skill) => (
-                <div class="skill-3d-card group flex items-center gap-3.5 px-5 py-3 rounded-2xl shrink-0 cursor-default select-none transition-all duration-300">
-                  <div class="skill-icon-plate w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
-                    <img
-                      src={`https://cdn.simpleicons.org/${skill.icon}`}
-                      class="w-6 h-6 object-contain filter drop-shadow-sm"
-                      alt={skill.name}
-                      loading="lazy"
-                    />
-                  </div>
-                  <span class="font-extrabold text-slate-800 text-sm tracking-tight group-hover:text-blue-600 transition-colors duration-200">
+                <div class="group flex items-center gap-3 shrink-0 cursor-default select-none transition-transform duration-300 hover:scale-105">
+                  <img
+                    src={`https://cdn.simpleicons.org/${skill.icon}`}
+                    class="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                    alt={skill.name}
+                    loading="lazy"
+                  />
+                  <span
+                    class="font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200"
+                    style={`color: ${skill.color};`}
+                  >
                     {skill.name}
                   </span>
                 </div>
@@ -101,52 +107,3 @@ const row2Skills = [
   </div>
 </section>
 
-<style>
-  /* 3D Convex Skill Card */
-  .skill-3d-card {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #eef2f6 100%);
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 1);
-    border-bottom: 1.5px solid rgba(203, 213, 225, 0.9);
-    
-    /* 3D Convex Lighting & Shadow */
-    box-shadow: 
-      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
-      inset 0 -2.5px 3.5px 0 rgba(0, 0, 0, 0.06),
-      0 6px 16px -2px rgba(15, 23, 42, 0.06),
-      0 2px 5px -1px rgba(15, 23, 42, 0.04);
-      
-    transform: translateZ(0);
-    will-change: transform, box-shadow;
-  }
-
-  .skill-3d-card:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 45%, #e2e8f0 100%);
-    border-color: rgba(148, 163, 184, 0.6);
-    border-top-color: #ffffff;
-    box-shadow: 
-      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
-      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08),
-      0 14px 28px -4px rgba(37, 99, 235, 0.15),
-      0 6px 12px -2px rgba(15, 23, 42, 0.08);
-    transform: translateY(-4px) scale(1.04);
-  }
-
-  /* 3D Embossed Icon Plate */
-  .skill-icon-plate {
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 
-      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
-      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.08),
-      0 3px 6px -1px rgba(15, 23, 42, 0.08);
-  }
-
-  .skill-3d-card:hover .skill-icon-plate {
-    box-shadow: 
-      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
-      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.1),
-      0 6px 12px -2px rgba(37, 99, 235, 0.2);
-  }
-</style>

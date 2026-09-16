@@ -8,27 +8,15 @@ const t = getTranslations(lang);
 ---
 
 <!-- 2. ABOUT SECTION -->
-<section id="about" class="min-h-screen flex items-center bg-transparent relative py-24 overflow-visible">
+<section id="about" class="min-h-screen flex items-center bg-slate-50 relative py-24 overflow-visible">
   <div class="max-w-6xl mx-auto px-6 w-full overflow-visible">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center overflow-visible">
-      <!-- Foto Profil (Kiri, 5 kolom) -->
-      <div class="lg:col-span-5 relative flex justify-center items-center w-full py-8 overflow-visible" data-aos="zoom-in" data-aos-duration="800" data-aos-easing="ease-out-cubic">
+      <!-- Foto Profil (Kiri, 5 kolom - Clean 3D Photo Display) -->
+      <div class="lg:col-span-5 relative flex justify-center items-center w-full py-4 overflow-visible" data-aos="zoom-in" data-aos-duration="800" data-aos-easing="ease-out-cubic">
         <!-- Interactive 3D Perspective Photo Card Container -->
-        <div id="about-photo-card" class="relative group/photo w-full max-w-[320px] sm:max-w-[360px] select-none perspective-[1000px] cursor-pointer animate-float-ambient z-10">
-          
-          <!-- Outer Revolving Conic Glow Ring -->
-          <div class="absolute -inset-1.5 rounded-[32px] overflow-hidden opacity-75 group-hover/photo:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none">
-            <div class="conic-glow-spinner"></div>
-          </div>
-
-          <!-- Futuristic Cyber HUD Corner Accents -->
-          <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg pointer-events-none transition-all duration-300 group-hover/photo:-top-3 group-hover/photo:-left-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
-          <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg pointer-events-none transition-all duration-300 group-hover/photo:-top-3 group-hover/photo:-right-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
-          <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg pointer-events-none transition-all duration-300 group-hover/photo:-bottom-3 group-hover/photo:-left-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
-          <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-cyan-400 rounded-br-lg pointer-events-none transition-all duration-300 group-hover/photo:-bottom-3 group-hover/photo:-right-3 group-hover/photo:border-cyan-300 group-hover/photo:shadow-[0_0_10px_#00ffff] group-hover/photo:w-6 group-hover/photo:h-6 z-20"></div>
-
+        <div id="about-photo-card" class="relative group/photo w-full max-w-[320px] sm:max-w-[360px] select-none perspective-[1000px] cursor-pointer z-10">
           <!-- Outer 3D Convex Frame Shell with Dynamic Tilt -->
-          <div class="photo-3d-wrapper relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white/95 via-slate-100/90 to-slate-200/95 border border-white/90 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.15),inset_0_2.5px_3px_0_rgba(255,255,255,1),inset_0_-2px_4px_0_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 transform-gpu group-hover/photo:shadow-[0_30px_70px_-10px_rgba(6,182,212,0.45)]">
+          <div class="photo-3d-wrapper relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white/95 via-slate-100/90 to-slate-200/95 border border-white/90 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.15),inset_0_2.5px_3px_0_rgba(255,255,255,1),inset_0_-2px_4px_0_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 transform-gpu group-hover/photo:shadow-[0_25px_60px_-10px_rgba(37,99,235,0.25)]">
             
             <!-- Photo Inner Container -->
             <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-slate-900 to-blue-950 shadow-inner">
@@ -39,9 +27,6 @@ const t = getTranslations(lang);
                 widths={[340, 680]}
                 sizes="(max-width: 640px) 340px, 380px"
               />
-
-              <!-- Laser Scanline Beam Animation -->
-              <div class="laser-scanline pointer-events-none"></div>
 
               <!-- Dynamic Interactive Spotlight / Sheen Glare -->
               <div id="photo-glare" class="absolute inset-0 pointer-events-none opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
@@ -230,81 +215,6 @@ const t = getTranslations(lang);
   document.addEventListener("astro:page-load", initAboutModule);
 </script>
 
-<style>
-  /* Conic Glowing Ring */
-  .conic-glow-spinner {
-    position: absolute;
-    inset: -60%;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      rgba(6, 182, 212, 0.95) 90deg,
-      rgba(59, 130, 246, 0.95) 180deg,
-      rgba(0, 240, 255, 0.95) 270deg,
-      transparent 360deg
-    );
-    animation: spin-conic 6s linear infinite;
-  }
-
-  @keyframes spin-conic {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  /* Ambient Floating Levitation */
-  .animate-float-ambient {
-    animation: float-ambient 6s ease-in-out infinite;
-  }
-
-  @keyframes float-ambient {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  /* Laser Scanline Beam */
-  .laser-scanline {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(6, 182, 212, 0.8) 20%,
-      rgba(255, 255, 255, 0.95) 50%,
-      rgba(59, 130, 246, 0.8) 80%,
-      transparent 100%
-    );
-    box-shadow: 0 0 12px 2px rgba(6, 182, 212, 0.6);
-    opacity: 0;
-    animation: scanline-sweep 4.5s ease-in-out infinite;
-  }
-
-  @keyframes scanline-sweep {
-    0% {
-      top: -5%;
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.85;
-    }
-    90% {
-      opacity: 0.85;
-    }
-    100% {
-      top: 105%;
-      opacity: 0;
-    }
-  }
-</style>
 
 
 
