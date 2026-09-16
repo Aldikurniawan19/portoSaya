@@ -1,0 +1,53 @@
+---
+// FIXED GLOBAL HERO BACKGROUND CANVAS (Layer Paling Belakang / Fixed Parallax Canvas)
+---
+
+<div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden contain-paint select-none">
+  <!-- Background Grid Pattern with Mask -->
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-80">
+    <!-- Horizontal Beams (GPU Accelerated across the entire viewport) -->
+    <div
+      class="absolute h-[2.5px] w-[180px] bg-gradient-to-r from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="top: 15vh; animation: beam-h 7.5s linear infinite; animation-delay: 0s;"
+    ></div>
+    <div
+      class="hidden sm:block absolute h-[2.5px] w-[180px] bg-gradient-to-l from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="top: 38vh; animation: beam-h-reverse 9.5s linear infinite; animation-delay: 2.2s;"
+    ></div>
+    <div
+      class="hidden sm:block absolute h-[2.5px] w-[180px] bg-gradient-to-r from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="top: 65vh; animation: beam-h 8.5s linear infinite; animation-delay: 4.5s;"
+    ></div>
+    <div
+      class="hidden md:block absolute h-[2.5px] w-[180px] bg-gradient-to-l from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="top: 85vh; animation: beam-h-reverse 10.5s linear infinite; animation-delay: 1.5s;"
+    ></div>
+
+    <!-- Vertical Beams (GPU Accelerated across the entire viewport) -->
+    <div
+      class="absolute w-[2.5px] h-[180px] bg-gradient-to-b from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="left: 10vw; animation: beam-v 8.5s linear infinite; animation-delay: 1s;"
+    ></div>
+    <div
+      class="hidden sm:block absolute w-[2.5px] h-[180px] bg-gradient-to-t from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="left: 28vw; animation: beam-v-reverse 10s linear infinite; animation-delay: 3.5s;"
+    ></div>
+    <div
+      class="hidden md:block absolute w-[2.5px] h-[180px] bg-gradient-to-b from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="left: 50vw; animation: beam-v 9.5s linear infinite; animation-delay: 5s;"
+    ></div>
+    <div
+      class="hidden md:block absolute w-[2.5px] h-[180px] bg-gradient-to-t from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="left: 72vw; animation: beam-v-reverse 11s linear infinite; animation-delay: 2s;"
+    ></div>
+    <div
+      class="hidden lg:block absolute w-[2.5px] h-[180px] bg-gradient-to-b from-transparent via-blue-500/85 to-transparent will-change-transform"
+      style="left: 90vw; animation: beam-v 8.5s linear infinite; animation-delay: 4.2s;"
+    ></div>
+  </div>
+
+  <!-- Ambient Glowing Background Spheres (Atmospheric depth) -->
+  <div class="absolute -top-32 -left-32 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[140px]"></div>
+  <div class="absolute -bottom-32 -right-32 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[140px]"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-500/5 rounded-full blur-[120px]"></div>
+</div>

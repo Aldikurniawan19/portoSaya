@@ -9,11 +9,13 @@ import Portfolio from './Portfolio.astro';
 import Contact from './Contact.astro';
 import Footer from './Footer.astro';
 import ScrollReveal from './ScrollReveal.astro';
+import FixedParallaxBackground from './FixedParallaxBackground.astro';
 ---
 
 <Layout>
+  <FixedParallaxBackground />
   <Navbar />
-  <main>
+  <main class="relative z-10">
     <Hero />
     <About />
     <Skills />

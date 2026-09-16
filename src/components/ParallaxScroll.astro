@@ -1,0 +1,99 @@
+---
+// High-performance Parallax Scroll Controller
+---
+
+<script>
+  function initParallax() {
+    // Respect reduced motion accessibility
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax-speed]'));
+    if (!items.length) return;
+
+    // Cache item data
+    const parallaxElements = items.map((el) => {
+      const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0');
+      // Find the parent section or use closest section
+      const section = el.closest('section') || el.parentElement || document.body;
+      return {
+        element: el,
+        speed,
+        section,
+        currentY: 0,
+        targetY: 0,
+      };
+    });
+
+    let isTicking = false;
+    let lastScrollY = window.scrollY;
+
+    function calculateTransforms() {
+      const windowHeight = window.innerHeight;
+      const viewportCenter = window.scrollY + windowHeight / 2;
+
+      parallaxElements.forEach((item) => {
+        const secRect = item.section.getBoundingClientRect();
+        const secTop = secRect.top + window.scrollY;
+        const secCenter = secTop + secRect.height / 2;
+
+        // Distance of section center from current viewport center
+        const delta = viewportCenter - secCenter;
+
+        // Check if section is roughly near the viewport
+        if (secRect.top < windowHeight + 300 && secRect.bottom > -300) {
+          item.targetY = delta * item.speed;
+        }
+      });
+    }
+
+    function renderLoop() {
+      let active = false;
+
+      parallaxElements.forEach((item) => {
+        // Direct lerp smoothing for buttery fluid motion
+        const diff = item.targetY - item.currentY;
+        if (Math.abs(diff) > 0.1) {
+          item.currentY += diff * 0.15;
+          item.element.style.transform = `translate3d(0, ${item.currentY.toFixed(2)}px, 0)`;
+          active = true;
+        } else if (item.currentY !== item.targetY) {
+          item.currentY = item.targetY;
+          item.element.style.transform = `translate3d(0, ${item.currentY.toFixed(2)}px, 0)`;
+        }
+      });
+
+      if (active) {
+        requestAnimationFrame(renderLoop);
+      } else {
+        isTicking = false;
+      }
+    }
+
+    function onScroll() {
+      calculateTransforms();
+      if (!isTicking) {
+        isTicking = true;
+        requestAnimationFrame(renderLoop);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Initial instant frame
+    calculateTransforms();
+    parallaxElements.forEach((item) => {
+      item.currentY = item.targetY;
+      item.element.style.transform = `translate3d(0, ${item.currentY.toFixed(2)}px, 0)`;
+    });
+  }
+
+  // Auto-init on script execution & Astro page transitions
+  initParallax();
+  document.addEventListener('astro:page-load', initParallax);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initParallax);
+  }
+</script>

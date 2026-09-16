@@ -95,6 +95,10 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
       }
       document.addEventListener("DOMContentLoaded", initLucide);
       window.addEventListener("load", initLucide);
+      document.addEventListener("astro:page-load", () => {
+        lucideInitialized = false;
+        initLucide();
+      });
 
       // 2. Initialize AOS Animations with mobile performance tuning
       if (typeof AOS !== "undefined") {
@@ -138,6 +142,49 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
       95%,
       transparent
     );
+  }
+
+  /* GPU-Accelerated Dynamic Laser Beams */
+  @keyframes beam-h {
+    0% {
+      transform: translate3d(-180px, 0, 0);
+    }
+    100% {
+      transform: translate3d(calc(100vw + 180px), 0, 0);
+    }
+  }
+
+  @keyframes beam-h-reverse {
+    0% {
+      transform: translate3d(calc(100vw + 180px), 0, 0);
+    }
+    100% {
+      transform: translate3d(-180px, 0, 0);
+    }
+  }
+
+  @keyframes beam-v {
+    0% {
+      transform: translate3d(0, -180px, 0);
+    }
+    100% {
+      transform: translate3d(0, calc(100% + 180px), 0);
+    }
+  }
+
+  @keyframes beam-v-reverse {
+    0% {
+      transform: translate3d(0, calc(100% + 180px), 0);
+    }
+    100% {
+      transform: translate3d(0, -180px, 0);
+    }
+  }
+
+  /* Parallax Layer Optimizations */
+  .parallax-layer {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   html {
