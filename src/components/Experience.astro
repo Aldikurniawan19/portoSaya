@@ -53,35 +53,54 @@ const experiences = t.experience.items.map((item, index) => ({
       {experiences.map((exp, index) => (
         <div class="relative group timeline-item" data-aos="fade-up" data-aos-delay={index * 100}>
           <!-- Timeline Dot -->
-          <div class="timeline-dot absolute -left-[41px] md:-left-[57px] top-1.5 w-6 h-6 bg-white rounded-full border-4 border-slate-200 group-hover:border-primary group-hover:shadow-[0_0_12px_rgba(79,70,229,0.2)] transition-all duration-300 flex items-center justify-center">
-            <div class="timeline-dot-inner w-1.5 h-1.5 bg-slate-300 group-hover:bg-primary rounded-full transition-colors"></div>
+          <div class="timeline-dot absolute -left-[41px] md:-left-[57px] top-2 w-6 h-6 rounded-full border-4 flex items-center justify-center">
+            <div class="timeline-dot-inner w-1.5 h-1.5 rounded-full"></div>
           </div>
 
-          <!-- Content Card -->
-          <div class="experience-card bg-white border border-slate-100 rounded-2xl p-6 md:p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1 shadow-sm">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-              <div>
-                <span class={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border mb-3 ${exp.typeColor}`}>
-                  {exp.type}
+          <!-- Content Card with Dynamic 3D Convex Transition -->
+          <div class="experience-card-3d rounded-3xl p-6 md:p-8 relative overflow-hidden group/card">
+            <!-- Layer 1: White 3D Convex Base Layer -->
+            <div class="exp-bg-white absolute inset-0 pointer-events-none"></div>
+
+            <!-- Layer 2: Blue 3D Convex "Get In Touch" Gradient Layer -->
+            <div class="exp-bg-blue absolute inset-0 pointer-events-none"></div>
+
+            <!-- Ambient glows inside card (visible in active blue state) -->
+            <div class="exp-glow-1 absolute -top-20 -right-20 w-52 h-52 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="exp-glow-2 absolute -bottom-20 -left-20 w-52 h-52 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                <div>
+                  <span class="exp-type-badge inline-flex items-center gap-1.5 text-xs font-extrabold px-3.5 py-1 rounded-full mb-2.5 uppercase tracking-wider">
+                    {exp.type}
+                  </span>
+                  <h4 class="exp-title text-xl md:text-2xl font-extrabold tracking-tight">{exp.title}</h4>
+                </div>
+                <span class="exp-period-badge text-xs font-extrabold md:text-right px-3.5 py-1.5 rounded-full w-fit">
+                  {exp.period}
                 </span>
-                <h4 class="text-xl font-bold text-secondary">{exp.title}</h4>
               </div>
-              <span class="text-xs font-bold text-slate-500 md:text-right bg-slate-50 border border-slate-200 px-3 py-1 rounded-full w-fit">
-                {exp.period}
-              </span>
-            </div>
 
-            <div class="flex items-center gap-2 text-sm text-primary font-semibold mb-4">
-              <i data-lucide={exp.icon} class="w-4 h-4"></i>
-              <span>{exp.company}</span>
-            </div>
+              <!-- Company Row with 3D Convex Icon -->
+              <div class="flex items-center gap-3 text-sm font-bold mb-4">
+                <div class="exp-icon-box w-8 h-8 rounded-xl flex items-center justify-center shrink-0">
+                  <i data-lucide={exp.icon} class="w-4 h-4"></i>
+                </div>
+                <span class="exp-company-text">{exp.company}</span>
+              </div>
 
-            <p class="text-slate-600 text-sm leading-relaxed mb-6">{exp.description}</p>
+              <!-- Description -->
+              <p class="exp-desc text-sm md:text-[14.5px] leading-relaxed mb-6 font-medium">{exp.description}</p>
 
-            <div class="flex flex-wrap gap-2">
-              {exp.tags.map((tag) => (
-                <span class="text-xs font-medium px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-md text-slate-600">{tag}</span>
-              ))}
+              <!-- Tags with 3D Convex Glass Look -->
+              <div class="flex flex-wrap gap-2">
+                {exp.tags.map((tag) => (
+                  <span class="exp-tag text-xs font-bold px-3 py-1.5 rounded-xl cursor-default">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -91,20 +110,201 @@ const experiences = t.experience.items.map((item, index) => ({
 </section>
 
 <style is:global>
-  /* Active timeline dot styles when card is in viewport */
-  .timeline-item.active .timeline-dot {
-    border-color: #4f46e5 !important;
-    box-shadow: 0 0 12px rgba(79, 70, 229, 0.4) !important;
-  }
-  .timeline-item.active .timeline-dot-inner {
-    background-color: #4f46e5 !important;
+  /* Experience 3D Card Shell */
+  .experience-card-3d {
+    position: relative;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: 
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+      inset 0 -2.5px 4px 0 rgba(0, 0, 0, 0.03),
+      0 12px 30px -8px rgba(15, 23, 42, 0.07),
+      0 4px 10px -2px rgba(15, 23, 42, 0.03);
+    transition: 
+      border-color 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Active card styles when card is in viewport */
-  .timeline-item.active .experience-card {
-    border-color: rgba(79, 70, 229, 0.3) !important;
-    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.08), 0 10px 10px -5px rgba(99, 102, 241, 0.08) !important;
-    transform: translateY(-6px) !important;
+  /* Layer 1: White 3D Convex Base */
+  .experience-card-3d .exp-bg-white {
+    background: linear-gradient(180deg, #ffffff 0%, #fcfdfd 45%, #f8fafc 100%);
+    opacity: 1;
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Layer 2: Blue 3D Convex Overlay */
+  .experience-card-3d .exp-bg-blue {
+    background: linear-gradient(170deg, #3b82f6 0%, #2563eb 28%, #1d4ed8 65%, #172554 100%);
+    opacity: 0;
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Typography Transitions */
+  .experience-card-3d .exp-title {
+    color: #0f172a;
+    transition: color 0.5s ease;
+  }
+  .experience-card-3d .exp-desc {
+    color: #475569;
+    transition: color 0.5s ease;
+  }
+  .experience-card-3d .exp-company-text {
+    color: #334155;
+    transition: color 0.5s ease;
+  }
+
+  /* Default Type Badge */
+  .experience-card-3d .exp-type-badge {
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+    border: 1px solid rgba(191, 219, 254, 0.9);
+    color: #2563eb;
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 2px 0 rgba(37, 99, 235, 0.1),
+      0 2px 5px rgba(37, 99, 235, 0.08);
+    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Default Period Badge */
+  .experience-card-3d .exp-period-badge {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Default Icon Box */
+  .experience-card-3d .exp-icon-box {
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+    border: 1px solid rgba(191, 219, 254, 0.95);
+    color: #2563eb;
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 2px 0 rgba(37, 99, 235, 0.12),
+      0 3px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Default Tags */
+  .experience-card-3d .exp-tag {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .experience-card-3d .exp-tag:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  /* Default Ambient Glows */
+  .experience-card-3d .exp-glow-1,
+  .experience-card-3d .exp-glow-2 {
+    opacity: 0;
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Default Timeline Dot */
+  .timeline-dot {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .timeline-dot-inner {
+    background-color: #94a3b8;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* =========================================================
+     ACTIVE STATE: Ultra-Smooth Cross-fade to Blue 3D Convex
+     ========================================================= */
+  .timeline-item.active .experience-card-3d {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 
+      inset 0 2.5px 3.5px 0 rgba(255, 255, 255, 0.7),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -4px 8px 0 rgba(10, 25, 75, 0.6),
+      0 22px 45px -8px rgba(37, 99, 235, 0.45),
+      0 8px 16px -4px rgba(15, 23, 42, 0.25) !important;
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .timeline-item.active .experience-card-3d .exp-bg-white {
+    opacity: 0 !important;
+  }
+  .timeline-item.active .experience-card-3d .exp-bg-blue {
+    opacity: 1 !important;
+  }
+
+  /* Active Typography */
+  .timeline-item.active .experience-card-3d .exp-title {
+    color: #ffffff !important;
+  }
+  .timeline-item.active .experience-card-3d .exp-desc {
+    color: rgba(239, 246, 255, 0.92) !important;
+  }
+  .timeline-item.active .experience-card-3d .exp-company-text {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  /* Active Type Badge */
+  .timeline-item.active .experience-card-3d .exp-type-badge {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    color: #ffffff !important;
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1.5px 2px 0 rgba(10, 25, 75, 0.35),
+      0 3px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Active Period Badge */
+  .timeline-item.active .experience-card-3d .exp-period-badge {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #dbeafe !important;
+    box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* Active Icon Box */
+  .timeline-item.active .experience-card-3d .exp-icon-box {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 100%) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    color: #ffffff !important;
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1.5px 2px 0 rgba(10, 25, 75, 0.3),
+      0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Active Tags */
+  .timeline-item.active .experience-card-3d .exp-tag {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+  }
+  .timeline-item.active .experience-card-3d .exp-tag:hover {
+    background: rgba(255, 255, 255, 0.28) !important;
+  }
+
+  /* Active Glows */
+  .timeline-item.active .experience-card-3d .exp-glow-1,
+  .timeline-item.active .experience-card-3d .exp-glow-2 {
+    opacity: 1 !important;
+  }
+
+  /* Active Timeline Dot */
+  .timeline-item.active .timeline-dot {
+    background-color: #2563eb !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.65), 0 0 0 3px rgba(59, 130, 246, 0.35) !important;
+  }
+  .timeline-item.active .timeline-dot-inner {
+    background-color: #ffffff !important;
   }
 
   /* Timeline progress line glow pulse */
@@ -118,28 +318,6 @@ const experiences = t.experience.items.map((item, index) => ({
 </style>
 
 <script>
-  function initObserver() {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-25% 0px -25% 0px",
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        } else {
-          entry.target.classList.remove("active");
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll(".timeline-item").forEach((item) => {
-      observer.observe(item);
-    });
-  }
-
   function initTimelineScroll() {
     const container = document.getElementById("timeline-container");
     const progressLine = document.getElementById("timeline-progress");
@@ -147,13 +325,14 @@ const experiences = t.experience.items.map((item, index) => ({
 
     if (!container || !progressLine || !glowDot) return;
 
+    const items = container.querySelectorAll<HTMLElement>(".timeline-item");
     let currentHeight = 0;
     let targetHeight = 0;
     let currentOpacity = 0;
     let targetOpacity = 0;
     let rafId: number | null = null;
 
-    // Lerp helper for smooth interpolation
+    // Lerp helper for silky smooth interpolation
     function lerp(start: number, end: number, factor: number): number {
       return start + (end - start) * factor;
     }
@@ -177,14 +356,24 @@ const experiences = t.experience.items.map((item, index) => ({
     }
 
     function animate() {
-      // Smooth lerp — factor 0.08 for silky smooth follow
+      // Smooth lerp follow factor
       currentHeight = lerp(currentHeight, targetHeight, 0.08);
       currentOpacity = lerp(currentOpacity, targetOpacity, 0.1);
 
-      // Apply styles directly (no CSS transition needed)
+      // Apply styles directly (GPU accelerated)
       progressLine!.style.height = currentHeight + "px";
       glowDot!.style.top = currentHeight + "px";
       glowDot!.style.opacity = String(currentOpacity);
+
+      // Dynamically activate card with smooth transition
+      items.forEach((item) => {
+        const itemTop = item.offsetTop + 10;
+        if (currentHeight >= itemTop) {
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+        }
+      });
 
       // Keep the loop running
       rafId = requestAnimationFrame(animate);
@@ -201,12 +390,9 @@ const experiences = t.experience.items.map((item, index) => ({
     rafId = requestAnimationFrame(animate);
   }
 
-  // Initialize on load
-  initObserver();
+  // Initialize on load & Astro page transitions
   initTimelineScroll();
-  // Also run on page transitions
   document.addEventListener("astro:page-load", () => {
-    initObserver();
     initTimelineScroll();
   });
 </script>
