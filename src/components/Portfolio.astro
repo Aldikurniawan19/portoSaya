@@ -267,6 +267,7 @@ const projects = [
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: none; /* Firefox */
   }
   .portfolio-slider::-webkit-scrollbar {
@@ -279,9 +280,11 @@ const projects = [
   }
   .portfolio-card {
     scroll-snap-align: start;
+    scroll-snap-stop: normal;
     width: 85%;
-    min-width: 300px;
+    min-width: 290px;
     max-width: 420px;
+    will-change: transform;
   }
   @media (min-width: 768px) {
     .portfolio-card {
@@ -306,16 +309,6 @@ const projects = [
 
     if (!slider || !prevBtn || !nextBtn || cards.length === 0) return;
 
-    // --- Momentum Drag State ---
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
-    let dragMoved = false;
-    let velocityX = 0;
-    let lastX = 0;
-    let lastTime = 0;
-    let momentumId: number | null = null;
-
     // --- Helper: get card scroll distance ---
     function getScrollStep(): number {
       const card = cards[0] as HTMLElement;
@@ -329,27 +322,37 @@ const projects = [
       return Math.round(scrollPos / step);
     }
 
-    // --- Update UI (buttons + dots) ---
+    // --- Update UI with rAF throttling ---
+    let isTicking = false;
     function updateUI() {
       if (!slider || !prevBtn || !nextBtn) return;
       const idx = getActiveIndex();
       const maxScroll = slider.scrollWidth - slider.clientWidth;
 
-      prevBtn.disabled = slider.scrollLeft <= 2;
-      nextBtn.disabled = slider.scrollLeft >= maxScroll - 2;
+      prevBtn.disabled = slider.scrollLeft <= 4;
+      nextBtn.disabled = slider.scrollLeft >= maxScroll - 4;
 
       prevBtn.classList.toggle("opacity-40", prevBtn.disabled);
       prevBtn.classList.toggle("cursor-not-allowed", prevBtn.disabled);
       nextBtn.classList.toggle("opacity-40", nextBtn.disabled);
       nextBtn.classList.toggle("cursor-not-allowed", nextBtn.disabled);
 
-      // Update dots
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === idx);
       });
+      isTicking = false;
     }
 
-    // --- Button scroll ---
+    function onSliderScroll() {
+      if (!isTicking) {
+        requestAnimationFrame(updateUI);
+        isTicking = true;
+      }
+    }
+
+    slider.addEventListener('scroll', onSliderScroll, { passive: true });
+
+    // --- Button navigation ---
     prevBtn.addEventListener("click", () => {
       slider!.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     });
@@ -365,101 +368,44 @@ const projects = [
       });
     });
 
-    // --- Scroll event (update UI on any scroll) ---
-    let scrollTimer: ReturnType<typeof setTimeout>;
-    slider.addEventListener('scroll', () => {
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(updateUI, 50);
-    }, { passive: true });
+    // --- Desktop Mouse Dragging ONLY (Touch uses native 120fps hardware acceleration) ---
+    let isMouseDown = false;
+    let mouseStartX = 0;
+    let mouseScrollStart = 0;
+    let mouseMoved = false;
 
-    // --- Momentum physics ---
-    function applyMomentum() {
-      if (Math.abs(velocityX) < 0.5) {
-        momentumId = null;
-        // After momentum stops, let snap take over
-        slider!.classList.remove('is-dragging');
-        return;
-      }
-      slider!.scrollLeft -= velocityX;
-      velocityX *= 0.92; // friction
-      momentumId = requestAnimationFrame(applyMomentum);
-    }
+    slider.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      mouseMoved = false;
+      mouseStartX = e.clientX;
+      mouseScrollStart = slider.scrollLeft;
+      slider.classList.add('is-dragging');
+    });
 
-    function stopMomentum() {
-      if (momentumId !== null) {
-        cancelAnimationFrame(momentumId);
-        momentumId = null;
-      }
-    }
+    window.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      const diff = e.clientX - mouseStartX;
+      if (Math.abs(diff) > 4) mouseMoved = true;
+      slider.scrollLeft = mouseScrollStart - diff;
+    });
 
-    // --- Drag handlers ---
-    function pointerDown(e: MouseEvent | TouchEvent) {
-      stopMomentum();
-      isDragging = true;
-      dragMoved = false;
-      const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      startX = x;
-      lastX = x;
-      lastTime = Date.now();
-      scrollStart = slider!.scrollLeft;
-      velocityX = 0;
-      slider!.classList.add('is-dragging');
-    }
+    window.addEventListener('mouseup', () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      slider.classList.remove('is-dragging');
+    });
 
-    function pointerMove(e: MouseEvent | TouchEvent) {
-      if (!isDragging) return;
-      const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const diff = x - startX;
-      if (Math.abs(diff) > 5) dragMoved = true;
-
-      // Track velocity
-      const now = Date.now();
-      const dt = now - lastTime;
-      if (dt > 0) {
-        velocityX = (x - lastX) / dt * 16; // normalize to ~60fps
-        lastX = x;
-        lastTime = now;
-      }
-
-      slider!.scrollLeft = scrollStart - diff;
-    }
-
-    function pointerUp() {
-      if (!isDragging) return;
-      isDragging = false;
-
-      // Apply momentum if fast enough
-      if (Math.abs(velocityX) > 1) {
-        momentumId = requestAnimationFrame(applyMomentum);
-      } else {
-        slider!.classList.remove('is-dragging');
-      }
-    }
-
-    // Prevent link clicks after drag
     slider.addEventListener('click', (e) => {
-      if (dragMoved) {
+      if (mouseMoved) {
         e.preventDefault();
         e.stopPropagation();
-        dragMoved = false;
+        mouseMoved = false;
       }
     }, true);
 
-    // Mouse events
-    slider.addEventListener('mousedown', pointerDown);
-    window.addEventListener('mousemove', pointerMove);
-    window.addEventListener('mouseup', pointerUp);
-
-    // Touch events
-    slider.addEventListener('touchstart', pointerDown, { passive: true });
-    slider.addEventListener('touchmove', pointerMove, { passive: true });
-    slider.addEventListener('touchend', pointerUp);
-
-    // Initial UI
     updateUI();
   }
 
-  // Boot
   initPortfolioSlider();
   document.addEventListener("astro:page-load", initPortfolioSlider);
 </script>

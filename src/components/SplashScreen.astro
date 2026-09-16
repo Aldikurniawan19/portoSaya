@@ -93,9 +93,10 @@ const t = getTranslations(currentLang);
             splash.style.transform = 'translateY(-100%)';
             document.body.style.overflow = '';
 
-            // Remove splash from pointer events after slide up
+            // Remove splash from pointer events and DOM after slide up
             setTimeout(() => {
               splash.style.display = 'none';
+              splash.remove();
             }, 750);
           }, 400);
         }, 40);

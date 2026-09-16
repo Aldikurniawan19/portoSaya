@@ -161,8 +161,11 @@ const t = getTranslations(lang);
     }
   }
 
-  // 3D Parallax Tilt & Light Glare Script
+  // 3D Parallax Tilt & Light Glare Script (Desktop only)
   function initAboutPhotoTilt() {
+    // Only enable on desktop pointer devices
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
     const card = document.getElementById("about-photo-card");
     const wrapper = card?.querySelector(".photo-3d-wrapper") as HTMLElement | null;
     const glare = document.getElementById("photo-glare");
@@ -183,7 +186,7 @@ const t = getTranslations(lang);
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      // Calculate tilt angles (Max +- 12deg)
+      // Calculate tilt angles
       const rotateX = ((y - centerY) / centerY) * -10;
       const rotateY = ((x - centerX) / centerX) * 10;
 
@@ -204,14 +207,10 @@ const t = getTranslations(lang);
   function initAboutModule() {
     initAboutTypewriter();
     initAboutPhotoTilt();
-    if (typeof (window as any).lucide !== "undefined") {
-      (window as any).lucide.createIcons();
-    }
   }
 
   // Load modules
   initAboutModule();
-  // Support Astro SPA transition events
   document.addEventListener("astro:page-load", initAboutModule);
 </script>
 

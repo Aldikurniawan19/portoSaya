@@ -325,6 +325,7 @@ const experiences = t.experience.items.map((item, index) => ({
 
 <script>
   function initTimelineScroll() {
+    const experienceSection = document.getElementById("experience");
     const container = document.getElementById("timeline-container");
     const progressLine = document.getElementById("timeline-progress");
     const glowDot = document.getElementById("timeline-glow");
@@ -336,7 +337,8 @@ const experiences = t.experience.items.map((item, index) => ({
     let targetHeight = 0;
     let currentOpacity = 0;
     let targetOpacity = 0;
-    let rafId: number | null = null;
+    let isRunning = false;
+    let isVisible = true;
 
     // Smooth Lerp Helper
     function lerp(start: number, end: number, factor: number): number {
@@ -344,6 +346,7 @@ const experiences = t.experience.items.map((item, index) => ({
     }
 
     function calculateTarget() {
+      if (!isVisible) return;
       const rect = container!.getBoundingClientRect();
       const containerHeight = container!.offsetHeight;
       const windowHeight = window.innerHeight;
@@ -360,19 +363,49 @@ const experiences = t.experience.items.map((item, index) => ({
       } else {
         targetOpacity = 0;
       }
+
+      startLoop();
     }
 
     function animate() {
+      if (!isRunning) return;
+
+      const diffHeight = Math.abs(currentHeight - targetHeight);
+      const diffOpacity = Math.abs(currentOpacity - targetOpacity);
+
+      // Check if animation has settled close to target
+      if (diffHeight < 0.25 && diffOpacity < 0.01) {
+        currentHeight = targetHeight;
+        currentOpacity = targetOpacity;
+        progressLine!.style.height = currentHeight + "px";
+        glowDot!.style.top = currentHeight + "px";
+        glowDot!.style.opacity = String(currentOpacity);
+
+        // Update card active states
+        items.forEach((item) => {
+          const itemTop = item.offsetTop + 16;
+          const isActive = item.classList.contains("active");
+          if (!isActive && currentHeight >= itemTop - 6) {
+            item.classList.add("active");
+          } else if (isActive && currentHeight < itemTop - 24) {
+            item.classList.remove("active");
+          }
+        });
+
+        isRunning = false;
+        return;
+      }
+
       // Responsive, fluid liquid interpolation
-      currentHeight = lerp(currentHeight, targetHeight, 0.12);
-      currentOpacity = lerp(currentOpacity, targetOpacity, 0.14);
+      currentHeight = lerp(currentHeight, targetHeight, 0.14);
+      currentOpacity = lerp(currentOpacity, targetOpacity, 0.16);
 
       // Direct style updates (GPU accelerated)
       progressLine!.style.height = currentHeight + "px";
       glowDot!.style.top = currentHeight + "px";
       glowDot!.style.opacity = String(currentOpacity);
 
-      // Smoothly activate each card when the line reaches its dot with hysteresis to prevent edge jitter
+      // Smoothly activate each card with hysteresis
       items.forEach((item) => {
         const itemTop = item.offsetTop + 16;
         const isActive = item.classList.contains("active");
@@ -384,7 +417,30 @@ const experiences = t.experience.items.map((item, index) => ({
         }
       });
 
-      rafId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
+    }
+
+    function startLoop() {
+      if (!isRunning && isVisible) {
+        isRunning = true;
+        requestAnimationFrame(animate);
+      }
+    }
+
+    // IntersectionObserver to sleep when offscreen
+    if (experienceSection && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          isVisible = entries[0].isIntersecting;
+          if (isVisible) {
+            calculateTarget();
+          } else {
+            isRunning = false;
+          }
+        },
+        { rootMargin: "100px 0px" }
+      );
+      observer.observe(experienceSection);
     }
 
     window.addEventListener("scroll", calculateTarget, { passive: true });
@@ -393,9 +449,7 @@ const experiences = t.experience.items.map((item, index) => ({
     calculateTarget();
     currentHeight = targetHeight;
     currentOpacity = targetOpacity;
-
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(animate);
+    startLoop();
   }
 
   initTimelineScroll();

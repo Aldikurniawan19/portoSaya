@@ -38,9 +38,6 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
     <!-- Lucide Icons -->
     <script is:inline src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Three.js 3D Library -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
-
     <!-- AOS Scroll Animations Style -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -77,7 +74,7 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
     </style>
   </head>
   <body
-    class="bg-white text-slate-600 antialiased selection:bg-primary selection:text-white"
+    class="bg-white text-slate-600 antialiased selection:bg-primary selection:text-white overflow-x-hidden"
   >
     <SplashScreen />
     <slot />
@@ -87,26 +84,27 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
 
     <!-- Logic initialization -->
     <script is:inline>
-      // 1. Initialize Lucide Icons
+      // 1. Initialize Lucide Icons once
+      let lucideInitialized = false;
       function initLucide() {
+        if (lucideInitialized) return;
         if (typeof lucide !== "undefined") {
           lucide.createIcons();
-        } else {
-          setTimeout(initLucide, 50);
+          lucideInitialized = true;
         }
       }
-      initLucide();
       document.addEventListener("DOMContentLoaded", initLucide);
       window.addEventListener("load", initLucide);
 
-      // 2. Initialize AOS Animations
+      // 2. Initialize AOS Animations with mobile performance tuning
       if (typeof AOS !== "undefined") {
         AOS.init({
-          duration: 1000,
+          duration: 700,
           easing: "ease-out-cubic",
           once: true,
-          offset: 80,
-          delay: 50,
+          offset: 40,
+          delay: 0,
+          disableMutationObserver: true,
         });
       }
     </script>
@@ -160,31 +158,35 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
     }
   }
 
-  /* Marquee Slider Animation Styles */
+  /* Marquee Slider Animation Styles (GPU Accelerated) */
   @keyframes scroll-left {
     0% {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
     100% {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
   }
 
   .animate-scroll-left {
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 28s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .animate-scroll-right {
-    animation: scroll-right 30s linear infinite;
+    animation: scroll-right 28s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .marquee-wrapper {
@@ -193,18 +195,19 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
     user-select: none;
     position: relative;
     width: 100%;
+    contain: layout paint;
     mask-image: linear-gradient(
       to right,
       transparent,
-      #000 15%,
-      #000 85%,
+      #000 12%,
+      #000 88%,
       transparent
     );
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
-      #000 15%,
-      #000 85%,
+      #000 12%,
+      #000 88%,
       transparent
     );
   }
@@ -212,6 +215,8 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
   .marquee-track {
     display: flex;
     width: max-content;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .marquee-group {
@@ -225,9 +230,11 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
   }
 
   /* Pause on hover */
-  .marquee-wrapper:hover .animate-scroll-left,
-  .marquee-wrapper:hover .animate-scroll-right {
-    animation-play-state: paused;
+  @media (hover: hover) {
+    .marquee-wrapper:hover .animate-scroll-left,
+    .marquee-wrapper:hover .animate-scroll-right {
+      animation-play-state: paused;
+    }
   }
 
   /* ==========================================================================

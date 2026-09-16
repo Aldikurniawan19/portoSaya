@@ -15,33 +15,33 @@ const t = getTranslations(lang);
   <div class="absolute inset-0 bg-secondary -z-20"></div>
 
   <!-- Background Grid Pattern -->
-  <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10">
-    <!-- Horizontal Beams -->
+  <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10 contain-paint pointer-events-none">
+    <!-- Horizontal Beams (GPU Accelerated) -->
     <div
-      class="absolute h-[3px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent"
-      style="top: 40px; animation: beam-h 6s linear infinite; animation-delay: 1s;"
+      class="absolute h-[2.5px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent will-change-transform"
+      style="top: 40px; animation: beam-h 7s linear infinite; animation-delay: 1s;"
     >
     </div>
     <div
-      class="absolute h-[3px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent"
-      style="top: 120px; animation: beam-h-reverse 8s linear infinite; animation-delay: 3s;"
+      class="hidden sm:block absolute h-[2.5px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent will-change-transform"
+      style="top: 120px; animation: beam-h-reverse 9s linear infinite; animation-delay: 3s;"
     >
     </div>
 
-    <!-- Vertical Beams -->
+    <!-- Vertical Beams (GPU Accelerated) -->
     <div
-      class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent"
-      style="left: 160px; animation: beam-v 7s linear infinite; animation-delay: 2s;"
+      class="absolute w-[2.5px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent will-change-transform"
+      style="left: 160px; animation: beam-v 8s linear infinite; animation-delay: 2s;"
     >
     </div>
     <div
-      class="absolute w-[3px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent"
-      style="left: 400px; animation: beam-v-reverse 9s linear infinite; animation-delay: 4s;"
+      class="hidden sm:block absolute w-[2.5px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent will-change-transform"
+      style="left: 400px; animation: beam-v-reverse 10s linear infinite; animation-delay: 4s;"
     >
     </div>
     <div
-      class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent"
-      style="left: 720px; animation: beam-v 8s linear infinite; animation-delay: 1s;"
+      class="hidden md:block absolute w-[2.5px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent will-change-transform"
+      style="left: 720px; animation: beam-v 9s linear infinite; animation-delay: 1s;"
     >
     </div>
   </div>
