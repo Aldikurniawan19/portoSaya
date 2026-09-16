@@ -31,8 +31,8 @@ const experiences = t.experience.items.map((item, index) => ({
 <!-- 4. WORK EXPERIENCE SECTION -->
 <section id="experience" class="py-24 relative overflow-hidden text-slate-600 bg-transparent">
   <div class="max-w-4xl mx-auto px-6 w-full relative z-10">
-    <!-- Section Header -->
-    <div class="text-center mb-20" data-aos="fade-up">
+    <!-- Section Header (Static, No Animation) -->
+    <div class="text-center mb-20">
       <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">{t.experience.title}</h2>
       <h3 class="text-3xl md:text-4xl font-bold text-secondary">{t.experience.subtitle}</h3>
       <p class="text-slate-500 mt-4 max-w-lg mx-auto">{t.experience.description}</p>
@@ -48,14 +48,20 @@ const experiences = t.experience.items.map((item, index) => ({
       <div id="timeline-glow" class="absolute left-[-3px] w-[8px] h-[8px] rounded-full bg-blue-500 shadow-[0_0_12px_4px_rgba(59,130,246,0.6)] will-change-[top,opacity] opacity-0" style="top: 0px;"></div>
       
       {experiences.map((exp, index) => (
-        <div class="relative group timeline-item" data-aos="fade-up" data-aos-delay={index * 100}>
+        <div class="relative group timeline-item">
           <!-- Timeline Dot -->
           <div class="timeline-dot absolute -left-[41px] md:-left-[57px] top-4 w-6 h-6 rounded-full border-4 flex items-center justify-center">
             <div class="timeline-dot-inner w-1.5 h-1.5 rounded-full"></div>
           </div>
 
-          <!-- 3D Master Card (Unified DOM - Zero Ghosting, Ultra-Smooth Transitions) -->
-          <div class="experience-card-3d relative rounded-3xl overflow-hidden select-none p-6 md:p-8">
+          <!-- 3D Master Card (Slides in from the right as you scroll down) -->
+          <div
+            class="experience-card-3d relative rounded-3xl overflow-hidden select-none p-6 md:p-8"
+            data-aos="fade-left"
+            data-aos-duration="750"
+            data-aos-offset="90"
+            data-aos-easing="ease-out-cubic"
+          >
             
             <!-- Active Sapphire Gradient Overlay -->
             <div class="exp-bg-overlay absolute inset-0 pointer-events-none"></div>
