@@ -1,0 +1,549 @@
+---
+interface Props {
+  class?: string;
+  size?: 'sm' | 'md' | 'lg' | 'responsive';
+}
+
+const { class: className = '', size = 'responsive' } = Astro.props;
+
+// Size mapping for container
+const sizeClasses = {
+  sm: 'w-[280px] h-[280px]',
+  md: 'w-[420px] h-[420px]',
+  lg: 'w-[620px] h-[620px]',
+  responsive: 'w-[340px] h-[340px] sm:w-[500px] sm:h-[500px] lg:w-[660px] lg:h-[660px]'
+}[size];
+---
+
+<div class={`atomic-reactor-wrapper relative ${sizeClasses} flex items-center justify-center pointer-events-none select-none overflow-visible ${className}`}>
+  
+  <!-- Ambient Background Glowing Auras -->
+  <div class="absolute w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] lg:w-[540px] lg:h-[540px] rounded-full bg-cyan-400/15 blur-3xl atom-ambient-glow pointer-events-none"></div>
+  <div class="absolute w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] lg:w-[360px] lg:h-[360px] rounded-full bg-blue-600/25 blur-2xl atom-ambient-pulse pointer-events-none"></div>
+
+  <!-- High-Performance 3D Atomic Orbital Canvas -->
+  <canvas class="atomic-reactor-canvas w-full h-full pointer-events-none select-none z-10"></canvas>
+
+</div>
+
+<style is:global>
+  .atom-ambient-glow {
+    animation: atom-ambient-glow-kf 5s ease-in-out infinite alternate;
+  }
+  @keyframes atom-ambient-glow-kf {
+    0% {
+      transform: scale(0.92);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1.12);
+      opacity: 0.45;
+    }
+  }
+
+  .atom-ambient-pulse {
+    animation: atom-ambient-pulse-kf 3.5s ease-in-out infinite alternate;
+  }
+  @keyframes atom-ambient-pulse-kf {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.25;
+    }
+    100% {
+      transform: scale(1.18);
+      opacity: 0.55;
+    }
+  }
+</style>
+
+<script>
+  interface Point3D {
+    x: number;
+    y: number;
+    z: number;
+    scale: number;
+  }
+
+  interface RingPoint extends Point3D {
+    u: number;
+    i: number;
+  }
+
+  interface TrailPoint extends Point3D {
+    k: number;
+    alpha: number;
+  }
+
+  interface RingConfig {
+    id: number;
+    name: string;
+    baseAngle: number;       // Base angular orientation (0°, 60°, 120°)
+    rotationSpeed: number;   // Independent 3D rotation speed around the central axis
+    tiltAngle: number;       // Distinct 3D inclination angle into Z depth
+    rollOffset: number;      // 3D Roll angle offset (prevents parallel alignment)
+    electronSpeed: number;   // Electron speed along the ring
+    laserFlowSpeed: number;  // Laser energy stream speed
+    colorMain: string;
+    colorSecond: string;
+    electronColor: string;
+    trailColor: string;
+  }
+
+  function initAllAtomicReactors() {
+    const wrappers = document.querySelectorAll('.atomic-reactor-wrapper');
+
+    wrappers.forEach((wrapper) => {
+      const canvas = wrapper.querySelector('.atomic-reactor-canvas') as HTMLCanvasElement | null;
+      if (!canvas || canvas.dataset.initialized === 'true') return;
+      canvas.dataset.initialized = 'true';
+
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return;
+
+      let animationFrameId: number;
+      let width = 0;
+      let height = 0;
+      let dpr = window.devicePixelRatio || 1;
+
+      // Resize handler with High-DPI support
+      function resizeCanvas() {
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        width = rect.width || 420;
+        height = rect.height || 420;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      // =========================================================================
+      // NON-COPLANAR 3D ORBITAL SYSTEM (NEVER PARALLEL)
+      // Each ring operates on a distinct 3D inclination plane (76°, 52°, 32°) with
+      // unique roll offsets and incommensurate rotation frequencies so they never align or become parallel!
+      // =========================================================================
+      const rings: RingConfig[] = [
+        {
+          id: 0,
+          name: 'Horizontal Equatorial Ring (Kanan)',
+          baseAngle: 0,
+          rotationSpeed: 0.58,       // Clockwise (~10.8s per 360°)
+          tiltAngle: 76 * (Math.PI / 180), // Slim equatorial profile
+          rollOffset: 0,
+          electronSpeed: 2.50,
+          laserFlowSpeed: 2.80,
+          colorMain: '#00f0ff',
+          colorSecond: '#2563eb',
+          electronColor: '#00f0ff',
+          trailColor: 'rgba(0, 240, 255, ',
+        },
+        {
+          id: 1,
+          name: 'Diagonal Left Ring (Kiri)',
+          baseAngle: (Math.PI / 3),  // 60°
+          rotationSpeed: -0.41,      // Counter-Clockwise (~15.3s per 360°, incommensurate)
+          tiltAngle: 52 * (Math.PI / 180), // Moderate diagonal profile
+          rollOffset: 35 * (Math.PI / 180),
+          electronSpeed: -1.95,
+          laserFlowSpeed: -2.30,
+          colorMain: '#38bdf8',
+          colorSecond: '#6366f1',
+          electronColor: '#38bdf8',
+          trailColor: 'rgba(56, 189, 248, ',
+        },
+        {
+          id: 2,
+          name: 'Forward Front Ring (Depan)',
+          baseAngle: (2 * Math.PI / 3), // 120°
+          rotationSpeed: 0.73,       // Faster Clockwise (~8.6s per 360°, prime ratio)
+          tiltAngle: 32 * (Math.PI / 180), // Open coronal forward-facing profile
+          rollOffset: -35 * (Math.PI / 180),
+          electronSpeed: 2.25,
+          laserFlowSpeed: 2.60,
+          colorMain: '#00f0ff',
+          colorSecond: '#4f46e5',
+          electronColor: '#00f0ff',
+          trailColor: 'rgba(0, 240, 255, ',
+        }
+      ];
+
+      // Concentric Shockwave pulses expanding outward from the nucleus
+      const shockwaves = [
+        { delay: 0 },
+        { delay: 1.8 },
+        { delay: 3.6 }
+      ];
+
+      const startTime = performance.now();
+
+      // =========================================================================
+      // Non-Coplanar 3D Coordinate Engine:
+      // Guarantees exact mathematical centering on (cx, cy) with ZERO parallel overlap
+      // =========================================================================
+      function getPoint3D(ringIndex: number, u: number, t: number, a: number, b: number): Point3D {
+        const ring = rings[ringIndex];
+
+        // 1. Current Ring Angle revolving around the central core axis
+        const currentAngle = ring.baseAngle + (t * ring.rotationSpeed);
+
+        // 2. Symmetrical 3D Ellipse on the inclined orbital plane
+        const lx = a * Math.cos(u);
+        const ly = b * Math.sin(u) * Math.cos(ring.tiltAngle);
+        const lz = b * Math.sin(u) * Math.sin(ring.tiltAngle);
+
+        // 3. Roll spatial orientation offset (makes each ring's 3D normal vector unique)
+        const x1 = lx * Math.cos(ring.rollOffset) - ly * Math.sin(ring.rollOffset);
+        const y1 = lx * Math.sin(ring.rollOffset) + ly * Math.cos(ring.rollOffset);
+        const z1 = lz;
+
+        // 4. Rotate around the shared central core axis (Z-axis at 0, 0, 0)
+        const x3d = x1 * Math.cos(currentAngle) - y1 * Math.sin(currentAngle);
+        const y3d = x1 * Math.sin(currentAngle) + y1 * Math.cos(currentAngle);
+        const z3d = z1;
+
+        // 5. Clean Orthogonal Projection with subtle depth scale
+        const depthFactor = 1 + (z3d / 650) * 0.12;
+
+        return {
+          x: x3d,
+          y: y3d,
+          z: z3d,
+          scale: depthFactor
+        };
+      }
+
+      function render(now: number) {
+        if (!ctx || !canvas) return;
+        const t = (now - startTime) / 1000;
+
+        ctx.save();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(dpr, dpr);
+
+        const cx = width / 2;
+        const cy = height / 2;
+
+        // Perfectly proportioned, centered orbital dimensions
+        const baseSize = Math.min(width, height);
+        const a = baseSize * 0.35; // Major radius (147px on 420px canvas)
+        const b = a * 0.40;       // Minor radius (58.8px)
+        const sphereRadius = baseSize * 0.075; // Central nucleus ball radius (31.5px)
+
+        // ================= 1. EXPANDING SHOCKWAVE PULSES =================
+        const waveDuration = 5.4;
+        shockwaves.forEach((sw) => {
+          const waveT = ((t + sw.delay) % waveDuration) / waveDuration;
+          const waveRadius = sphereRadius * (1.2 + waveT * 5.0);
+          const alpha = (1 - waveT) * 0.45 * Math.sin(waveT * Math.PI);
+          if (alpha > 0.01) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(cx, cy, waveRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${alpha.toFixed(3)})`;
+            ctx.lineWidth = 1.6;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(0, 240, 255, 0.5)';
+            ctx.stroke();
+            ctx.restore();
+          }
+        });
+
+        // Compute 3D points for all 3 rotating rings (120 segments per ring)
+        const SEGMENTS = 120;
+        const ringPoints: RingPoint[][] = rings.map((_ring, rIdx) => {
+          const pts: RingPoint[] = [];
+          for (let i = 0; i <= SEGMENTS; i++) {
+            const u = (i / SEGMENTS) * Math.PI * 2;
+            const pt = getPoint3D(rIdx, u, t, a, b);
+            pts.push({ ...pt, u, i });
+          }
+          return pts;
+        });
+
+        // Compute 3D electron positions and comet tails
+        const electrons = rings.map((ring, rIdx) => {
+          const currentU = (t * ring.electronSpeed) % (Math.PI * 2);
+          const currentPt = getPoint3D(rIdx, currentU, t, a, b);
+
+          // Generate comet tail trailing behind electron in 3D
+          const trailLength = 14;
+          const trail: TrailPoint[] = [];
+          for (let k = 1; k <= trailLength; k++) {
+            const trailU = currentU - (k * 0.04 * Math.sign(ring.electronSpeed));
+            const trailPt = getPoint3D(rIdx, trailU, t, a, b);
+            trail.push({ ...trailPt, k, alpha: (1 - k / trailLength) });
+          }
+
+          return {
+            ring,
+            rIdx,
+            pt: currentPt,
+            trail,
+            isBack: currentPt.z < 0
+          };
+        });
+
+        // ================= 2. LAYER 1: BACK ORBITS (Passing BEHIND Central Ball, z < 0) =================
+        rings.forEach((ring, rIdx) => {
+          const pts = ringPoints[rIdx];
+
+          ctx.save();
+          ctx.lineWidth = 2.4;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          // Draw back track segments
+          for (let i = 0; i < SEGMENTS; i++) {
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+
+            if (p1.z < 0 || p2.z < 0) {
+              const segAlpha = 0.44;
+              ctx.beginPath();
+              ctx.moveTo(cx + p1.x, cy + p1.y);
+              ctx.lineTo(cx + p2.x, cy + p2.y);
+              ctx.strokeStyle = ring.colorSecond;
+              ctx.globalAlpha = segAlpha;
+              ctx.stroke();
+            }
+          }
+
+          // Draw moving laser dashes along back arcs
+          const laserOffset = (t * ring.laserFlowSpeed * 5) % SEGMENTS;
+          for (let l = 0; l < 2; l++) {
+            const laserCenter = (laserOffset + l * (SEGMENTS / 2) + SEGMENTS) % SEGMENTS;
+            ctx.beginPath();
+            let started = false;
+            for (let step = -10; step <= 10; step++) {
+              const idx = Math.floor((laserCenter + step + SEGMENTS) % SEGMENTS);
+              const p = pts[idx];
+              if (p.z < 0) {
+                if (!started) {
+                  ctx.moveTo(cx + p.x, cy + p.y);
+                  started = true;
+                } else {
+                  ctx.lineTo(cx + p.x, cy + p.y);
+                }
+              }
+            }
+            if (started) {
+              ctx.strokeStyle = ring.colorMain;
+              ctx.lineWidth = 3.0;
+              ctx.globalAlpha = 0.65;
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = ring.colorMain;
+              ctx.stroke();
+            }
+          }
+          ctx.restore();
+        });
+
+        // Draw electrons currently in the BACK (z < 0)
+        electrons.filter(e => e.isBack).forEach((el) => {
+          ctx.save();
+          // Draw Comet Tail behind
+          el.trail.forEach((tp: TrailPoint) => {
+            if (tp.z < 0) {
+              ctx.beginPath();
+              ctx.arc(cx + tp.x, cy + tp.y, 3.2, 0, Math.PI * 2);
+              ctx.fillStyle = `${el.ring.trailColor}${tp.alpha * 0.45})`;
+              ctx.fill();
+            }
+          });
+
+          // Draw Back Electron Particle
+          const p = el.pt;
+          ctx.beginPath();
+          ctx.arc(cx + p.x, cy + p.y, 6.2, 0, Math.PI * 2);
+          ctx.fillStyle = el.ring.electronColor;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = el.ring.colorMain;
+          ctx.globalAlpha = 0.75;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(cx + p.x, cy + p.y, 3, 0, Math.PI * 2);
+          ctx.fillStyle = '#1e3a8a';
+          ctx.fill();
+          ctx.restore();
+        });
+
+        // ================= 3. LAYER 2: CENTRAL 3D GLOWING SPHERE BALL (The Nucleus) =================
+        ctx.save();
+        // 1. Outer ambient sphere glow halo
+        const haloGrad = ctx.createRadialGradient(cx, cy, sphereRadius * 0.6, cx, cy, sphereRadius * 2.2);
+        haloGrad.addColorStop(0, 'rgba(0, 240, 255, 0.45)');
+        haloGrad.addColorStop(0.5, 'rgba(37, 99, 235, 0.25)');
+        haloGrad.addColorStop(1, 'rgba(15, 23, 42, 0)');
+        ctx.beginPath();
+        ctx.arc(cx, cy, sphereRadius * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = haloGrad;
+        ctx.fill();
+
+        // 2. Main 3D Sphere Shading (Cyan -> Cobalt -> Deep Navy, NO White)
+        const lightOffsetX = -sphereRadius * 0.32;
+        const lightOffsetY = -sphereRadius * 0.32;
+        const sphereGrad = ctx.createRadialGradient(
+          cx + lightOffsetX,
+          cy + lightOffsetY,
+          sphereRadius * 0.08,
+          cx,
+          cy,
+          sphereRadius
+        );
+        sphereGrad.addColorStop(0.0, '#38bdf8'); // Cyan highlight apex
+        sphereGrad.addColorStop(0.25, '#00f0ff'); // Electric neon cyan
+        sphereGrad.addColorStop(0.55, '#2563eb'); // Vibrant cobalt blue
+        sphereGrad.addColorStop(0.85, '#1e3a8a'); // Deep royal blue
+        sphereGrad.addColorStop(1.0, '#090d16'); // Dark space shadow rim
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, sphereRadius, 0, Math.PI * 2);
+        ctx.fillStyle = sphereGrad;
+        ctx.shadowBlur = 16;
+        ctx.shadowColor = 'rgba(0, 240, 255, 0.6)';
+        ctx.fill();
+
+        // 3. Specular Cyan Flare Spot (Pure Cyan/Sky Blue, No White)
+        const flareGrad = ctx.createRadialGradient(
+          cx + lightOffsetX,
+          cy + lightOffsetY,
+          0,
+          cx + lightOffsetX,
+          cy + lightOffsetY,
+          sphereRadius * 0.42
+        );
+        flareGrad.addColorStop(0, 'rgba(56, 189, 248, 0.85)');
+        flareGrad.addColorStop(0.5, 'rgba(0, 240, 255, 0.4)');
+        flareGrad.addColorStop(1, 'rgba(0, 240, 255, 0)');
+        ctx.beginPath();
+        ctx.arc(cx + lightOffsetX, cy + lightOffsetY, sphereRadius * 0.42, 0, Math.PI * 2);
+        ctx.fillStyle = flareGrad;
+        ctx.fill();
+
+        // 4. Subtle Inner Core Energy Ring
+        ctx.beginPath();
+        ctx.arc(cx, cy, sphereRadius * 0.95, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+        ctx.restore();
+
+        // ================= 4. LAYER 3: FRONT ORBITS (Passing IN FRONT OF Central Ball, z >= 0) =================
+        rings.forEach((ring, rIdx) => {
+          const pts = ringPoints[rIdx];
+
+          ctx.save();
+          ctx.lineWidth = 3.2;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          // Draw front track segments
+          for (let i = 0; i < SEGMENTS; i++) {
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+
+            if (p1.z >= 0 || p2.z >= 0) {
+              const segAlpha = 0.90;
+              ctx.beginPath();
+              ctx.moveTo(cx + p1.x, cy + p1.y);
+              ctx.lineTo(cx + p2.x, cy + p2.y);
+              ctx.strokeStyle = ring.colorMain;
+              ctx.globalAlpha = segAlpha;
+              ctx.shadowBlur = 12;
+              ctx.shadowColor = ring.colorMain;
+              ctx.stroke();
+            }
+          }
+
+          // Draw fast moving glowing laser pulses on front arcs
+          const laserOffset = (t * ring.laserFlowSpeed * 5) % SEGMENTS;
+          for (let l = 0; l < 2; l++) {
+            const laserCenter = (laserOffset + l * (SEGMENTS / 2) + SEGMENTS) % SEGMENTS;
+            ctx.beginPath();
+            let started = false;
+            for (let step = -14; step <= 14; step++) {
+              const idx = Math.floor((laserCenter + step + SEGMENTS) % SEGMENTS);
+              const p = pts[idx];
+              if (p.z >= 0) {
+                if (!started) {
+                  ctx.moveTo(cx + p.x, cy + p.y);
+                  started = true;
+                } else {
+                  ctx.lineTo(cx + p.x, cy + p.y);
+                }
+              }
+            }
+            if (started) {
+              ctx.strokeStyle = '#38bdf8';
+              ctx.lineWidth = 4.2;
+              ctx.globalAlpha = 0.95;
+              ctx.shadowBlur = 16;
+              ctx.shadowColor = ring.colorMain;
+              ctx.stroke();
+            }
+          }
+          ctx.restore();
+        });
+
+        // Draw electrons currently in the FRONT (z >= 0)
+        electrons.filter(e => !e.isBack).forEach((el) => {
+          ctx.save();
+          // Draw Comet Tail in front
+          el.trail.forEach((tp: TrailPoint) => {
+            if (tp.z >= 0) {
+              ctx.beginPath();
+              ctx.arc(cx + tp.x, cy + tp.y, 4.2, 0, Math.PI * 2);
+              ctx.fillStyle = `${el.ring.trailColor}${tp.alpha * 0.85})`;
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = el.ring.colorMain;
+              ctx.fill();
+            }
+          });
+
+          // Draw Front Electron Particle
+          const p = el.pt;
+          ctx.beginPath();
+          ctx.arc(cx + p.x, cy + p.y, 8.2, 0, Math.PI * 2);
+          ctx.fillStyle = el.ring.electronColor;
+          ctx.shadowBlur = 18;
+          ctx.shadowColor = el.ring.colorMain;
+          ctx.globalAlpha = 1.0;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(cx + p.x, cy + p.y, 4.2, 0, Math.PI * 2);
+          ctx.fillStyle = '#1e3a8a';
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(cx + p.x - 1.2, cy + p.y - 1.2, 1.8, 0, Math.PI * 2);
+          ctx.fillStyle = '#38bdf8';
+          ctx.fill();
+          ctx.restore();
+        });
+
+        ctx.restore();
+        animationFrameId = requestAnimationFrame(render);
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+
+      // Cleanup on page unload / component destruction
+      document.addEventListener('astro:before-swap', () => {
+        cancelAnimationFrame(animationFrameId);
+        window.removeEventListener('resize', resizeCanvas);
+      }, { once: true });
+    });
+  }
+
+  // Initialize immediately and on Astro page transitions
+  initAllAtomicReactors();
+  document.addEventListener('astro:page-load', initAllAtomicReactors);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllAtomicReactors);
+  }
+</script>

@@ -8,22 +8,7 @@ const t = getTranslations(lang);
 ---
 
 <!-- 1. HOME SECTION -->
-<section id="home" class="relative min-h-[100dvh] lg:min-h-screen flex items-center pt-14 pb-20 sm:pt-16 lg:pt-20 sm:pb-16 lg:pb-0 overflow-hidden">
-  <!-- Background Grid Pattern -->
-  <div class="absolute inset-0 bg-grid-pattern bg-grid -z-10">
-    <!-- Horizontal Beams -->
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent" style="top: 120px; animation: beam-h 6s linear infinite; animation-delay: 0s;"></div>
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent" style="top: 240px; animation: beam-h-reverse 8s linear infinite; animation-delay: 2s;"></div>
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent" style="top: 360px; animation: beam-h 7s linear infinite; animation-delay: 4s;"></div>
-    <div class="absolute h-[3px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent" style="top: 480px; animation: beam-h-reverse 9s linear infinite; animation-delay: 1s;"></div>
-
-    <!-- Vertical Beams -->
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 120px; animation: beam-v 7s linear infinite; animation-delay: 1s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent" style="left: 280px; animation: beam-v-reverse 9s linear infinite; animation-delay: 3s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 440px; animation: beam-v 8s linear infinite; animation-delay: 5s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent" style="left: 640px; animation: beam-v-reverse 10s linear infinite; animation-delay: 2s;"></div>
-    <div class="absolute w-[3px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent" style="left: 800px; animation: beam-v 7s linear infinite; animation-delay: 4s;"></div>
-  </div>
+<section id="home" class="relative min-h-[100dvh] lg:min-h-screen flex items-center pt-14 pb-20 sm:pt-16 lg:pt-20 sm:pb-16 lg:pb-0 overflow-hidden bg-transparent">
 
   <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
     <!-- Left Content: Typography Focused -->
@@ -69,13 +54,10 @@ const t = getTranslations(lang);
 
     <!-- Right Content: Hero Image with Abstract Blue Background (Hidden on Mobile) -->
     <div class="hidden lg:flex order-1 lg:order-2 relative justify-center" data-aos="zoom-in" data-aos-duration="600">
-      <!-- Background Glow -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
-
       <!-- Main Image Container (Lifted up slightly) -->
       <div class="relative w-full max-w-[360px] aspect-[4/5] flex items-end justify-center overflow-visible -translate-y-6 lg:-translate-y-10">
         <!-- Abstract Oval Background Shape (Blue organic shape) -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/15"></div>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/20"></div>
 
         <!-- Person Image Cutout -->
         <Image
@@ -90,40 +72,3 @@ const t = getTranslations(lang);
   </div>
 </section>
 
-<style is:global>
-  @keyframes beam-h {
-    0% {
-      left: -200px;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-
-  @keyframes beam-h-reverse {
-    0% {
-      right: -200px;
-    }
-    100% {
-      right: 100%;
-    }
-  }
-
-  @keyframes beam-v {
-    0% {
-      top: -200px;
-    }
-    100% {
-      top: 100%;
-    }
-  }
-
-  @keyframes beam-v-reverse {
-    0% {
-      bottom: -200px;
-    }
-    100% {
-      bottom: 100%;
-    }
-  }
-</style>
