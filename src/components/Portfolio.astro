@@ -13,76 +13,40 @@ const t = getTranslations(lang);
 const projects = [
   {
     title: "All.Dev - Modern Developer Portfolio",
-    badge: t.portfolio.badge,
     image: projectImage,
-    url: "alldev.portfolio.io",
     description: t.portfolio.descriptionProject,
-    features: [
-      { title: t.portfolio.features.responsive.title, desc: t.portfolio.features.responsive.desc, icon: "layout" },
-      { title: t.portfolio.features.semantic.title, desc: t.portfolio.features.semantic.desc, icon: "code-2" },
-      { title: t.portfolio.features.scrollspy.title, desc: t.portfolio.features.scrollspy.desc, icon: "zap" },
-      { title: t.portfolio.features.utilityCss.title, desc: t.portfolio.features.utilityCss.desc, icon: "palette" },
-    ],
     tech: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
     liveDemoUrl: "#home",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
   },
   {
     title: t.portfolio.rentalTitle,
-    badge: t.portfolio.rentalBadge,
     image: rentalImage,
-    url: "rental-go.io",
     description: t.portfolio.rentalDesc,
-    features: [
-      { title: t.portfolio.features.catalogTitle, desc: t.portfolio.features.catalogDesc, icon: "car" },
-      { title: t.portfolio.features.bookingTitle, desc: t.portfolio.features.bookingDesc, icon: "calendar" },
-      { title: t.portfolio.features.adminTitle, desc: t.portfolio.features.adminDesc, icon: "sliders" },
-      { title: t.portfolio.features.invoiceTitle, desc: t.portfolio.features.invoiceDesc, icon: "file-text" },
-    ],
     tech: ["Laravel", "Tailwind CSS", "MySQL"],
     liveDemoUrl: "https://rental-mobil-rho.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
   },
   {
     title: t.portfolio.hotelTitle,
-    badge: t.portfolio.hotelBadge,
     image: hotelImage,
-    url: "hotel-ui.vercel.app",
     description: t.portfolio.hotelDesc,
-    features: [
-      { title: t.portfolio.features.hotelRoomTitle, desc: t.portfolio.features.hotelRoomDesc, icon: "bed" },
-      { title: t.portfolio.features.hotelBookingTitle, desc: t.portfolio.features.hotelBookingDesc, icon: "calendar" },
-      { title: t.portfolio.features.hotelGalleryTitle, desc: t.portfolio.features.hotelGalleryDesc, icon: "image" },
-      { title: t.portfolio.features.hotelResponsiveTitle, desc: t.portfolio.features.hotelResponsiveDesc, icon: "layout" },
-    ],
     tech: ["React", "Tailwind CSS", "Vite"],
     liveDemoUrl: "https://hotel-ui-l2f8.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
   },
   {
     title: t.portfolio.barberTitle,
-    badge: t.portfolio.barberBadge,
     image: barberImage,
-    url: "barber-492x.vercel.app",
     description: t.portfolio.barberDesc,
-    features: [
-      { title: "Reservasi Online", desc: "Pemesanan jadwal barbershop online.", icon: "calendar" },
-      { title: "Katalog Layanan", desc: "Layanan potong rambut & perawatan pria.", icon: "scissors" },
-    ],
     tech: ["Astro", "Tailwind CSS", "TypeScript"],
     liveDemoUrl: "https://barber-492x.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
   },
   {
     title: t.portfolio.ramadhanTitle,
-    badge: t.portfolio.ramadhanBadge,
     image: ramadhanImage,
-    url: "ramadhan-app-puce.vercel.app",
     description: t.portfolio.ramadhanDesc,
-    features: [
-      { title: "Jadwal Sholat", desc: "Jadwal imsakiyah & ibadah harian.", icon: "clock" },
-      { title: "Jurnal Ibadah", desc: "Pencatatan aktivitas ibadah.", icon: "book-open" },
-    ],
     tech: ["Next.js", "Tailwind CSS", "PostgreSQL"],
     liveDemoUrl: "https://ramadhan-app-puce.vercel.app/",
     sourceCodeUrl: "https://github.com/Aldikurniawan19",
@@ -132,6 +96,10 @@ const projects = [
                   class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
                   widths={[420, 840]}
                   sizes="(max-width: 1024px) 100vw, 420px"
+                  format="webp"
+                  quality={85}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <!-- Gradient Overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-black/10 opacity-70 group-hover:opacity-40 transition-opacity duration-500"></div>

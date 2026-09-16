@@ -66,8 +66,13 @@ const t = getTranslations(lang);
           src={imgHero}
           alt="Aldi Kurniawan"
           class="w-full h-auto object-contain z-10 drop-shadow-2xl"
-          widths={[400, 800]}
+          widths={[360, 720]}
           sizes="(max-width: 1024px) 100vw, 360px"
+          format="webp"
+          quality={85}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
       </div>
     </div>
@@ -163,41 +168,5 @@ const t = getTranslations(lang);
       inset 0 -2px 3px 0 rgba(0, 0, 0, 0.12),
       0 10px 20px -3px rgba(0, 0, 0, 0.12),
       0 4px 6px -1px rgba(0, 0, 0, 0.08);
-  }
-
-  @keyframes beam-h {
-    0% {
-      transform: translate3d(-180px, 0, 0);
-    }
-    100% {
-      transform: translate3d(calc(100vw + 180px), 0, 0);
-    }
-  }
-
-  @keyframes beam-h-reverse {
-    0% {
-      transform: translate3d(calc(100vw + 180px), 0, 0);
-    }
-    100% {
-      transform: translate3d(-180px, 0, 0);
-    }
-  }
-
-  @keyframes beam-v {
-    0% {
-      transform: translate3d(0, -180px, 0);
-    }
-    100% {
-      transform: translate3d(0, calc(100vh + 180px), 0);
-    }
-  }
-
-  @keyframes beam-v-reverse {
-    0% {
-      transform: translate3d(0, calc(100vh + 180px), 0);
-    }
-    100% {
-      transform: translate3d(0, -180px, 0);
-    }
   }
 </style>

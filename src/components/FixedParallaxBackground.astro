@@ -2,9 +2,9 @@
 // FIXED GLOBAL HERO BACKGROUND CANVAS (Layer Paling Belakang / Fixed Parallax Canvas)
 ---
 
-<div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden contain-paint select-none">
+<div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden contain-paint select-none transform-gpu will-change-transform">
   <!-- Background Grid Pattern with Mask -->
-  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-80">
+  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-80 contain-strict">
     <!-- Horizontal Beams (GPU Accelerated across the entire viewport) -->
     <div
       class="absolute h-[2.5px] w-[180px] bg-gradient-to-r from-transparent via-blue-500/85 to-transparent will-change-transform"

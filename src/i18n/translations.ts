@@ -25,11 +25,9 @@ export const translations = {
       role: "FRONTEND DEVELOPER",
       paragraph1: "Sebagai lulusan Sistem Informasi dan Software Engineer, saya berfokus mengubah kebutuhan bisnis yang kompleks menjadi aplikasi web yang efisien.",
       paragraph2: "Dari digitalisasi alur kerja operasional hingga perancangan arsitektur frontend, saya menikmati proses membangun solusi full-stack dari nol yang terukur dan memberikan dampak nyata.",
-      downloadCV: "UNDUH CV",
-      altPhoto: "Foto Profil Aldi Kurniawan"
+      downloadCV: "UNDUH CV"
     },
     skills: {
-      title: "Tech Skills",
       subtitle: "Keahlian & Teknologi",
       description: "Berikut adalah beberapa teknologi dan alat yang saya kuasai dan gunakan dalam mengembangkan proyek digital."
     },
@@ -63,66 +61,22 @@ export const translations = {
     },
     portfolio: {
       title: "Karya Terbaik",
-      subtitle: "Karya Terbaik & Implementasi Skills",
       description: "Berikut adalah proyek terbaik yang mengintegrasikan seluruh keahlian saya dalam pengembangan web modern.",
-      badge: "Karya Unggulan",
       descriptionProject: "Platform website portofolio interaktif yang dirancang dengan estetika visual tinggi, tata letak modern responsif, serta penekanan pada aspek SEO dan performa. Proyek ini memvisualisasikan data diri, keterampilan teknologi, dan riwayat profesional secara dinamis.",
       rentalTitle: "RentalGo - Aplikasi Sewa Mobil",
-      rentalBadge: "Sistem Manajemen",
       rentalDesc: "Aplikasi persewaan mobil berbasis web yang mempermudah pelanggan memilih armada secara online, menghitung estimasi biaya sewa, melakukan pemesanan (booking), serta menyediakan dasbor admin lengkap untuk mengelola ketersediaan kendaraan.",
       hotelTitle: "LuxeStay - Hotel Landing Page",
-      hotelBadge: "UI/UX Design",
       hotelDesc: "Landing page hotel modern dengan desain elegan dan mewah. Menampilkan katalog kamar, galeri visual imersif, serta antarmuka responsif yang memberikan pengalaman premium bagi pengunjung.",
       barberTitle: "Titik Fokus - Barbershop Landing Page",
-      barberBadge: "Web Application",
       barberDesc: "Landing page modern untuk Barbershop eksklusif. Menampilkan katalog layanan, sistem reservasi jadwal online, rating pelanggan, serta antarmuka responsif dengan estetika visual tinggi.",
       ramadhanTitle: "Ramadhan App - Aplikasi Jadwal & Ibadah",
-      ramadhanBadge: "Web Application",
       ramadhanDesc: "Aplikasi web interaktif bertema Ramadhan yang menyediakan informasi jadwal sholat, imsakiyah, pencatatan ibadah harian, serta fitur pendukung ibadah yang responsif dan mudah digunakan.",
-      features: {
-        responsive: {
-          title: "Desain Responsif",
-          desc: "Optimal di hp, tablet, laptop."
-        },
-        semantic: {
-          title: "HTML Semantik",
-          desc: "Struktur ramah SEO & aksesibel."
-        },
-        scrollspy: {
-          title: "Active Scroll Spy",
-          desc: "Deteksi section otomatis saat scroll."
-        },
-        utilityCss: {
-          title: "Utility-First CSS",
-          desc: "Styling cepat & rapi dengan Tailwind."
-        },
-        catalogTitle: "Katalog Armada",
-        catalogDesc: "Pilihan armada lengkap dengan filter tipe.",
-        bookingTitle: "Pemesanan Instan",
-        bookingDesc: "Formulir sewa interaktif & estimasi biaya sewa.",
-        adminTitle: "Dasbor Manajemen",
-        adminDesc: "Pengelolaan ketersediaan & jadwal armada.",
-        invoiceTitle: "Cetak Tagihan",
-        invoiceDesc: "Generator invoice pemesanan PDF otomatis.",
-        hotelRoomTitle: "Katalog Kamar",
-        hotelRoomDesc: "Pilihan kamar lengkap dengan harga & fasilitas.",
-        hotelBookingTitle: "Reservasi Online",
-        hotelBookingDesc: "Formulir pemesanan kamar yang interaktif.",
-        hotelGalleryTitle: "Galeri Visual",
-        hotelGalleryDesc: "Foto hotel berkualitas tinggi & imersif.",
-        hotelResponsiveTitle: "Desain Responsif",
-        hotelResponsiveDesc: "Tampilan optimal di semua ukuran layar."
-      },
-      techHeading: "Teknologi yang Digunakan",
-      liveDemo: "Lihat Detail",
-      sourceCode: "Source Code"
+      liveDemo: "Lihat Detail"
     },
     contact: {
-      badge: "Contact Me",
       title: "Mari Terhubung!",
       description: "Punya pertanyaan, saran, atau ingin bekerja sama? Jangan ragu untuk menghubungi saya melalui form atau kontak yang tersedia di bawah ini.",
       getInTouch: "Get In Touch",
-      getInTouchDesc: "Saya selalu terbuka untuk diskusi, peluang kolaborasi, atau proyek menarik lainnya.",
       email: "Email",
       phone: "Telepon / WhatsApp",
       location: "Lokasi",
@@ -142,9 +96,6 @@ export const translations = {
       privacyNotice: "Data yang Anda kirimkan akan saya jaga kerahasiannya.",
       buttonSend: "Kirim Pesan",
       successAlert: "Pesan Anda berhasil dikirim! (Demo)"
-    },
-    footer: {
-      builtWith: "Membangun dengan"
     }
   },
   en: {
@@ -173,11 +124,9 @@ export const translations = {
       role: "FRONTEND DEVELOPER",
       paragraph1: "As an Information Systems graduate and Software Engineer, I focus on turning complex business needs into efficient web applications.",
       paragraph2: "From digitalizing operational workflows to designing frontend architecture, I enjoy the process of building scalable, full-stack solutions from scratch that make a real impact.",
-      downloadCV: "DOWNLOAD CV",
-      altPhoto: "Aldi Kurniawan Profile Photo"
+      downloadCV: "DOWNLOAD CV"
     },
     skills: {
-      title: "Tech Skills",
       subtitle: "Skills & Technologies",
       description: "Here are some of the technologies and tools I have mastered and use in developing digital projects."
     },
@@ -211,66 +160,22 @@ export const translations = {
     },
     portfolio: {
       title: "Featured Work",
-      subtitle: "Featured Work & Skill Implementation",
       description: "Here is the featured project that integrates all of my skills in modern web development.",
-      badge: "Featured Work",
       descriptionProject: "An interactive portfolio website platform designed with high visual aesthetics, a modern responsive layout, and an emphasis on SEO and performance. This project dynamically visualizes personal details, technology skills, and professional history.",
       rentalTitle: "RentalGo - Car Rental App",
-      rentalBadge: "Management System",
       rentalDesc: "A web-based car rental application that simplifies online vehicle selection, calculates rental estimates, handles bookings, and provides a full admin dashboard to manage fleet availability.",
       hotelTitle: "LuxeStay - Hotel Landing Page",
-      hotelBadge: "UI/UX Design",
       hotelDesc: "A modern hotel landing page with an elegant and luxurious design. Showcasing a room catalog, immersive visual gallery, and a responsive interface that delivers a premium experience for visitors.",
       barberTitle: "Titik Fokus - Barbershop Landing Page",
-      barberBadge: "Web Application",
       barberDesc: "A modern landing page for an exclusive barbershop. Features service catalog, online schedule reservation system, customer ratings, and a responsive interface with high visual aesthetics.",
       ramadhanTitle: "Ramadhan App - Prayer & Worship Schedule",
-      ramadhanBadge: "Web Application",
       ramadhanDesc: "An interactive Ramadhan-themed web application providing prayer schedules, imsakiyah, daily worship logging, and responsive features to support worship activities.",
-      features: {
-        responsive: {
-          title: "Responsive Design",
-          desc: "Optimized on mobile, tablet, laptop."
-        },
-        semantic: {
-          title: "Semantic HTML",
-          desc: "SEO-friendly & accessible structure."
-        },
-        scrollspy: {
-          title: "Active Scroll Spy",
-          desc: "Automatic section detection during scroll."
-        },
-        utilityCss: {
-          title: "Utility-First CSS",
-          desc: "Fast & neat styling using Tailwind CSS."
-        },
-        catalogTitle: "Online Catalog",
-        catalogDesc: "Complete fleet selection with class filters.",
-        bookingTitle: "Instant Booking",
-        bookingDesc: "Interactive booking form & rate calculator.",
-        adminTitle: "Management Dashboard",
-        adminDesc: "Vehicle availability & schedule management.",
-        invoiceTitle: "Invoice Printing",
-        invoiceDesc: "Automated booking PDF invoice generator.",
-        hotelRoomTitle: "Room Catalog",
-        hotelRoomDesc: "Complete room selection with pricing & amenities.",
-        hotelBookingTitle: "Online Reservation",
-        hotelBookingDesc: "Interactive room booking form.",
-        hotelGalleryTitle: "Visual Gallery",
-        hotelGalleryDesc: "High-quality & immersive hotel photography.",
-        hotelResponsiveTitle: "Responsive Design",
-        hotelResponsiveDesc: "Optimal display on all screen sizes."
-      },
-      techHeading: "Technologies Used",
-      liveDemo: "View Details",
-      sourceCode: "Source Code"
+      liveDemo: "View Details"
     },
     contact: {
-      badge: "Contact Me",
       title: "Let's Connect!",
       description: "Have questions, suggestions, or want to work together? Feel free to reach out to me using the form or contact details below.",
       getInTouch: "Get In Touch",
-      getInTouchDesc: "I am always open to discussions, collaboration opportunities, or other exciting projects.",
       email: "Email",
       phone: "Phone / WhatsApp",
       location: "Location",
@@ -290,9 +195,6 @@ export const translations = {
       privacyNotice: "Your submitted data will be kept confidential.",
       buttonSend: "Send Message",
       successAlert: "Your message has been sent successfully! (Demo)"
-    },
-    footer: {
-      builtWith: "Built with"
     }
   }
 };

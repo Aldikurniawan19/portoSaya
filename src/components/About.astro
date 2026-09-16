@@ -26,6 +26,10 @@ const t = getTranslations(lang);
                 class="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover/photo:scale-105"
                 widths={[340, 680]}
                 sizes="(max-width: 640px) 340px, 380px"
+                format="webp"
+                quality={85}
+                loading="lazy"
+                decoding="async"
               />
 
               <!-- Dynamic Interactive Spotlight / Sheen Glare -->
@@ -117,6 +121,7 @@ const t = getTranslations(lang);
     if (!card || !wrapper) return;
 
     let isHovered = false;
+    let tiltTicking = false;
 
     card.addEventListener("mouseenter", () => {
       isHovered = true;
@@ -125,25 +130,36 @@ const t = getTranslations(lang);
 
     card.addEventListener("mousemove", (e) => {
       if (!isHovered) return;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      if (!tiltTicking) {
+        requestAnimationFrame(() => {
+          if (!isHovered) {
+            tiltTicking = false;
+            return;
+          }
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
 
-      // Calculate tilt angles
-      const rotateX = ((y - centerY) / centerY) * -10;
-      const rotateY = ((x - centerX) / centerX) * 10;
+          // Calculate tilt angles
+          const rotateX = ((y - centerY) / centerY) * -10;
+          const rotateY = ((x - centerX) / centerX) * 10;
 
-      wrapper.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+          wrapper.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
 
-      if (glare) {
-        glare.style.background = `radial-gradient(circle 260px at ${x}px ${y}px, rgba(255, 255, 255, 0.35), transparent 70%)`;
+          if (glare) {
+            glare.style.background = `radial-gradient(circle 260px at ${x}px ${y}px, rgba(255, 255, 255, 0.35), transparent 70%)`;
+          }
+          tiltTicking = false;
+        });
+        tiltTicking = true;
       }
-    });
+    }, { passive: true });
 
     card.addEventListener("mouseleave", () => {
       isHovered = false;
+      tiltTicking = false;
       wrapper.style.transition = "transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease";
       wrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
     });
