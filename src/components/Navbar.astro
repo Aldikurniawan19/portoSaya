@@ -8,54 +8,54 @@ const t = getTranslations(currentLang);
 
 <!-- NAVBAR CONTAINER -->
 <!-- Mobile: Bottom Floating Dock Bar | Desktop: Top Floating Glass Navbar -->
-<div class="fixed w-full bottom-3 sm:bottom-4 md:bottom-auto md:top-6 left-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-none pb-[env(safe-area-inset-bottom,0)]">
+<div class="fixed w-full bottom-3.5 sm:bottom-5 md:bottom-auto md:top-6 left-0 z-50 flex justify-center px-2 sm:px-4 md:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.5rem)]">
   <nav
-    class="pointer-events-auto w-auto max-w-[calc(100vw-1rem)] md:w-fit bg-white/95 backdrop-blur-xl md:backdrop-blur-md rounded-full border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.12)] md:shadow-lg transition-all duration-300 px-1.5 sm:px-2.5 md:px-4 py-1 sm:py-1.5 md:py-2"
+    class="pointer-events-auto w-auto max-w-[calc(100vw-1rem)] md:w-fit bg-white/95 backdrop-blur-xl md:backdrop-blur-md rounded-full border border-slate-200/90 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.16)] md:shadow-lg transition-all duration-300 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2"
     id="navbar"
   >
     <div class="flex items-center gap-1 sm:gap-1.5 md:gap-2.5">
       <!-- Logo (Visible on Mobile & Desktop) -->
-      <div class="flex items-center justify-center cursor-pointer group h-8 sm:h-9 px-1 shrink-0" id="logo-btn" title="Aldi Kurniawan">
-        <Image src={logoPorto} alt="Logo" class="h-5 sm:h-6 w-auto object-contain" />
+      <div class="flex items-center justify-center cursor-pointer group h-9 sm:h-10 md:h-10 px-1 sm:px-1.5 shrink-0" id="logo-btn" title="Aldi Kurniawan">
+        <Image src={logoPorto} alt="Logo" class="h-5.5 sm:h-6 md:h-6 w-auto object-contain max-h-[24px] sm:max-h-[26px]" />
       </div>
 
       <!-- Left Divider -->
-      <div class="block h-4 sm:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
+      <div class="block h-5 sm:h-6 md:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
 
       <!-- Navigation Links -->
       <div class="flex items-center gap-0.5 sm:gap-1 md:gap-2" id="nav-links-container">
-        <a href="#home" class="nav-link h-8 sm:h-9 w-8 sm:w-9 md:w-auto px-0 md:px-3 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.home}>
-          <i data-lucide="home" class="w-4 h-4 shrink-0"></i>
-          <span class="nav-label text-[11px] sm:text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.home}</span>
+        <a href="#home" class="nav-link h-9 sm:h-10 md:h-10 w-9 sm:w-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.home}>
+          <i data-lucide="home" class="w-[18px] h-[18px] sm:w-5 sm:h-5 md:w-4.5 md:h-4.5 shrink-0"></i>
+          <span class="nav-label text-xs sm:text-xs md:text-sm font-bold ml-1.5 sm:ml-2 whitespace-nowrap">{t.navbar.home}</span>
         </a>
-        <a href="#about" class="nav-link hidden md:flex h-8 sm:h-9 w-auto px-3 items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.about}>
-          <i data-lucide="user" class="w-4 h-4 shrink-0"></i>
-          <span class="nav-label text-[11px] sm:text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.about}</span>
+        <a href="#about" class="nav-link hidden md:flex h-9 sm:h-10 md:h-10 w-auto px-3.5 items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.about}>
+          <i data-lucide="user" class="w-[18px] h-[18px] sm:w-5 sm:h-5 md:w-4.5 md:h-4.5 shrink-0"></i>
+          <span class="nav-label text-xs sm:text-xs md:text-sm font-bold ml-1.5 sm:ml-2 whitespace-nowrap">{t.navbar.about}</span>
         </a>
-        <a href="#experience" class="nav-link h-8 sm:h-9 w-8 sm:w-9 md:w-auto px-0 md:px-3 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.experience}>
-          <i data-lucide="briefcase" class="w-4 h-4 shrink-0"></i>
-          <span class="nav-label text-[11px] sm:text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.experience}</span>
+        <a href="#experience" class="nav-link h-9 sm:h-10 md:h-10 w-9 sm:w-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.experience}>
+          <i data-lucide="briefcase" class="w-[18px] h-[18px] sm:w-5 sm:h-5 md:w-4.5 md:h-4.5 shrink-0"></i>
+          <span class="nav-label text-xs sm:text-xs md:text-sm font-bold ml-1.5 sm:ml-2 whitespace-nowrap">{t.navbar.experience}</span>
         </a>
-        <a href="#portfolio" class="nav-link h-8 sm:h-9 w-8 sm:w-9 md:w-auto px-0 md:px-3 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.portfolio}>
-          <i data-lucide="folder" class="w-4 h-4 shrink-0"></i>
-          <span class="nav-label text-[11px] sm:text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.portfolio}</span>
+        <a href="#portfolio" class="nav-link h-9 sm:h-10 md:h-10 w-9 sm:w-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.portfolio}>
+          <i data-lucide="folder" class="w-[18px] h-[18px] sm:w-5 sm:h-5 md:w-4.5 md:h-4.5 shrink-0"></i>
+          <span class="nav-label text-xs sm:text-xs md:text-sm font-bold ml-1.5 sm:ml-2 whitespace-nowrap">{t.navbar.portfolio}</span>
         </a>
-        <a href="#contact" class="nav-link h-8 sm:h-9 w-8 sm:w-9 md:w-auto px-0 md:px-3 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.contact}>
-          <i data-lucide="mail" class="w-4 h-4 shrink-0"></i>
-          <span class="nav-label text-[11px] sm:text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.contact}</span>
+        <a href="#contact" class="nav-link h-9 sm:h-10 md:h-10 w-9 sm:w-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200" title={t.navbar.contact}>
+          <i data-lucide="mail" class="w-[18px] h-[18px] sm:w-5 sm:h-5 md:w-4.5 md:h-4.5 shrink-0"></i>
+          <span class="nav-label text-xs sm:text-xs md:text-sm font-bold ml-1.5 sm:ml-2 whitespace-nowrap">{t.navbar.contact}</span>
         </a>
       </div>
 
       <!-- Right Divider -->
-      <div class="block h-4 sm:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
+      <div class="block h-5 sm:h-6 md:h-5 w-[1px] bg-slate-200/90 shrink-0"></div>
 
       <!-- Language Switcher Pill Button -->
       <a
         href={currentLang === 'id' ? '/en/' : '/'}
-        class="btn-3d-light h-8 sm:h-9 !px-2 sm:!px-2.5 md:!px-3 !text-[11px] sm:!text-xs !font-bold transition-all duration-200 group shrink-0"
+        class="btn-3d-light h-9 sm:h-10 md:h-10 !px-2.5 sm:!px-3 md:!px-3.5 !text-xs sm:!text-xs md:!text-sm !font-bold transition-all duration-200 group shrink-0"
         title={currentLang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
       >
-        <i data-lucide="globe" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 group-hover:rotate-12 transition-transform duration-300"></i>
+        <i data-lucide="globe" class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-blue-600 group-hover:rotate-12 transition-transform duration-300"></i>
         <span class="font-extrabold tracking-wide uppercase">{currentLang === 'id' ? 'ID' : 'EN'}</span>
       </a>
     </div>
@@ -150,8 +150,8 @@ const t = getTranslations(currentLang);
   /* Active nav link (Mobile & Desktop): Display BOTH icon AND menu name with 3D convex rounded style */
   .nav-link.active {
     width: auto !important;
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
     background: linear-gradient(180deg, #4d8df7 0%, #2b6cef 45%, #1d4ed8 100%) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
@@ -164,8 +164,8 @@ const t = getTranslations(currentLang);
 
   @media (min-width: 640px) {
     .nav-link.active {
-      padding-left: 0.875rem !important;
-      padding-right: 0.875rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
   }
 
