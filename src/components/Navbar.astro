@@ -7,59 +7,64 @@ const t = getTranslations(currentLang);
 ---
 
 <!-- NAVBAR CONTAINER -->
-<!-- Mobile: Fixed Bottom Floating Icon Dock | Desktop: Top Floating Glass Navbar -->
-<div class="fixed w-full bottom-4 sm:bottom-5 md:bottom-auto md:top-6 left-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.5rem)]">
+<!-- Mobile/Tablet (<1024px): Fixed Bottom Floating Icon Dock | Desktop (>=1024px): Top Floating Glass Navbar -->
+<div class="fixed w-full bottom-4 sm:bottom-5 lg:bottom-auto lg:top-6 left-0 z-50 flex justify-center px-3 sm:px-4 lg:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.75rem)]">
   <nav
-    class="nav-3d-shell pointer-events-auto w-[92vw] max-w-[420px] md:w-fit rounded-full transition-all duration-300 px-3 sm:px-4 md:px-4 py-2 sm:py-2.5 md:py-2"
+    class="nav-3d-shell pointer-events-auto w-[92vw] max-w-[420px] lg:w-auto lg:max-w-none rounded-full transition-all duration-300 px-2.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-2"
     id="navbar"
   >
-    <div class="flex items-center justify-between md:justify-start w-full md:w-auto gap-1.5 sm:gap-2">
-      <!-- Logo (Visible ONLY on Desktop, Hidden on Mobile Bottom Navbar) -->
-      <div class="nav-logo-3d hidden md:flex items-center justify-center cursor-pointer group h-10 px-3 shrink-0 rounded-full transition-all duration-300 hover:scale-105" id="logo-btn" title="Aldi Kurniawan">
-        <Image src={logoPorto} alt="Logo" class="h-6 sm:h-7 w-auto object-contain" />
+    <div class="flex items-center justify-between lg:justify-start w-full lg:w-auto gap-1 sm:gap-1.5 lg:gap-2">
+      <!-- Logo (Visible ONLY on Desktop, Hidden on Mobile/Tablet Bottom Navbar) -->
+      <div class="nav-logo-3d hidden lg:flex items-center justify-center cursor-pointer group h-10 px-3 shrink-0 rounded-full transition-all duration-300 hover:scale-105" id="logo-btn" title="Aldi Kurniawan">
+        <Image src={logoPorto} alt="Logo" class="h-6 lg:h-7 w-auto object-contain" />
       </div>
 
       <!-- Left Divider (Visible ONLY on Desktop) -->
-      <div class="nav-divider hidden md:block h-5 w-[1.5px] shrink-0"></div>
+      <div class="nav-divider hidden lg:block h-5 w-[1.5px] shrink-0"></div>
 
       <!-- Navigation Links (Evenly spaced & Large Touch Size on Mobile, Icon Only) -->
-      <div class="flex items-center justify-between md:justify-start flex-1 md:flex-initial gap-1 sm:gap-1.5" id="nav-links-container">
-        <a href="#home" class="nav-link h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.home}>
-          <i data-lucide="home" class="w-5.5 h-5.5 md:w-4.5 md:h-4.5 shrink-0"></i>
-          <span class="nav-label hidden md:inline text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.home}</span>
+      <div class="flex items-center justify-between lg:justify-start flex-1 lg:flex-initial gap-1 sm:gap-1.5" id="nav-links-container">
+        <a href="#home" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.home}>
+          <i data-lucide="home" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
+          <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.home}</span>
         </a>
-        <a href="#about" class="nav-link h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.about}>
-          <i data-lucide="user" class="w-5.5 h-5.5 md:w-4.5 md:h-4.5 shrink-0"></i>
-          <span class="nav-label hidden md:inline text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.about}</span>
+        <a href="#about" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.about}>
+          <i data-lucide="user" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
+          <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.about}</span>
         </a>
-        <a href="#experience" class="nav-link h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.experience}>
-          <i data-lucide="briefcase" class="w-5.5 h-5.5 md:w-4.5 md:h-4.5 shrink-0"></i>
-          <span class="nav-label hidden md:inline text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.experience}</span>
+        <a href="#experience" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.experience}>
+          <i data-lucide="briefcase" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
+          <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.experience}</span>
         </a>
-        <a href="#portfolio" class="nav-link h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.portfolio}>
-          <i data-lucide="folder" class="w-5.5 h-5.5 md:w-4.5 md:h-4.5 shrink-0"></i>
-          <span class="nav-label hidden md:inline text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.portfolio}</span>
+        <a href="#portfolio" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.portfolio}>
+          <i data-lucide="folder" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
+          <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.portfolio}</span>
         </a>
-        <a href="#contact" class="nav-link h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto px-0 md:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.contact}>
-          <i data-lucide="mail" class="w-5.5 h-5.5 md:w-4.5 md:h-4.5 shrink-0"></i>
-          <span class="nav-label hidden md:inline text-xs md:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.contact}</span>
+        <a href="#contact" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.contact}>
+          <i data-lucide="mail" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
+          <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.contact}</span>
         </a>
       </div>
 
       <!-- Right Divider -->
-      <div class="nav-divider block h-6 sm:h-7 md:h-5 w-[1.5px] shrink-0 mx-0.5 sm:mx-1"></div>
+      <div class="nav-divider block h-6 sm:h-7 lg:h-5 w-[1.5px] shrink-0 mx-0.5 sm:mx-1"></div>
 
-      <!-- Language Switcher Button (Fixed Circular Button on Mobile) -->
+      <!-- Language Switcher Button (Globe Icon with Special Badge on Mobile/Tablet Dock, Globe + Text on Desktop) -->
       <a
         href={currentLang === 'id' ? '/en/' : '/'}
-        class="btn-3d-light h-11 w-11 sm:h-12 sm:w-12 md:h-10 md:w-auto !p-0 md:!px-3.5 !text-xs md:!text-sm !font-bold transition-all duration-200 group shrink-0 rounded-full flex items-center justify-center"
-        title={currentLang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
+        class="btn-3d-light relative h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto !p-0 lg:!px-3.5 !text-xs lg:!text-sm !font-bold transition-all duration-200 group shrink-0 rounded-full flex items-center justify-center gap-1.5"
+        title={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
+        aria-label={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
       >
-        <span class="font-extrabold tracking-wide uppercase text-xs text-blue-600 md:hidden">{currentLang === 'id' ? 'ID' : 'EN'}</span>
-        <div class="hidden md:flex items-center gap-1.5">
-          <i data-lucide="globe" class="w-4 h-4 text-blue-600 group-hover:rotate-12 transition-transform duration-300"></i>
-          <span class="font-extrabold tracking-wide uppercase">{currentLang === 'id' ? 'ID' : 'EN'}</span>
-        </div>
+        <i data-lucide="globe" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 text-blue-600 group-hover:rotate-12 transition-transform duration-300 shrink-0"></i>
+        
+        <!-- Deskripsi Khusus (Badge Indikator Bahasa) untuk Mobile Bottombar -->
+        <span class="absolute -top-1 -right-1 flex lg:hidden items-center justify-center bg-blue-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded-full shadow-sm border border-white leading-none tracking-tight">
+          {currentLang === 'id' ? 'ID' : 'EN'}
+        </span>
+
+        <!-- Label Teks untuk Desktop Navbar -->
+        <span class="font-extrabold tracking-wide uppercase hidden lg:inline">{currentLang === 'id' ? 'ID' : 'EN'}</span>
       </a>
     </div>
   </nav>

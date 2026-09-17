@@ -28,11 +28,12 @@ export const translations = {
       downloadCV: "UNDUH CV"
     },
     skills: {
+      title: "TEKNOLOGI UTAMA YANG SERING DIGUNAKAN",
       subtitle: "Keahlian & Teknologi",
       description: "Berikut adalah beberapa teknologi dan alat yang saya kuasai dan gunakan dalam mengembangkan proyek digital."
     },
     experience: {
-      title: "Work Experience",
+      title: "Pengalaman Kerja",
       subtitle: "Riwayat Profesional",
       description: "Perjalanan karir dan kontribusi saya di dunia pengembangan perangkat lunak dan teknologi informasi.",
       items: [
@@ -127,6 +128,7 @@ export const translations = {
       downloadCV: "DOWNLOAD CV"
     },
     skills: {
+      title: "CORE TECHNOLOGIES FREQUENTLY USED",
       subtitle: "Skills & Technologies",
       description: "Here are some of the technologies and tools I have mastered and use in developing digital projects."
     },
