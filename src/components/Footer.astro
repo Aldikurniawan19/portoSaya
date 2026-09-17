@@ -46,8 +46,15 @@ const t = getTranslations(lang);
     </div>
   </div>
 
-  <!-- Crystal Glass Overlay Layer in Footer Background (Glass Lebih Tebal Tanpa Blur) -->
-  <div class="absolute inset-0 bg-slate-950/[0.18] -z-10 pointer-events-none"></div>
+  <!-- REALISTIC DARK GLASS TEXTURE & SPECULAR SHEEN IN FOOTER -->
+  <!-- 1. Dark Glass Sheen (Pantulan Cahaya Diagonal Kaca Gelap) -->
+  <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,rgba(15,23,42,0.18)_35%,rgba(255,255,255,0.04)_65%,rgba(15,23,42,0.22)_100%)] -z-10 pointer-events-none"></div>
+
+  <!-- 2. Micro Fine Glass Grain Texture -->
+  <div
+    class="absolute inset-0 opacity-[0.038] mix-blend-overlay -z-10 pointer-events-none"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E'); background-repeat: repeat;"
+  ></div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div
