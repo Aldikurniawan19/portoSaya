@@ -16,35 +16,38 @@ const t = getTranslations(lang);
 
   <!-- Background Grid Pattern -->
   <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10 contain-paint pointer-events-none">
-    <!-- Horizontal Beams (GPU Accelerated) -->
+    <!-- Horizontal Beams (Thicker Laser Beams) -->
     <div
-      class="absolute h-[2.5px] w-[150px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent will-change-transform"
+      class="absolute h-[4px] w-[220px] rounded-full bg-gradient-to-r from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
       style="top: 40px; animation: beam-h 7s linear infinite; animation-delay: 1s;"
     >
     </div>
     <div
-      class="hidden sm:block absolute h-[2.5px] w-[150px] bg-gradient-to-l from-transparent via-blue-500/80 to-transparent will-change-transform"
+      class="hidden sm:block absolute h-[4px] w-[220px] rounded-full bg-gradient-to-l from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
       style="top: 120px; animation: beam-h-reverse 9s linear infinite; animation-delay: 3s;"
     >
     </div>
 
-    <!-- Vertical Beams (GPU Accelerated) -->
+    <!-- Vertical Beams (Thicker Laser Beams) -->
     <div
-      class="absolute w-[2.5px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent will-change-transform"
+      class="absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
       style="left: 160px; animation: beam-v 8s linear infinite; animation-delay: 2s;"
     >
     </div>
     <div
-      class="hidden sm:block absolute w-[2.5px] h-[150px] bg-gradient-to-t from-transparent via-blue-500/80 to-transparent will-change-transform"
+      class="hidden sm:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-t from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
       style="left: 400px; animation: beam-v-reverse 10s linear infinite; animation-delay: 4s;"
     >
     </div>
     <div
-      class="hidden md:block absolute w-[2.5px] h-[150px] bg-gradient-to-b from-transparent via-blue-500/80 to-transparent will-change-transform"
+      class="hidden md:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
       style="left: 720px; animation: beam-v 9s linear infinite; animation-delay: 1s;"
     >
     </div>
   </div>
+
+  <!-- Crystal Glass Overlay Layer in Footer Background (Glass Lebih Tebal Tanpa Blur) -->
+  <div class="absolute inset-0 bg-slate-950/[0.18] -z-10 pointer-events-none"></div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div
