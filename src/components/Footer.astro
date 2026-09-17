@@ -16,32 +16,32 @@ const t = getTranslations(lang);
 
   <!-- Background Grid Pattern -->
   <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10 contain-paint pointer-events-none">
-    <!-- Horizontal Beams (Thicker Laser Beams) -->
+    <!-- Horizontal Beams (GPU Accelerated on Mobile & Desktop) -->
     <div
-      class="absolute h-[4px] w-[220px] rounded-full bg-gradient-to-r from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
+      class="absolute h-[3.5px] sm:h-[4px] w-[180px] sm:w-[220px] rounded-full bg-gradient-to-r from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
       style="top: 40px; animation: beam-h 7s linear infinite; animation-delay: 1s;"
     >
     </div>
     <div
-      class="hidden sm:block absolute h-[4px] w-[220px] rounded-full bg-gradient-to-l from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
+      class="absolute h-[3.5px] sm:h-[4px] w-[180px] sm:w-[220px] rounded-full bg-gradient-to-l from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
       style="top: 120px; animation: beam-h-reverse 9s linear infinite; animation-delay: 3s;"
     >
     </div>
 
-    <!-- Vertical Beams (Thicker Laser Beams) -->
+    <!-- Vertical Beams (GPU Accelerated on Mobile & Desktop) -->
     <div
-      class="absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
-      style="left: 160px; animation: beam-v 8s linear infinite; animation-delay: 2s;"
+      class="absolute w-[3.5px] sm:w-[4px] h-[160px] sm:h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
+      style="left: 15vw; animation: beam-v 8s linear infinite; animation-delay: 2s;"
     >
     </div>
     <div
-      class="hidden sm:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-t from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
-      style="left: 400px; animation: beam-v-reverse 10s linear infinite; animation-delay: 4s;"
+      class="absolute w-[3.5px] sm:w-[4px] h-[160px] sm:h-[220px] rounded-full bg-gradient-to-t from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
+      style="left: 55vw; animation: beam-v-reverse 10s linear infinite; animation-delay: 4s;"
     >
     </div>
     <div
-      class="hidden md:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.65)] will-change-transform"
-      style="left: 720px; animation: beam-v 9s linear infinite; animation-delay: 1s;"
+      class="hidden md:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
+      style="left: 85vw; animation: beam-v 9s linear infinite; animation-delay: 1s;"
     >
     </div>
   </div>
