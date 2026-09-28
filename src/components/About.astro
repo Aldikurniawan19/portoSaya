@@ -11,35 +11,113 @@ const t = getTranslations(lang);
 <section id="about" class="min-h-screen flex items-center relative py-24 overflow-hidden bg-transparent">
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <!-- Foto Profil (Kiri, 5 kolom - Clean 3D Photo Display) -->
-      <div class="lg:col-span-5 relative flex justify-center items-center w-full py-4" data-aos="zoom-in" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-        <!-- Interactive 3D Perspective Photo Card Container -->
-        <div id="about-photo-card" class="relative group/photo w-full max-w-[320px] sm:max-w-[360px] select-none perspective-[1000px] cursor-pointer z-10">
-          <!-- Outer 3D Convex Frame Shell with Dynamic Tilt -->
-          <div class="photo-3d-wrapper relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white/95 via-slate-100/90 to-slate-200/95 border border-white/90 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.15),inset_0_2.5px_3px_0_rgba(255,255,255,1),inset_0_-2px_4px_0_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 transform-gpu group-hover/photo:shadow-[0_25px_60px_-10px_rgba(37,99,235,0.25)]">
+      <!-- Foto Profil (Kiri, 5 kolom - Wall-Nailed Hanging Frame with Tilt) -->
+      <div class="lg:col-span-5 relative flex justify-center items-center w-full py-6" data-aos="zoom-in" data-aos-duration="800" data-aos-easing="ease-out-cubic">
+        <!-- Wall Hanging Assembly Wrapper -->
+        <div class="wall-hanging-assembly relative flex flex-col items-center w-full max-w-[310px] sm:max-w-[350px] select-none">
+          
+          <!-- 1. The 3D Wall Nail (Paku Dinding Realistis) -->
+          <div class="wall-nail-anchor relative z-30 flex items-center justify-center -mb-2 pointer-events-none">
+            <!-- Wall Hole Plaster Shadow -->
+            <div class="absolute w-4 h-4 rounded-full bg-slate-950/40 blur-[1.5px] translate-y-1 translate-x-0.5 pointer-events-none"></div>
             
-            <!-- Photo Inner Container -->
-            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-slate-900 to-blue-950 shadow-inner">
-              <Image
-                src={profileImage}
-                alt={t.about.name}
-                class="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover/photo:scale-105"
-                widths={[340, 680]}
-                sizes="(max-width: 640px) 340px, 380px"
-                format="webp"
-                quality={85}
-                loading="lazy"
-                decoding="async"
-              />
+            <!-- Metallic 3D Nail Head -->
+            <div class="nail-head-3d w-7 h-7 rounded-full relative flex items-center justify-center shadow-[0_4px_10px_rgba(15,23,42,0.45),0_1.5px_2px_rgba(0,0,0,0.5)]">
+              <!-- Inner metallic bevel ring -->
+              <div class="w-4 h-4 rounded-full bg-gradient-to-br from-slate-200 via-slate-400 to-slate-700 shadow-inner flex items-center justify-center relative overflow-hidden">
+                <!-- Center nail dimple/slot -->
+                <div class="w-1.5 h-1.5 rounded-full bg-slate-900 shadow-[inset_0_1px_1px_rgba(0,0,0,0.9),0_0.5px_0_rgba(255,255,255,0.4)]"></div>
+              </div>
+              <!-- Specular bright highlight reflection -->
+              <div class="absolute top-1 left-1.5 w-2 h-1 rounded-full bg-white/90 blur-[0.4px]"></div>
+            </div>
 
-              <!-- Dynamic Interactive Spotlight / Sheen Glare -->
-              <div id="photo-glare" class="absolute inset-0 pointer-events-none opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            <!-- Cast Shadow of Nail onto Wall (Diagonal Bottom-Right) -->
+            <div class="nail-cast-shadow absolute top-3.5 left-4 w-6 h-3 bg-slate-950/45 rounded-full blur-[2.5px] -rotate-12 pointer-events-none"></div>
+          </div>
 
-              <!-- Subtle Gradient Vignette at bottom -->
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 group-hover/photo:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
+          <!-- 2. Hanging Frame Container (Hangs from Nail and Tilts) -->
+          <div id="about-photo-card" class="hanging-frame-root relative group/photo w-full cursor-pointer z-10 pt-1">
+            
+            <!-- Hanging Wire (Kawat / Tali Penggantung dari Paku) -->
+            <div class="hanging-wire-wrapper relative w-full px-6 z-20 -mb-3 pointer-events-none flex justify-center">
+              <svg class="w-52 sm:w-60 h-12 overflow-visible" viewBox="0 0 240 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Wire Wall Shadow -->
+                <path d="M120 2 L26 44 M120 2 L214 44" stroke="rgba(15, 23, 42, 0.25)" stroke-width="3" stroke-linecap="round" class="translate-y-2 translate-x-1.5 blur-[1.5px]" />
+                <!-- Dark Wire Core -->
+                <path d="M120 2 L26 44" stroke="#334155" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M120 2 L214 44" stroke="#334155" stroke-width="2.2" stroke-linecap="round" />
+                <!-- Metallic Wire Highlight -->
+                <path d="M120 2 L26 44" stroke="url(#wireGradL)" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M120 2 L214 44" stroke="url(#wireGradR)" stroke-width="1.6" stroke-linecap="round" />
+                <!-- Specular Fine Streak -->
+                <path d="M120 2 L26 44 M120 2 L214 44" stroke="rgba(255,255,255,0.45)" stroke-width="0.75" stroke-linecap="round" />
+                <defs>
+                  <linearGradient id="wireGradL" x1="120" y1="2" x2="26" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#94a3b8" />
+                    <stop offset="0.4" stop-color="#e2e8f0" />
+                    <stop offset="0.8" stop-color="#64748b" />
+                    <stop offset="1" stop-color="#475569" />
+                  </linearGradient>
+                  <linearGradient id="wireGradR" x1="120" y1="2" x2="214" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#94a3b8" />
+                    <stop offset="0.4" stop-color="#e2e8f0" />
+                    <stop offset="0.8" stop-color="#64748b" />
+                    <stop offset="1" stop-color="#475569" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
 
-              <!-- Top Gloss Highlight Streak -->
-              <div class="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
+            <!-- Outer Picture Frame Shell (Tilted Gallery Frame) -->
+            <div class="photo-frame-body relative rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-white via-slate-50 to-slate-200/90 border border-white/95 shadow-nailed-frame transition-all duration-300 transform-gpu group-hover/photo:shadow-nailed-frame-hover">
+              
+              <!-- Metallic Mounting D-Rings on top of frame -->
+              <div class="absolute -top-2 left-6 sm:left-7 z-20 flex flex-col items-center pointer-events-none">
+                <div class="w-3.5 h-3.5 rounded-t-full border-2 border-slate-500 bg-slate-700/20 shadow-sm"></div>
+                <div class="w-2.5 h-1.5 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-500 rounded-sm shadow-xs -mt-0.5"></div>
+              </div>
+              <div class="absolute -top-2 right-6 sm:right-7 z-20 flex flex-col items-center pointer-events-none">
+                <div class="w-3.5 h-3.5 rounded-t-full border-2 border-slate-500 bg-slate-700/20 shadow-sm"></div>
+                <div class="w-2.5 h-1.5 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-500 rounded-sm shadow-xs -mt-0.5"></div>
+              </div>
+
+              <!-- Inner Matting / Passe-Partout Bevel Border -->
+              <div class="relative rounded-2xl p-1 bg-white shadow-[inset_0_1.5px_2px_rgba(255,255,255,1),inset_0_-1px_2px_rgba(0,0,0,0.06),0_1px_3px_rgba(15,23,42,0.08)] border border-slate-100">
+                
+                <!-- Inner Photo Container -->
+                <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-slate-900 to-blue-950 shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)]">
+                  <Image
+                    src={profileImage}
+                    alt={t.about.name}
+                    class="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover/photo:scale-105"
+                    widths={[340, 680]}
+                    sizes="(max-width: 640px) 340px, 380px"
+                    format="webp"
+                    quality={85}
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <!-- Dynamic Interactive Spotlight / Sheen Glare -->
+                  <div id="photo-glare" class="absolute inset-0 pointer-events-none opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+
+                  <!-- Diagonal Glass Sheen Reflection -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.08] to-white/[0.22] pointer-events-none"></div>
+
+                  <!-- Subtle Gradient Vignette at bottom -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-70 group-hover/photo:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
+
+                  <!-- Top Gloss Highlight Streak -->
+                  <div class="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/25 to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+
+              <!-- Decorative Brass / Silver Frame Corner Accents -->
+              <div class="absolute top-2.5 left-2.5 w-2.5 h-2.5 border-t-2 border-l-2 border-slate-400/50 rounded-tl-sm pointer-events-none"></div>
+              <div class="absolute top-2.5 right-2.5 w-2.5 h-2.5 border-t-2 border-r-2 border-slate-400/50 rounded-tr-sm pointer-events-none"></div>
+              <div class="absolute bottom-2.5 left-2.5 w-2.5 h-2.5 border-b-2 border-l-2 border-slate-400/50 rounded-bl-sm pointer-events-none"></div>
+              <div class="absolute bottom-2.5 right-2.5 w-2.5 h-2.5 border-b-2 border-r-2 border-slate-400/50 rounded-br-sm pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -110,22 +188,28 @@ const t = getTranslations(lang);
     observer.observe(container);
   }
 
-  // 3D Parallax Tilt & Light Glare Script (Desktop only)
+  // 3D Parallax Tilt, Slight Slanted Angle & Light Glare Script
   function initAboutPhotoTilt() {
-    // Only enable on desktop pointer devices
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-
     const card = document.getElementById("about-photo-card");
-    const wrapper = card?.querySelector(".photo-3d-wrapper") as HTMLElement | null;
     const glare = document.getElementById("photo-glare");
-    if (!card || !wrapper) return;
+    if (!card) return;
+
+    // Base resting tilt angle (mereng/miring natural hanging angle)
+    const BASE_TILT = -3.8;
+
+    // Initial transform setup
+    card.style.transformOrigin = "50% 0px";
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(${BASE_TILT}deg) scale3d(1, 1, 1)`;
+
+    // Only enable mouse interactive tilt on desktop pointer devices
+    if (!window.matchMedia('(pointer: fine)').matches) return;
 
     let isHovered = false;
     let tiltTicking = false;
 
     card.addEventListener("mouseenter", () => {
       isHovered = true;
-      wrapper.style.transition = "transform 0.15s ease-out, box-shadow 0.3s ease";
+      card.style.transition = "transform 0.12s ease-out, box-shadow 0.3s ease";
     });
 
     card.addEventListener("mousemove", (e) => {
@@ -142,14 +226,15 @@ const t = getTranslations(lang);
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
 
-          // Calculate tilt angles
-          const rotateX = ((y - centerY) / centerY) * -10;
-          const rotateY = ((x - centerX) / centerX) * 10;
+          // Calculate tilt angles relative to hanging anchor
+          const rotateX = ((y - centerY) / centerY) * -7;
+          const rotateY = ((x - centerX) / centerX) * 7;
+          const rotateZ = BASE_TILT + ((x - centerX) / centerX) * 2.2;
 
-          wrapper.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) rotateZ(${rotateZ.toFixed(2)}deg) scale3d(1.025, 1.025, 1.025)`;
 
           if (glare) {
-            glare.style.background = `radial-gradient(circle 260px at ${x}px ${y}px, rgba(255, 255, 255, 0.35), transparent 70%)`;
+            glare.style.background = `radial-gradient(circle 280px at ${x}px ${y}px, rgba(255, 255, 255, 0.35), transparent 70%)`;
           }
           tiltTicking = false;
         });
@@ -160,8 +245,8 @@ const t = getTranslations(lang);
     card.addEventListener("mouseleave", () => {
       isHovered = false;
       tiltTicking = false;
-      wrapper.style.transition = "transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease";
-      wrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+      card.style.transition = "transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease";
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(${BASE_TILT}deg) scale3d(1, 1, 1)`;
     });
   }
 
@@ -176,6 +261,42 @@ const t = getTranslations(lang);
 </script>
 
 <style is:global>
+  /* ========================================================
+     WALL NAILED & TILTED PHOTO FRAME STYLES
+     ======================================================== */
+  .hanging-frame-root {
+    transform-origin: 50% 0px;
+    transform: perspective(1000px) rotateZ(-3.8deg);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+  }
+
+  /* 3D Metallic Nail Head */
+  .nail-head-3d {
+    background: radial-gradient(circle at 35% 30%, #f8fafc 0%, #cbd5e1 35%, #64748b 70%, #334155 100%);
+    box-shadow: 
+      0 4px 8px -1px rgba(15, 23, 42, 0.45),
+      0 1.5px 2px 0 rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1.5px 2px 0 rgba(15, 23, 42, 0.6);
+  }
+
+  /* Realistic Wall Cast Shadow for Nailed Hanging Frame */
+  .shadow-nailed-frame {
+    box-shadow: 
+      14px 28px 45px -8px rgba(15, 23, 42, 0.22),
+      4px 10px 18px -4px rgba(15, 23, 42, 0.12),
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 4px 0 rgba(0, 0, 0, 0.07);
+  }
+
+  .shadow-nailed-frame-hover {
+    box-shadow: 
+      18px 36px 55px -10px rgba(37, 99, 235, 0.25),
+      6px 16px 24px -4px rgba(15, 23, 42, 0.16),
+      inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 4px 0 rgba(0, 0, 0, 0.07);
+  }
+
   /* ========================================================
      3D TIMBUL FONT EFFECT (ABOUT SECTION - PURE TEXT NO BG)
      ======================================================== */
