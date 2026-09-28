@@ -51,21 +51,61 @@ const t = getTranslations(lang);
       </div>
     </div>
 
-    <!-- Right Content: Hero Image with Abstract Blue Background (Hidden on Mobile) -->
-    <div class="hidden lg:flex order-1 lg:order-2 relative justify-center" data-aos="zoom-in" data-aos-duration="600">
-      <!-- Background Glow -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
+    <!-- Right Content: Hero Image (Desktop Only) with Floating 3D Developer Badges (Mobile & Desktop) -->
+    <div class="contents lg:flex lg:order-2 relative justify-center" data-aos="zoom-in" data-aos-duration="600">
+      <!-- Background Glow (Desktop only) -->
+      <div class="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
 
-      <!-- Main Image Container (Lifted up slightly) -->
-      <div class="relative w-full max-w-[360px] aspect-[4/5] flex items-end justify-center overflow-visible -translate-y-6 lg:-translate-y-10">
-        <!-- Abstract Oval Background Shape (Blue organic shape) -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/15"></div>
+      <!-- Main Container (Absolute top-right on mobile, flex-centered on desktop) -->
+      <div class="absolute top-16 sm:top-20 right-3 sm:right-6 lg:relative lg:top-auto lg:right-auto z-20 w-44 sm:w-52 lg:w-full lg:max-w-[360px] h-36 sm:h-40 lg:h-auto lg:aspect-[4/5] flex lg:items-end lg:justify-center overflow-visible pointer-events-none select-none lg:-translate-y-10">
+        <!-- Abstract Oval Background Shape (Blue organic shape - Desktop only) -->
+        <div class="hidden lg:block absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/15"></div>
 
-        <!-- Person Image Cutout -->
+        <!-- ================= FLOATING 3D DEVELOPER BUTTONS (Mobile & Desktop) ================= -->
+        
+        <!-- 1. 3D Button: </> (Primary 3D Blue - Melayang di Kiri Atas) -->
+        <div class="absolute top-0 left-0 lg:-top-7 lg:-left-7 z-30 pointer-events-auto select-none" data-aos="fade-down" data-aos-delay="200">
+          <div class="dev-btn-3d dev-btn-3d-blue dev-float-1 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-xs sm:text-sm tracking-wider cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Code">
+            <span class="text-white drop-shadow-[0_1px_2px_rgba(10,35,90,0.6)]">&lt;/&gt;</span>
+          </div>
+        </div>
+
+        <!-- 2. 3D Button: // (3D Emerald - Melayang di Kanan Atas) -->
+        <div class="absolute top-1 right-0 lg:-top-4 lg:-right-5 z-30 pointer-events-auto select-none" data-aos="fade-down" data-aos-delay="300">
+          <div class="dev-btn-3d dev-btn-3d-emerald dev-float-4 px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-[11px] sm:text-sm tracking-wide cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Comment">
+            <span class="text-emerald-700 drop-shadow-xs">//</span>
+          </div>
+        </div>
+
+        <!-- 3. 3D Button: >_ (3D Dark Terminal - Melayang di Kiri Tengah) -->
+        <div class="absolute top-14 left-1 lg:top-[38%] lg:-left-9 z-30 pointer-events-auto select-none" data-aos="fade-right" data-aos-delay="400">
+          <div class="dev-btn-3d dev-btn-3d-dark dev-float-3 px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-[11px] sm:text-xs tracking-wide cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Terminal">
+            <span class="text-emerald-400 drop-shadow-[0_0_6px_rgba(52,211,153,0.7)]">&gt;_</span>
+          </div>
+        </div>
+
+        <!-- 4. 3D Button: { } (3D Light Convex - Melayang di Kanan Tengah) -->
+        <div class="absolute top-14 right-1 lg:top-[34%] lg:-right-8 z-30 pointer-events-auto select-none" data-aos="fade-left" data-aos-delay="500">
+          <div class="dev-btn-3d dev-btn-3d-light dev-float-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-xs sm:text-sm tracking-wide cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Brackets">
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-extrabold">{`{ }`}</span>
+          </div>
+        </div>
+
+        <!-- 5. 3D Button: git:main (3D Indigo Micro Badge - Melayang di Bawah Kanan) -->
+        <div class="absolute top-28 right-4 lg:top-auto lg:bottom-[10%] lg:-right-6 z-30 pointer-events-auto select-none" data-aos="fade-up" data-aos-delay="600">
+          <div class="dev-btn-3d dev-btn-3d-indigo dev-float-5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-[10px] sm:text-xs tracking-wider cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Git Branch">
+            <span class="text-indigo-700 drop-shadow-xs">git:main</span>
+          </div>
+        </div>
+
+        <!-- Ambient Floating Accent Glow Particle -->
+        <div class="absolute top-8 left-14 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-sky-400/70 blur-[1px] dev-float-2 pointer-events-none"></div>
+
+        <!-- Person Image Cutout (Desktop only) -->
         <Image
           src={imgHero}
           alt="Aldi Kurniawan"
-          class="w-full h-auto object-contain z-10 drop-shadow-2xl"
+          class="hidden lg:block w-full h-auto object-contain z-10 drop-shadow-2xl"
           widths={[360, 720]}
           sizes="(max-width: 1024px) 100vw, 360px"
           format="webp"
@@ -80,6 +120,153 @@ const t = getTranslations(lang);
 </section>
 
 <style is:global>
+  /* ========================================================
+     SCATTERED 3D DEVELOPER FLOATING TACTILE BUTTONS & CARD
+     ======================================================== */
+  @keyframes card-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(0.8deg);
+    }
+  }
+
+  @keyframes float-1 {
+    0%, 100% {
+      transform: translateY(0px) rotate(-8deg);
+    }
+    50% {
+      transform: translateY(-11px) rotate(-2deg);
+    }
+  }
+
+  @keyframes float-2 {
+    0%, 100% {
+      transform: translateY(0px) rotate(10deg);
+    }
+    50% {
+      transform: translateY(-9px) rotate(4deg);
+    }
+  }
+
+  @keyframes float-3 {
+    0%, 100% {
+      transform: translateY(0px) rotate(-7deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(-11deg);
+    }
+  }
+
+  @keyframes float-4 {
+    0%, 100% {
+      transform: translateY(0px) rotate(14deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(8deg);
+    }
+  }
+
+  @keyframes float-5 {
+    0%, 100% {
+      transform: translateY(0px) rotate(-6deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+
+  .dev-card-float {
+    animation: card-float 8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .dev-btn-3d {
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  }
+
+  .dev-float-1 {
+    animation: float-1 4.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .dev-float-2 {
+    animation: float-2 5.5s ease-in-out infinite 0.7s;
+    will-change: transform;
+  }
+  .dev-float-3 {
+    animation: float-3 6.2s ease-in-out infinite 1.4s;
+    will-change: transform;
+  }
+  .dev-float-4 {
+    animation: float-4 5s ease-in-out infinite 2.1s;
+    will-change: transform;
+  }
+  .dev-float-5 {
+    animation: float-5 5.8s ease-in-out infinite 2.8s;
+    will-change: transform;
+  }
+
+  .dev-btn-3d:hover {
+    animation-play-state: paused;
+  }
+
+  .dev-btn-3d-blue {
+    background: linear-gradient(180deg, #4d8df7 0%, #2b6cef 45%, #1d4ed8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -2.5px 3.5px 0 rgba(10, 30, 95, 0.5),
+      0 8px 18px -3px rgba(37, 99, 235, 0.45),
+      0 3px 6px -1px rgba(15, 23, 42, 0.18);
+  }
+
+  .dev-btn-3d-light {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #e2e8f0 100%);
+    border: 1px solid rgba(203, 213, 225, 0.9);
+    border-top: 1.5px solid #ffffff;
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.1),
+      0 8px 16px -3px rgba(15, 23, 42, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .dev-btn-3d-dark {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 50%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -2.5px 3.5px 0 rgba(0, 0, 0, 0.6),
+      0 8px 18px -3px rgba(15, 23, 42, 0.35),
+      0 3px 6px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  .dev-btn-3d-emerald {
+    background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 45%, #bbf7d0 100%);
+    border: 1px solid rgba(52, 211, 153, 0.85);
+    border-top: 1.5px solid #ffffff;
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(5, 150, 105, 0.2),
+      0 8px 16px -3px rgba(16, 185, 129, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .dev-btn-3d-indigo {
+    background: linear-gradient(180deg, #eef2ff 0%, #e0e7ff 45%, #c7d2fe 100%);
+    border: 1px solid rgba(129, 140, 248, 0.85);
+    border-top: 1.5px solid #ffffff;
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 3px 0 rgba(67, 56, 202, 0.18),
+      0 8px 16px -3px rgba(99, 102, 241, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  }
+
   /* ========================================================
      3D TIMBUL OVAL FONT EFFECT (HERO SECTION - PERMANENT 3D)
      ======================================================== */
