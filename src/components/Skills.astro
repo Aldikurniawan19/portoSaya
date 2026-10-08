@@ -29,13 +29,13 @@ const row2Skills = [
 <section id="skills" class="py-24 bg-transparent relative overflow-hidden">
   <div class="max-w-6xl mx-auto px-6 w-full mb-12">
     <div class="text-center" data-aos="zoom-in" data-aos-duration="750" data-aos-easing="ease-out-cubic">
-      <h2 class="text-xs sm:text-sm font-extrabold text-slate-400 uppercase tracking-[0.2em] mb-2">
+      <h2 class="text-xs sm:text-sm font-extrabold text-slate-400 dark:text-slate-400 uppercase tracking-[0.2em] mb-2">
         {t.skills.title}
       </h2>
       <h3 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight py-2 leading-snug">
         <span class="heading-timbul-blue">{t.skills.subtitle}</span>
       </h3>
-      <p class="text-slate-500 mt-4 max-w-lg mx-auto">
+      <p class="text-slate-500 dark:text-slate-300 mt-4 max-w-lg mx-auto">
         {t.skills.description}
       </p>
     </div>
@@ -53,7 +53,10 @@ const row2Skills = [
                 <div class="group flex items-center gap-3 shrink-0 cursor-default select-none transition-transform duration-300 hover:scale-105">
                   <img
                     src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    class="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                    class:list={[
+                      "w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110",
+                      skill.name === "Next.js" && "dark:invert dark:brightness-200"
+                    ]}
                     alt={skill.name}
                     width="32"
                     height="32"
@@ -61,8 +64,11 @@ const row2Skills = [
                     decoding="async"
                   />
                   <span
-                    class="font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200"
-                    style={`color: ${skill.color};`}
+                    class:list={[
+                      "font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200",
+                      skill.name === "Next.js" && "text-black dark:!text-white"
+                    ]}
+                    style={skill.name !== "Next.js" ? `color: ${skill.color};` : ""}
                   >
                     {skill.name}
                   </span>
@@ -84,7 +90,10 @@ const row2Skills = [
                 <div class="group flex items-center gap-3 shrink-0 cursor-default select-none transition-transform duration-300 hover:scale-105">
                   <img
                     src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    class="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                    class:list={[
+                      "w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110",
+                      skill.name === "Next.js" && "dark:invert dark:brightness-200"
+                    ]}
                     alt={skill.name}
                     width="32"
                     height="32"
@@ -92,8 +101,11 @@ const row2Skills = [
                     decoding="async"
                   />
                   <span
-                    class="font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200"
-                    style={`color: ${skill.color};`}
+                    class:list={[
+                      "font-bold text-base sm:text-lg tracking-tight transition-opacity duration-200",
+                      skill.name === "Next.js" && "text-black dark:!text-white"
+                    ]}
+                    style={skill.name !== "Next.js" ? `color: ${skill.color};` : ""}
                   >
                     {skill.name}
                   </span>
@@ -106,4 +118,3 @@ const row2Skills = [
     </div>
   </div>
 </section>
-

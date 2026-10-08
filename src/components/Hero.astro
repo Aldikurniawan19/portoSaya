@@ -12,9 +12,9 @@ const t = getTranslations(lang);
   <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
     <!-- Left Content: Typography Focused -->
     <div class="space-y-4 sm:space-y-6 order-2 lg:order-1 fade-in-up">
-      <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{t.hero.hello}</span>
+      <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-400">{t.hero.hello}</span>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-secondary leading-[1.15] tracking-tight py-1">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-secondary dark:text-white leading-[1.15] tracking-tight py-1">
         <span class="hero-name-timbul">Aldi</span> <br />
         <span class="inline-block ml-6 sm:ml-8 lg:ml-12"><span class="hero-name-timbul-blue">Kurniawan</span><span class="hero-name-timbul-blue">.</span></span>
       </h1>
@@ -23,8 +23,8 @@ const t = getTranslations(lang);
         {t.hero.role}
       </div>
 
-      <div class="flex items-center gap-4 text-slate-400">
-        <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-black transition-all duration-300 transform hover:scale-110 inline-block">
+      <div class="flex items-center gap-4 text-slate-400 dark:text-slate-400">
+        <a href="https://github.com/Aldikurniawan19" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-black dark:hover:text-white transition-all duration-300 transform hover:scale-110 inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
         </a>
         <a href="https://www.instagram.com/aldii_kurniawannnn?igsh=MWJ4c2I3dmIyM3gwdQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-[#E1306C] transition-all duration-300 transform hover:scale-110 inline-block">
@@ -35,7 +35,7 @@ const t = getTranslations(lang);
         </a>
       </div>
 
-      <p class="text-sm sm:text-base text-slate-500 max-w-md leading-relaxed">
+      <p class="text-sm sm:text-base text-slate-500 dark:text-slate-300 max-w-md leading-relaxed">
         {t.hero.description}
       </p>
 
@@ -45,7 +45,7 @@ const t = getTranslations(lang);
           <span>{t.hero.viewProjects}</span>
         </a>
         <a href="#contact" class="btn-3d-light w-full px-5 py-3.5 text-sm sm:text-base font-bold justify-center text-center">
-          <i data-lucide="mail" class="w-4 h-4 text-blue-600 shrink-0"></i>
+          <i data-lucide="mail" class="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0"></i>
           <span>{t.hero.contactMe}</span>
         </a>
       </div>
@@ -53,13 +53,10 @@ const t = getTranslations(lang);
 
     <!-- Right Content: Hero Image (Desktop Only) with Floating 3D Developer Badges (Mobile & Desktop) -->
     <div class="contents lg:flex lg:order-2 relative justify-center" data-aos="zoom-in" data-aos-duration="600">
-      <!-- Background Glow (Desktop only) -->
-      <div class="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
-
       <!-- Main Container (Absolute top-right on mobile, flex-centered on desktop) -->
       <div class="absolute top-16 sm:top-20 right-3 sm:right-6 lg:relative lg:top-auto lg:right-auto z-20 w-44 sm:w-52 lg:w-full lg:max-w-[360px] h-36 sm:h-40 lg:h-auto lg:aspect-[4/5] flex lg:items-end lg:justify-center overflow-visible pointer-events-none select-none lg:-translate-y-10">
         <!-- Abstract Oval Background Shape (Blue organic shape - Desktop only) -->
-        <div class="hidden lg:block absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/15"></div>
+        <div class="hidden lg:block absolute bottom-4 left-1/2 -translate-x-1/2 w-[220px] h-[280px] bg-[#3b82f6] rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] rotate-[6deg] -z-10 shadow-lg shadow-blue-500/15 dark:shadow-blue-500/30"></div>
 
         <!-- ================= FLOATING 3D DEVELOPER BUTTONS (Mobile & Desktop) ================= -->
         
@@ -73,7 +70,7 @@ const t = getTranslations(lang);
         <!-- 2. 3D Button: // (3D Emerald - Melayang di Kanan Atas) -->
         <div class="absolute top-1 right-0 lg:-top-4 lg:-right-5 z-30 pointer-events-auto select-none" data-aos="fade-down" data-aos-delay="300">
           <div class="dev-btn-3d dev-btn-3d-emerald dev-float-4 px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-[11px] sm:text-sm tracking-wide cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Comment">
-            <span class="text-emerald-700 drop-shadow-xs">//</span>
+            <span class="text-emerald-700 dark:text-emerald-300 drop-shadow-xs">//</span>
           </div>
         </div>
 
@@ -87,14 +84,14 @@ const t = getTranslations(lang);
         <!-- 4. 3D Button: { } (3D Light Convex - Melayang di Kanan Tengah) -->
         <div class="absolute top-14 right-1 lg:top-[34%] lg:-right-8 z-30 pointer-events-auto select-none" data-aos="fade-left" data-aos-delay="500">
           <div class="dev-btn-3d dev-btn-3d-light dev-float-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-xs sm:text-sm tracking-wide cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Brackets">
-            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-extrabold">{`{ }`}</span>
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent font-extrabold">{`{ }`}</span>
           </div>
         </div>
 
         <!-- 5. 3D Button: git:main (3D Indigo Micro Badge - Melayang di Bawah Kanan) -->
         <div class="absolute top-28 right-4 lg:top-auto lg:bottom-[10%] lg:-right-6 z-30 pointer-events-auto select-none" data-aos="fade-up" data-aos-delay="600">
           <div class="dev-btn-3d dev-btn-3d-indigo dev-float-5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl flex items-center justify-center font-mono font-black text-[10px] sm:text-xs tracking-wider cursor-pointer transform hover:scale-115 active:scale-95 transition-all duration-200" title="Git Branch">
-            <span class="text-indigo-700 drop-shadow-xs">git:main</span>
+            <span class="text-indigo-700 dark:text-indigo-300 drop-shadow-xs">git:main</span>
           </div>
         </div>
 
@@ -234,6 +231,17 @@ const t = getTranslations(lang);
       0 2px 4px -1px rgba(0, 0, 0, 0.05);
   }
 
+  html.dark .dev-btn-3d-light {
+    background: linear-gradient(180deg, #1e293b 0%, #152033 45%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.6),
+      0 8px 16px -3px rgba(0, 0, 0, 0.4),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
   .dev-btn-3d-dark {
     background: linear-gradient(180deg, #334155 0%, #1e293b 50%, #0f172a 100%);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -243,6 +251,12 @@ const t = getTranslations(lang);
       inset 0 -2.5px 3.5px 0 rgba(0, 0, 0, 0.6),
       0 8px 18px -3px rgba(15, 23, 42, 0.35),
       0 3px 6px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  html.dark .dev-btn-3d-dark {
+    background: linear-gradient(180deg, #1e293b 0%, #111827 50%, #030712 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.35);
   }
 
   .dev-btn-3d-emerald {
@@ -256,6 +270,17 @@ const t = getTranslations(lang);
       0 2px 4px -1px rgba(0, 0, 0, 0.05);
   }
 
+  html.dark .dev-btn-3d-emerald {
+    background: linear-gradient(180deg, #064e3b 0%, #065f46 45%, #022c22 100%);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.6),
+      0 8px 16px -3px rgba(16, 185, 129, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
   .dev-btn-3d-indigo {
     background: linear-gradient(180deg, #eef2ff 0%, #e0e7ff 45%, #c7d2fe 100%);
     border: 1px solid rgba(129, 140, 248, 0.85);
@@ -265,6 +290,17 @@ const t = getTranslations(lang);
       inset 0 -2px 3px 0 rgba(67, 56, 202, 0.18),
       0 8px 16px -3px rgba(99, 102, 241, 0.3),
       0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  html.dark .dev-btn-3d-indigo {
+    background: linear-gradient(180deg, #312e81 0%, #3730a3 45%, #1e1b4b 100%);
+    border: 1px solid rgba(129, 140, 248, 0.45);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.6),
+      0 8px 16px -3px rgba(99, 102, 241, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
   }
 
   /* ========================================================
@@ -290,6 +326,19 @@ const t = getTranslations(lang);
       drop-shadow(0 14px 26px rgba(15, 23, 42, 0.25));
     cursor: default;
     user-select: none;
+    transition: filter 0.3s ease;
+  }
+
+  html.dark .hero-name-timbul {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 30%, #cbd5e1 65%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -1px 0.8px rgba(255, 255, 255, 0.8))
+      drop-shadow(1.5px 2px 0px rgba(0, 0, 0, 0.9))
+      drop-shadow(3px 4.5px 2px rgba(0, 0, 0, 0.7))
+      drop-shadow(0 14px 26px rgba(0, 0, 0, 0.5));
   }
 
   .hero-name-timbul-blue {
@@ -312,6 +361,19 @@ const t = getTranslations(lang);
       drop-shadow(0 16px 30px rgba(37, 99, 235, 0.45));
     cursor: default;
     user-select: none;
+    transition: filter 0.3s ease;
+  }
+
+  html.dark .hero-name-timbul-blue {
+    background: linear-gradient(180deg, #ffffff 0%, #bae6fd 20%, #60a5fa 45%, #3b82f6 75%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(0 -1px 0.8px rgba(255, 255, 255, 0.7))
+      drop-shadow(1.5px 2px 0px rgba(10, 30, 95, 0.9))
+      drop-shadow(3px 4.5px 2px rgba(29, 78, 216, 0.6))
+      drop-shadow(0 16px 30px rgba(37, 99, 235, 0.55));
   }
 
   .hero-name-dot {
@@ -331,6 +393,16 @@ const t = getTranslations(lang);
       drop-shadow(0 -2px 0.8px rgba(255, 255, 255, 1))
       drop-shadow(1.5px 2px 0px rgba(15, 23, 42, 0.6))
       drop-shadow(3px 4.5px 2px rgba(15, 23, 42, 0.45));
+  }
+
+  html.dark .hero-name-dot {
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: 
+      drop-shadow(1px 1.5px 0px rgba(0, 0, 0, 0.9))
+      drop-shadow(2px 3px 1px rgba(0, 0, 0, 0.7));
   }
 
   /* 3D Convex Role Badge (Fixed Elevated Look, No Hover/Click Effect) */
@@ -355,5 +427,17 @@ const t = getTranslations(lang);
       inset 0 -2px 3px 0 rgba(0, 0, 0, 0.12),
       0 10px 20px -3px rgba(0, 0, 0, 0.12),
       0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  }
+
+  html.dark .hero-role-badge-3d {
+    background: linear-gradient(180deg, #1e293b 0%, #152033 45%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: #f1f5f9;
+    box-shadow: 
+      inset 0 2px 3px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.5),
+      0 10px 20px -3px rgba(0, 0, 0, 0.5),
+      0 4px 6px -1px rgba(0, 0, 0, 0.3);
   }
 </style>

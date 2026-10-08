@@ -9,56 +9,12 @@ const t = getTranslations(lang);
 
 <!-- FOOTER -->
 <footer
-  class="border-t border-slate-800 pt-12 pb-24 sm:pb-20 md:py-12 text-slate-400 text-sm relative overflow-hidden"
+  class="border-t border-slate-200 dark:border-slate-800/80 pt-12 pb-24 sm:pb-20 md:py-12 text-slate-400 text-sm relative overflow-hidden bg-[#0f172a] dark:bg-[#050810]"
 >
-  <!-- Dark Background Color Layer -->
-  <div class="absolute inset-0 bg-secondary -z-20"></div>
-
-  <!-- Background Grid Pattern -->
-  <div class="absolute inset-0 bg-grid-pattern-dark bg-grid opacity-80 -z-10 contain-paint pointer-events-none">
-    <!-- Horizontal Beams (GPU Accelerated on Mobile & Desktop) -->
-    <div
-      class="absolute h-[3.5px] sm:h-[4px] w-[180px] sm:w-[220px] rounded-full bg-gradient-to-r from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
-      style="top: 40px; animation: beam-h 7s linear infinite; animation-delay: 1s;"
-    >
-    </div>
-    <div
-      class="absolute h-[3.5px] sm:h-[4px] w-[180px] sm:w-[220px] rounded-full bg-gradient-to-l from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
-      style="top: 120px; animation: beam-h-reverse 9s linear infinite; animation-delay: 3s;"
-    >
-    </div>
-
-    <!-- Vertical Beams (GPU Accelerated on Mobile & Desktop) -->
-    <div
-      class="absolute w-[3.5px] sm:w-[4px] h-[160px] sm:h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
-      style="left: 15vw; animation: beam-v 8s linear infinite; animation-delay: 2s;"
-    >
-    </div>
-    <div
-      class="absolute w-[3.5px] sm:w-[4px] h-[160px] sm:h-[220px] rounded-full bg-gradient-to-t from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
-      style="left: 55vw; animation: beam-v-reverse 10s linear infinite; animation-delay: 4s;"
-    >
-    </div>
-    <div
-      class="hidden md:block absolute w-[4px] h-[220px] rounded-full bg-gradient-to-b from-transparent via-blue-500 via-sky-400 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.7)] will-change-transform"
-      style="left: 85vw; animation: beam-v 9s linear infinite; animation-delay: 1s;"
-    >
-    </div>
-  </div>
-
-  <!-- REALISTIC DARK GLASS TEXTURE & SPECULAR SHEEN IN FOOTER -->
-  <!-- 1. Dark Glass Sheen (Pantulan Cahaya Diagonal Kaca Gelap) -->
-  <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,rgba(15,23,42,0.18)_35%,rgba(255,255,255,0.04)_65%,rgba(15,23,42,0.22)_100%)] -z-10 pointer-events-none"></div>
-
-  <!-- 2. Micro Fine Glass Grain Texture -->
-  <div
-    class="absolute inset-0 opacity-[0.038] mix-blend-overlay -z-10 pointer-events-none"
-    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E'); background-repeat: repeat;"
-  ></div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div
-      class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800"
+      class="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-slate-800 dark:border-slate-800/80"
     >
       <!-- Brand Logo -->
       <div class="flex items-center gap-2 group cursor-default">
@@ -186,7 +142,7 @@ const t = getTranslations(lang);
 
     <!-- Bottom copyright -->
     <div
-      class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+      class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-400"
     >
       <p>
         &copy; {new Date().getFullYear()} Aldi Kurniawan. All rights reserved.

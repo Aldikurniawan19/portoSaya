@@ -8,9 +8,9 @@ const t = getTranslations(currentLang);
 
 <!-- NAVBAR CONTAINER -->
 <!-- Mobile/Tablet (<1024px): Fixed Bottom Floating Icon Dock | Desktop (>=1024px): Top Floating Glass Navbar -->
-<div class="fixed w-full bottom-4 sm:bottom-5 lg:bottom-auto lg:top-6 left-0 z-50 flex justify-center px-3 sm:px-4 lg:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.75rem)]">
+<div class="fixed w-full bottom-4 sm:bottom-5 lg:bottom-auto lg:top-6 left-0 z-50 flex justify-center px-2.5 sm:px-4 lg:px-6 pointer-events-none pb-[env(safe-area-inset-bottom,0.75rem)]">
   <nav
-    class="nav-3d-shell pointer-events-auto w-[92vw] max-w-[420px] lg:w-auto lg:max-w-none rounded-full transition-all duration-300 px-2.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-2"
+    class="nav-3d-shell pointer-events-auto w-[96vw] max-w-[460px] lg:w-auto lg:max-w-none rounded-full transition-all duration-300 px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-2"
     id="navbar"
   >
     <div class="flex items-center justify-between lg:justify-start w-full lg:w-auto gap-1 sm:gap-1.5 lg:gap-2">
@@ -23,24 +23,24 @@ const t = getTranslations(currentLang);
       <div class="nav-divider hidden lg:block h-5 w-[1.5px] shrink-0"></div>
 
       <!-- Navigation Links (Evenly spaced & Large Touch Size on Mobile, Icon Only) -->
-      <div class="flex items-center justify-between lg:justify-start flex-1 lg:flex-initial gap-1 sm:gap-1.5" id="nav-links-container">
-        <a href="#home" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.home}>
+      <div class="flex items-center justify-between lg:justify-start flex-1 lg:flex-initial gap-0.5 sm:gap-1 lg:gap-1.5" id="nav-links-container">
+        <a href="#home" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.home}>
           <i data-lucide="home" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.home}</span>
         </a>
-        <a href="#about" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.about}>
+        <a href="#about" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.about}>
           <i data-lucide="user" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.about}</span>
         </a>
-        <a href="#experience" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.experience}>
+        <a href="#experience" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.experience}>
           <i data-lucide="briefcase" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.experience}</span>
         </a>
-        <a href="#portfolio" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.portfolio}>
+        <a href="#portfolio" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.portfolio}>
           <i data-lucide="folder" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.portfolio}</span>
         </a>
-        <a href="#contact" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 rounded-full transition-all duration-200 shrink-0" title={t.navbar.contact}>
+        <a href="#contact" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.contact}>
           <i data-lucide="mail" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.contact}</span>
         </a>
@@ -49,23 +49,40 @@ const t = getTranslations(currentLang);
       <!-- Right Divider -->
       <div class="nav-divider block h-6 sm:h-7 lg:h-5 w-[1.5px] shrink-0 mx-0.5 sm:mx-1"></div>
 
-      <!-- Language Switcher Button (Globe Icon with Special Badge on Mobile/Tablet Dock, Globe + Text on Desktop) -->
-      <a
-        href={currentLang === 'id' ? '/en/' : '/'}
-        class="btn-3d-light relative h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto !p-0 lg:!px-3.5 !text-xs lg:!text-sm !font-bold transition-all duration-200 group shrink-0 rounded-full flex items-center justify-center gap-1.5"
-        title={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
-        aria-label={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
-      >
-        <i data-lucide="globe" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 text-blue-600 group-hover:rotate-12 transition-transform duration-300 shrink-0"></i>
-        
-        <!-- Deskripsi Khusus (Badge Indikator Bahasa) untuk Mobile Bottombar -->
-        <span class="absolute -top-1 -right-1 flex lg:hidden items-center justify-center bg-blue-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded-full shadow-sm border border-white leading-none tracking-tight">
-          {currentLang === 'id' ? 'ID' : 'EN'}
-        </span>
+      <!-- Right Action Controls (Language Switcher + Theme Toggle) -->
+      <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+        <!-- Language Switcher Button (Globe Icon with Special Badge on Mobile/Tablet Dock, Globe + Text on Desktop) -->
+        <a
+          href={currentLang === 'id' ? '/en/' : '/'}
+          class="btn-3d-light relative h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto !p-0 lg:!px-3.5 !text-xs lg:!text-sm !font-bold transition-all duration-200 group shrink-0 rounded-full flex items-center justify-center gap-1.5"
+          title={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
+          aria-label={currentLang === 'id' ? 'Ganti Bahasa ke English' : 'Ganti ke Bahasa Indonesia'}
+        >
+          <i data-lucide="globe" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300 shrink-0"></i>
+          
+          <!-- Deskripsi Khusus (Badge Indikator Bahasa) untuk Mobile Bottombar -->
+          <span class="absolute -top-1 -right-1 flex lg:hidden items-center justify-center bg-blue-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full shadow-sm border border-white dark:border-slate-800 leading-none tracking-tight">
+            {currentLang === 'id' ? 'ID' : 'EN'}
+          </span>
 
-        <!-- Label Teks untuk Desktop Navbar -->
-        <span class="font-extrabold tracking-wide uppercase hidden lg:inline">{currentLang === 'id' ? 'ID' : 'EN'}</span>
-      </a>
+          <!-- Label Teks untuk Desktop Navbar -->
+          <span class="font-extrabold tracking-wide uppercase hidden lg:inline">{currentLang === 'id' ? 'ID' : 'EN'}</span>
+        </a>
+
+        <!-- Theme Switcher Button (Light / Dark Mode Toggle) -->
+        <button
+          id="theme-toggle-btn"
+          type="button"
+          class="btn-3d-light relative h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-10 !p-0 !text-xs !font-bold transition-all duration-200 group shrink-0 rounded-full flex items-center justify-center cursor-pointer"
+          title={t.navbar.themeToggle}
+          aria-label={t.navbar.themeToggle}
+        >
+          <!-- Sun Icon (Rendered in Dark mode -> click to switch to light) -->
+          <i data-lucide="sun" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 text-amber-400 group-hover:rotate-45 transition-transform duration-300 hidden dark:block shrink-0 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"></i>
+          <!-- Moon Icon (Rendered in Light mode -> click to switch to dark) -->
+          <i data-lucide="moon" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 text-indigo-600 group-hover:-rotate-12 transition-transform duration-300 block dark:hidden shrink-0"></i>
+        </button>
+      </div>
     </div>
   </nav>
 </div>
@@ -127,8 +144,34 @@ const t = getTranslations(currentLang);
     updateNav();
   }
 
-  initNavbarScrollSpy();
-  document.addEventListener("astro:page-load", initNavbarScrollSpy);
+  function initThemeToggle() {
+    const themeBtn = document.getElementById("theme-toggle-btn");
+    if (!themeBtn) return;
+
+    themeBtn.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+
+      // Re-create icons if Lucide is available
+      if (typeof (window as any).lucide !== "undefined") {
+        (window as any).lucide.createIcons();
+      }
+    });
+  }
+
+  function initNavbarModules() {
+    initNavbarScrollSpy();
+    initThemeToggle();
+  }
+
+  initNavbarModules();
+  document.addEventListener("astro:page-load", initNavbarModules);
 </script>
 
 <style is:global>
@@ -147,6 +190,18 @@ const t = getTranslations(currentLang);
       0 4px 10px -2px rgba(15, 23, 42, 0.06);
   }
 
+  html.dark .nav-3d-shell {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 18, 33, 0.92) 50%, rgba(8, 13, 24, 0.96) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.6),
+      0 12px 35px -5px rgba(0, 0, 0, 0.6),
+      0 4px 10px -2px rgba(0, 0, 0, 0.4);
+  }
+
   /* 3D Embossed Logo Plate (Desktop) */
   .nav-logo-3d:hover {
     background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
@@ -156,10 +211,23 @@ const t = getTranslations(currentLang);
       0 3px 8px -2px rgba(15, 23, 42, 0.08);
   }
 
+  html.dark .nav-logo-3d:hover {
+    background: linear-gradient(180deg, #1e293b 0%, #152033 60%, #0f172a 100%);
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.5),
+      0 3px 8px -2px rgba(0, 0, 0, 0.4);
+  }
+
   /* 3D Divider */
   .nav-divider {
     background: linear-gradient(180deg, rgba(203, 213, 225, 0.3) 0%, rgba(203, 213, 225, 0.9) 50%, rgba(203, 213, 225, 0.3) 100%);
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
+  }
+
+  html.dark .nav-divider {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
   }
 
   /* Inactive nav links */
@@ -167,6 +235,10 @@ const t = getTranslations(currentLang);
     color: #475569;
     flex-shrink: 0;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html.dark .nav-link {
+    color: #94a3b8;
   }
 
   .nav-link:hover:not(.active) {
@@ -178,6 +250,18 @@ const t = getTranslations(currentLang);
       inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.05),
       0 3px 8px -2px rgba(15, 23, 42, 0.08);
     color: #0f172a;
+    transform: translateY(-1px);
+  }
+
+  html.dark .nav-link:hover:not(.active) {
+    background: linear-gradient(180deg, #1e293b 0%, #172237 50%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.5),
+      0 3px 8px -2px rgba(0, 0, 0, 0.4);
+    color: #f8fafc;
     transform: translateY(-1px);
   }
 

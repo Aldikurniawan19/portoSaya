@@ -60,11 +60,11 @@ const projects = [
     <!-- Header Row (Matches Mockup) -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
       <div class="space-y-4 max-w-xl" data-aos="fade-right">
-        <h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-1">{t.portfolio.title}</h2>
+        <h2 class="text-sm font-bold text-primary dark:text-indigo-400 uppercase tracking-widest mb-1">{t.portfolio.title}</h2>
         <h3 class="text-4xl md:text-5xl font-black tracking-tight py-2 leading-snug">
           <span class="heading-timbul-blue">{lang === 'id' ? 'Karya Unggulan.' : 'Featured Works.'}</span>
         </h3>
-        <p class="text-slate-500 text-base md:text-lg leading-relaxed">
+        <p class="text-slate-500 dark:text-slate-300 text-base md:text-lg leading-relaxed">
           {t.portfolio.description}
         </p>
       </div>
@@ -89,7 +89,7 @@ const projects = [
             <div class="project-card-3d group flex flex-col h-full rounded-[2.25rem] overflow-hidden">
               
               <!-- Top Image Showcase Area with 3D Specular Highlight -->
-              <div class="relative w-full overflow-hidden bg-slate-900 aspect-[16/10] border-b border-slate-100/80">
+              <div class="relative w-full overflow-hidden bg-slate-900 aspect-[16/10] border-b border-slate-100/80 dark:border-slate-800">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -118,23 +118,23 @@ const projects = [
               <!-- Card Body -->
               <div class="p-6 md:p-7 flex flex-col flex-grow justify-between gap-6">
                 <div class="space-y-3">
-                  <h4 class="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-300 tracking-tight leading-snug">
+                  <h4 class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 tracking-tight leading-snug">
                     {project.title}
                   </h4>
-                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
+                  <p class="text-slate-500 dark:text-slate-300 text-sm leading-relaxed line-clamp-3 font-medium">
                     {project.description}
                   </p>
                 </div>
 
                 <!-- Divider with gradient accent -->
-                <div class="h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent w-full"></div>
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent w-full"></div>
 
                 <!-- Tech Badges & Action Link Footer -->
                 <div class="space-y-4">
                   <!-- 3D Tech Badges -->
                   <div class="flex flex-wrap gap-2">
                     {project.tech.map((tItem) => (
-                      <span class="tech-pill-3d inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-slate-700 transition-colors">
+                      <span class="tech-pill-3d inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-slate-700 dark:text-slate-300 transition-colors">
                         {tItem === "HTML5" || tItem === "HTML" ? (
                           <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
                         ) : tItem === "CSS3" || tItem === "CSS" ? (
@@ -156,7 +156,7 @@ const projects = [
                         ) : tItem === "TypeScript" || tItem === "TS" ? (
                           <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                         ) : tItem === "Next.js" ? (
-                          <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                          <span class="w-1.5 h-1.5 rounded-full bg-slate-900 dark:bg-white"></span>
                         ) : tItem === "PostgreSQL" ? (
                           <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
                         ) : (
@@ -187,7 +187,7 @@ const projects = [
       <div id="portfolio-dots" class="flex justify-center gap-2 mt-4">
         {projects.map((_, idx) => (
           <button
-            class="portfolio-dot w-2.5 h-2.5 rounded-full bg-slate-200 transition-all duration-300 hover:bg-slate-400"
+            class="portfolio-dot w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-slate-700 transition-all duration-300 hover:bg-slate-400 dark:hover:bg-slate-500"
             data-dot-index={idx}
             aria-label={`Go to project ${idx + 1}`}
           />
@@ -227,6 +227,26 @@ const projects = [
       0 10px 24px -4px rgba(15, 23, 42, 0.05);
   }
 
+  html.dark .project-card-3d {
+    background: linear-gradient(180deg, #131c2e 0%, #0f172a 60%, #090e1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      inset 0 3px 3.5px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -3px 5px 0 rgba(0, 0, 0, 0.6),
+      0 12px 32px -8px rgba(0, 0, 0, 0.5),
+      0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  }
+
+  html.dark .project-card-3d:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 
+      inset 0 3.5px 4px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -3px 5px 0 rgba(0, 0, 0, 0.5),
+      0 24px 50px -12px rgba(0, 0, 0, 0.8),
+      0 10px 24px -4px rgba(37, 99, 235, 0.25);
+  }
+
   /* 3D Convex GitHub Source Code Button */
   .btn-github-3d {
     display: inline-flex;
@@ -263,6 +283,17 @@ const projects = [
       0 2px 4px 0 rgba(0, 0, 0, 0.3);
   }
 
+  html.dark .btn-github-3d {
+    background: linear-gradient(180deg, #1e293b 0%, #152033 45%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.28);
+    color: #e2e8f0;
+    box-shadow: 
+      inset 0 2px 2px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -2px 3px 0 rgba(0, 0, 0, 0.5),
+      0 4px 10px -1px rgba(0, 0, 0, 0.3);
+  }
+
   /* 3D Tech Badges / Pills */
   .tech-pill-3d {
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
@@ -281,6 +312,25 @@ const projects = [
       inset 0 1.5px 2px 0 rgba(255, 255, 255, 1),
       0 2px 6px rgba(37, 99, 235, 0.12);
     transform: translateY(-1px);
+  }
+
+  html.dark .tech-pill-3d {
+    background: linear-gradient(180deg, #1e293b 0%, #162033 50%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    box-shadow: 
+      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+      0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  html.dark .tech-pill-3d:hover {
+    background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
+    border-color: rgba(96, 165, 250, 0.4);
+    color: #93c5fd;
+    box-shadow: 
+      inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.2),
+      0 2px 6px rgba(37, 99, 235, 0.3);
   }
 
   /* Slider Layout & Responsiveness */
@@ -318,6 +368,9 @@ const projects = [
     background-color: #2563eb;
     width: 1.5rem;
     border-radius: 9999px;
+  }
+  html.dark .portfolio-dot.active {
+    background-color: #3b82f6;
   }
 </style>
 
@@ -431,4 +484,3 @@ const projects = [
   initPortfolioSlider();
   document.addEventListener("astro:page-load", initPortfolioSlider);
 </script>
-

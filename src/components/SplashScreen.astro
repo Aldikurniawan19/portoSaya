@@ -8,13 +8,10 @@ const t = getTranslations(currentLang);
 <!-- MODERN MINIMALIST MULTI-LANGUAGE SPLASH SCREEN -->
 <div
   id="splash-screen"
-  class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-50 text-slate-900 select-none overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]"
+  class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-50 dark:bg-[#070b14] text-slate-900 dark:text-white select-none overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]"
 >
-  <!-- Background Grid Pattern & Ambient Glows (Matches Web Theme) -->
-  <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-70 pointer-events-none"></div>
-  <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-  <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <!-- Background Grid Pattern (Matches Web Theme) -->
+  <div class="absolute inset-0 bg-grid-pattern dark:bg-grid-pattern-dark bg-grid opacity-40 dark:opacity-20 pointer-events-none"></div>
 
   <!-- Central Greeting Container -->
   <div class="relative z-10 flex flex-col items-center justify-center px-6 text-center">
@@ -22,7 +19,7 @@ const t = getTranslations(currentLang);
     <div class="h-16 sm:h-20 flex items-center justify-center">
       <h1
         id="splash-text"
-        class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 transition-all duration-150 transform scale-100 opacity-100 drop-shadow-sm"
+        class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white transition-all duration-150 transform scale-100 opacity-100 drop-shadow-sm"
       >
         {currentLang === 'en' ? 'Welcome' : 'Selamat Datang'}
       </h1>

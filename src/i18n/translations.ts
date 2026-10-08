@@ -10,7 +10,10 @@ export const translations = {
       skills: "Keahlian",
       experience: "Pengalaman",
       portfolio: "Proyek",
-      contact: "Kontak"
+      contact: "Kontak",
+      themeToggle: "Ganti Tema (Gelap / Terang)",
+      themeDark: "Mode Gelap",
+      themeLight: "Mode Terang"
     },
     hero: {
       hello: "HALO, SAYA",
@@ -110,7 +113,10 @@ export const translations = {
       skills: "Skills",
       experience: "Experience",
       portfolio: "Projects",
-      contact: "Contact"
+      contact: "Contact",
+      themeToggle: "Toggle Theme (Dark / Light)",
+      themeDark: "Dark Mode",
+      themeLight: "Light Mode"
     },
     hero: {
       hello: "HELLO, I'M",
