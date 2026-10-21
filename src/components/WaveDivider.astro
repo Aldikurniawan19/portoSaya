@@ -1,0 +1,45 @@
+---
+interface Props {
+  position?: 'top' | 'bottom';
+  flip?: boolean;
+  className?: string;
+}
+
+const { position = 'top', flip = false, className = '' } = Astro.props;
+
+const transformStyle = [
+  flip ? 'scaleX(-1)' : '',
+  position === 'bottom' ? 'scaleY(-1)' : ''
+].filter(Boolean).join(' ') || undefined;
+---
+
+<div
+  class:list={[
+    "pointer-events-none absolute left-0 right-0 w-full overflow-hidden leading-none z-10",
+    position === 'top' ? "top-0" : "bottom-0",
+    className
+  ]}
+  aria-hidden="true"
+>
+  <svg
+    class="w-full h-9 sm:h-14 lg:h-20 text-[#f8fafc] dark:text-[#070b14] block transition-colors duration-300"
+    style={transformStyle ? `transform: ${transformStyle};` : undefined}
+    viewBox="0 0 1440 90"
+    fill="none"
+    preserveAspectRatio="none"
+  >
+    <!-- Base Wave Fill matching adjacent section background -->
+    <path
+      d="M0,0 L1440,0 L1440,32 C1280,68 1120,85 960,72 C800,58 640,15 480,24 C320,33 160,78 0,45 Z"
+      fill="currentColor"
+    ></path>
+    <!-- Subtle crisp divider contour highlight -->
+    <path
+      d="M0,45 C160,78 320,33 480,24 C640,15 800,58 960,72 C1120,85 1280,68 1440,32"
+      stroke="rgba(203,213,225,0.5)"
+      class="dark:stroke-slate-800/80"
+      stroke-width="1.5"
+      fill="none"
+    ></path>
+  </svg>
+</div>

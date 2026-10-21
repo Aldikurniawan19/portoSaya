@@ -272,43 +272,6 @@ const { title = t.meta.title, description = t.meta.description } = Astro.props;
     );
   }
 
-  /* GPU-Accelerated Dynamic Flowing Lines */
-  @keyframes beam-h {
-    0% {
-      transform: translate3d(-380px, 0, 0);
-    }
-    100% {
-      transform: translate3d(calc(100vw + 380px), 0, 0);
-    }
-  }
-
-  @keyframes beam-h-reverse {
-    0% {
-      transform: translate3d(calc(100vw + 380px), 0, 0);
-    }
-    100% {
-      transform: translate3d(-380px, 0, 0);
-    }
-  }
-
-  @keyframes beam-v {
-    0% {
-      transform: translate3d(0, -380px, 0);
-    }
-    100% {
-      transform: translate3d(0, calc(100% + 380px), 0);
-    }
-  }
-
-  @keyframes beam-v-reverse {
-    0% {
-      transform: translate3d(0, calc(100% + 380px), 0);
-    }
-    100% {
-      transform: translate3d(0, -380px, 0);
-    }
-  }
-
   html {
     scroll-padding-top: 80px;
     font-family: 'Plus Jakarta Sans', sans-serif;

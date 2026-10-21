@@ -23,7 +23,23 @@ const t = getTranslations(currentLang);
       <div class="nav-divider hidden lg:block h-5 w-[1.5px] shrink-0"></div>
 
       <!-- Navigation Links (Evenly spaced & Large Touch Size on Mobile, Icon Only) -->
-      <div class="flex items-center justify-between lg:justify-start flex-1 lg:flex-initial gap-0.5 sm:gap-1 lg:gap-1.5" id="nav-links-container">
+      <div class="relative flex items-center justify-between lg:justify-start flex-1 lg:flex-initial gap-0.5 sm:gap-1 lg:gap-1.5" id="nav-links-container">
+        <!-- Fluid / Liquid Sliding Pill Indicator (Indikator Kapsul Cairan Mengalir) -->
+        <div
+          id="nav-liquid-pill"
+          class="nav-liquid-pill pointer-events-none absolute select-none opacity-0 will-change-transform"
+          aria-hidden="true"
+        >
+          <div class="liquid-pill-body">
+            <!-- Liquid Specular Top Surface Reflection (Glossy Meniscus) -->
+            <div class="liquid-pill-specular"></div>
+            <!-- Liquid Caustic Bottom Glow -->
+            <div class="liquid-pill-caustic"></div>
+          </div>
+          <!-- Ambient Liquid Glow Droplet Behind -->
+          <div class="liquid-pill-glow"></div>
+        </div>
+
         <a href="#home" class="nav-link h-10 w-10 sm:h-11 sm:w-11 lg:h-10 lg:w-auto px-0 lg:px-3.5 flex items-center justify-center text-slate-600 dark:text-slate-400 rounded-full transition-all duration-200 shrink-0" title={t.navbar.home}>
           <i data-lucide="home" class="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-4.5 lg:h-4.5 shrink-0"></i>
           <span class="nav-label hidden lg:inline text-xs lg:text-sm font-bold ml-1.5 whitespace-nowrap">{t.navbar.home}</span>
@@ -89,8 +105,9 @@ const t = getTranslations(currentLang);
 
 <script>
   function initNavbarScrollSpy() {
-    const navbar = document.getElementById("navbar");
     const logoBtn = document.getElementById("logo-btn");
+    const navContainer = document.getElementById("nav-links-container") as HTMLElement;
+    const pill = document.getElementById("nav-liquid-pill") as HTMLElement;
 
     // Logo scroll to top (Desktop)
     logoBtn?.addEventListener("click", () => {
@@ -98,50 +115,256 @@ const t = getTranslations(currentLang);
     });
 
     const sections = Array.from(document.querySelectorAll("section"));
-    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-    if (sections.length === 0 || navLinks.length === 0) return;
+    const navLinks = Array.from(document.querySelectorAll(".nav-link")) as HTMLElement[];
+    if (!navContainer || !pill || sections.length === 0 || navLinks.length === 0) return;
 
+    // Fluid Directional Sliding Pill Controller
+    let currentX = 0;
+    let currentY = 0;
+    let currentW = 0;
+    let currentH = 0;
+    let currentActiveLink: HTMLElement | null = null;
+    let animId: number | null = null;
+    let isInitialized = false;
+    let isUserClicking = false;
+    let clickTimeout: number | null = null;
+
+    function animatePillTo(targetLink: HTMLElement, isImmediate = false) {
+      if (!targetLink || !pill || !navContainer) return;
+
+      const containerRect = navContainer.getBoundingClientRect();
+      const targetRect = targetLink.getBoundingClientRect();
+
+      const targetX = targetRect.left - containerRect.left;
+      const targetY = targetRect.top - containerRect.top;
+      const targetW = targetRect.width;
+      const targetH = targetRect.height;
+
+      // Immediate snap (initial page load or window resize)
+      if (isImmediate || !isInitialized) {
+        if (animId) cancelAnimationFrame(animId);
+        animId = null;
+        currentX = targetX;
+        currentY = targetY;
+        currentW = targetW;
+        currentH = targetH;
+        currentActiveLink = targetLink;
+        pill.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(1, 1) skewX(0deg)`;
+        pill.style.width = `${currentW}px`;
+        pill.style.height = `${currentH}px`;
+        pill.style.opacity = "1";
+        pill.style.filter = "none";
+        isInitialized = true;
+        return;
+      }
+
+      // Check distance in menu steps
+      const prevIndex = currentActiveLink ? navLinks.indexOf(currentActiveLink) : -1;
+      const nextIndex = navLinks.indexOf(targetLink);
+      const stepCount = (prevIndex >= 0 && nextIndex >= 0) ? Math.abs(nextIndex - prevIndex) : 1;
+      const isMultiStep = stepCount >= 2;
+
+      currentActiveLink = targetLink;
+
+      const startX = currentX;
+      const startY = currentY;
+      const startW = currentW;
+      const startH = currentH;
+
+      const deltaX = targetX - startX;
+      if (Math.abs(deltaX) < 0.5 && Math.abs(targetW - startW) < 0.5) {
+        currentX = targetX;
+        currentY = targetY;
+        currentW = targetW;
+        currentH = targetH;
+        pill.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(1, 1) skewX(0deg)`;
+        pill.style.width = `${currentW}px`;
+        pill.style.height = `${currentH}px`;
+        pill.style.opacity = "1";
+        pill.style.filter = "none";
+        return;
+      }
+
+      // Direction: strictly follows where the destination menu is (+1 right, -1 left)
+      const direction = deltaX > 0 ? 1 : -1;
+      const duration = isMultiStep ? 380 : 280;
+      const startTime = performance.now();
+
+      if (animId) cancelAnimationFrame(animId);
+
+      function step(now: number) {
+        const elapsed = now - startTime;
+        const p = Math.min(elapsed / duration, 1);
+
+        // Monotonic ease-out quartic: strictly moves in direction of target, ZERO bounce-back
+        const ease = 1 - Math.pow(1 - p, 4);
+
+        // Position advances strictly in destination direction
+        currentX = startX + deltaX * ease;
+        currentY = startY + (targetY - startY) * ease;
+        currentW = startW + (targetW - startW) * ease;
+        currentH = startH + (targetH - startH) * ease;
+
+        // Dynamic fluid elongation in motion direction (peaks mid-flight, zero at start and end)
+        const flightArch = Math.sin(p * Math.PI);
+        const stretchAmount = isMultiStep ? 0.22 : 0.14;
+        const stretchX = 1 + flightArch * stretchAmount;
+        const squashY = 1 / Math.sqrt(stretchX);
+
+        // Fluid droplet tilt in travel direction
+        const skewX = -direction * flightArch * (isMultiStep ? 5 : 3.5);
+
+        // When crossing multiple menus: smoothly fade out like passing through (memudar seperti melintasi)
+        let opacityVal = 1;
+        let blurVal = 0;
+        if (isMultiStep) {
+          opacityVal = 1 - flightArch * 0.52; // Fades to ~0.48 while crossing
+          blurVal = flightArch * 1.8; // Soft motion blur while gliding through
+        }
+
+        pill.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${stretchX}, ${squashY}) skewX(${skewX}deg)`;
+        pill.style.width = `${currentW}px`;
+        pill.style.height = `${currentH}px`;
+        pill.style.opacity = `${opacityVal}`;
+        pill.style.filter = blurVal > 0.2 ? `blur(${blurVal}px)` : "none";
+
+        if (p < 1) {
+          animId = requestAnimationFrame(step);
+        } else {
+          // Final landing state: solid, perfectly aligned, zero distortion
+          currentX = targetX;
+          currentY = targetY;
+          currentW = targetW;
+          currentH = targetH;
+          pill.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(1, 1) skewX(0deg)`;
+          pill.style.width = `${currentW}px`;
+          pill.style.height = `${currentH}px`;
+          pill.style.opacity = "1";
+          pill.style.filter = "none";
+          animId = null;
+        }
+      }
+
+      animId = requestAnimationFrame(step);
+    }
+
+    // ScrollSpy & Navigation Tracking
+    let lastActiveId = "";
     let ticking = false;
 
     function updateNav() {
+      if (isUserClicking) return;
+
       const validNavIds = ["home", "about", "experience", "portfolio", "contact"];
       const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
       let current = "home";
 
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const id = section.getAttribute("id") || "";
-        if (validNavIds.includes(id)) {
-          if (scrollY >= section.offsetTop - 180) {
-            current = id;
+      // 1. If at the top of the page
+      if (scrollY < 80) {
+        current = "home";
+      }
+      // 2. If scrolled near the bottom of page (activate Contact)
+      else if ((window.innerHeight + scrollY) >= docHeight - 80) {
+        current = "contact";
+      }
+      // 3. Section position based on getBoundingClientRect (reliable across any parent positioning)
+      else {
+        // Trigger threshold: 38% of viewport height
+        const threshold = viewportHeight * 0.38;
+        for (let i = 0; i < sections.length; i++) {
+          const section = sections[i];
+          const id = section.getAttribute("id") || "";
+          if (validNavIds.includes(id)) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= threshold) {
+              current = id;
+            }
           }
         }
       }
 
-      if (scrollY < 80) current = "home";
-
-      navLinks.forEach((link) => {
-        const targetSection = link.getAttribute("href");
-        if (targetSection === "#" + current) {
-          link.classList.add("active");
-        } else {
-          link.classList.remove("active");
-        }
-      });
-
-      ticking = false;
+      if (current !== lastActiveId || !isInitialized) {
+        lastActiveId = current;
+        navLinks.forEach((link) => {
+          const targetSection = link.getAttribute("href");
+          if (targetSection === "#" + current) {
+            link.classList.add("active");
+            animatePillTo(link, !isInitialized);
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
     }
 
     function onScroll() {
       if (!ticking) {
-        requestAnimationFrame(updateNav);
         ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          updateNav();
+        });
       }
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+    
+    // Unlock immediately on manual user gestures so scroll is never blocked
+    window.addEventListener("wheel", () => {
+      if (isUserClicking) {
+        isUserClicking = false;
+        if (clickTimeout) clearTimeout(clickTimeout);
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchmove", () => {
+      if (isUserClicking) {
+        isUserClicking = false;
+        if (clickTimeout) clearTimeout(clickTimeout);
+      }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      const activeLink = document.querySelector(".nav-link.active") as HTMLElement;
+      if (activeLink) {
+        animatePillTo(activeLink, true);
+      }
+    });
+
+    // Handle instant click reaction with directional glide & scrollspy lock
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          const id = href.slice(1);
+          lastActiveId = id;
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+
+          // Temporarily lock scrollspy from fighting while page smoothly scrolls
+          isUserClicking = true;
+          if (clickTimeout) clearTimeout(clickTimeout);
+          clickTimeout = window.setTimeout(() => {
+            isUserClicking = false;
+            updateNav();
+          }, 650);
+
+          animatePillTo(link, false);
+        }
+      });
+    });
+
+    // Initialize position immediately
     updateNav();
+    // Safety calibrate after fonts/layout settles
+    setTimeout(() => {
+      const activeLink = document.querySelector(".nav-link.active") as HTMLElement;
+      if (activeLink) {
+        animatePillTo(activeLink, true);
+      }
+    }, 150);
   }
 
   function initThemeToggle() {
@@ -230,11 +453,85 @@ const t = getTranslations(currentLang);
     box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5);
   }
 
+  /* ========================================================
+     FLUID / LIQUID SLIDING PILL INDICATOR
+     ======================================================== */
+  .nav-liquid-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: 50% 50%;
+    will-change: transform, width, height, opacity, filter;
+  }
+
+  .liquid-pill-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #4d8df7 0%, #2b6cef 45%, #1d4ed8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      inset 0 2px 2.5px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -2.5px 3.5px 0 rgba(10, 30, 95, 0.5),
+      0 6px 18px -2px rgba(29, 78, 216, 0.5),
+      0 2px 6px rgba(15, 23, 42, 0.2);
+    overflow: hidden;
+  }
+
+  html.dark .liquid-pill-body {
+    background: linear-gradient(180deg, #3b82f6 0%, #2563eb 45%, #1d4ed8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 
+      inset 0 2px 3px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -2.5px 3.5px 0 rgba(10, 30, 95, 0.6),
+      0 8px 22px -2px rgba(37, 99, 235, 0.65),
+      0 0 12px 1px rgba(96, 165, 250, 0.4);
+  }
+
+  /* Liquid Meniscus & Specular Fluid Glare (Tetesan Cairan Berkilau) */
+  .liquid-pill-specular {
+    position: absolute;
+    inset-x: 3px;
+    top: 1.5px;
+    height: 44%;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.35) 65%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+  }
+
+  /* Liquid Caustic Subsurface Bottom Glow */
+  .liquid-pill-caustic {
+    position: absolute;
+    inset-x: 5px;
+    bottom: 1.5px;
+    height: 32%;
+    border-radius: 9999px;
+    background: linear-gradient(0deg, rgba(147, 197, 253, 0.5) 0%, rgba(147, 197, 253, 0) 100%);
+    pointer-events: none;
+  }
+
+  /* Ambient Liquid Glow Droplet Behind */
+  .liquid-pill-glow {
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.55) 0%, rgba(37, 99, 235, 0) 75%);
+    filter: blur(6px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   /* Inactive nav links */
   .nav-link {
     color: #475569;
     flex-shrink: 0;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.25s ease, transform 0.25s ease;
+    position: relative;
+    z-index: 10;
   }
 
   html.dark .nav-link {
@@ -242,41 +539,22 @@ const t = getTranslations(currentLang);
   }
 
   .nav-link:hover:not(.active) {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #eef2f6 100%);
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 
-      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
-      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.05),
-      0 3px 8px -2px rgba(15, 23, 42, 0.08);
     color: #0f172a;
     transform: translateY(-1px);
   }
 
   html.dark .nav-link:hover:not(.active) {
-    background: linear-gradient(180deg, #1e293b 0%, #172237 50%, #0f172a 100%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow: 
-      inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.15),
-      inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.5),
-      0 3px 8px -2px rgba(0, 0, 0, 0.4);
     color: #f8fafc;
     transform: translateY(-1px);
   }
 
-  /* Active nav link (Fixed Size, Convex 3D Highlight, No Layout Shifts) */
+  /* Active nav link (Transparent background because #nav-liquid-pill is behind it) */
   .nav-link.active {
-    background: linear-gradient(180deg, #4d8df7 0%, #2b6cef 45%, #1d4ed8 100%) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.75) !important;
-    border-bottom: 2px solid rgba(10, 30, 95, 0.45) !important;
-    box-shadow: 
-      inset 0 2.5px 3px 0 rgba(255, 255, 255, 0.7),
-      inset 0 -2.5px 3.5px 0 rgba(10, 30, 95, 0.45),
-      0 6px 18px -2px rgba(37, 99, 235, 0.45) !important;
-    text-shadow: 0 1px 2px rgba(10, 35, 90, 0.35);
+    text-shadow: 0 1px 2px rgba(10, 35, 90, 0.45);
     transform: translateY(-0.5px);
   }
 
@@ -284,5 +562,6 @@ const t = getTranslations(currentLang);
   .nav-link.active svg {
     color: #ffffff !important;
     stroke: #ffffff !important;
+    filter: drop-shadow(0 1px 2px rgba(10, 35, 90, 0.4));
   }
 </style>

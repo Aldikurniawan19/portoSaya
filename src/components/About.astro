@@ -2,13 +2,17 @@
 import { Image } from 'astro:assets';
 import profileImage from '../assets/saya.png';
 import { getTranslations } from '../i18n/translations';
+import WaveDivider from './WaveDivider.astro';
 
 const lang = Astro.currentLocale || 'id';
 const t = getTranslations(lang);
 ---
 
 <!-- 2. ABOUT SECTION -->
-<section id="about" class="min-h-screen flex items-center relative py-24 overflow-hidden bg-transparent">
+<section id="about" class="min-h-screen flex items-center relative pt-28 pb-24 sm:pt-32 sm:pb-28 lg:pt-36 lg:pb-32 overflow-hidden bg-white dark:bg-[#0b1120] border-b border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300">
+  <!-- Top Wave Divider (Hero -> About) -->
+  <WaveDivider position="top" flip={false} />
+
   <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <!-- Foto Profil (Kiri, 5 kolom - Hanging Frame with Twine entering Punched Holes) -->

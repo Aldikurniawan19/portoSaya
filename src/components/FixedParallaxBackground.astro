@@ -1,51 +1,8 @@
 ---
-// FIXED GLOBAL BACKGROUND CANVAS (Clean Single-Color Background with Deep Blue Flowing Line Animation)
+// FIXED GLOBAL BACKGROUND CANVAS (Clean Plain Solid Background)
 ---
 
 <div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden select-none">
-  <!-- Clean Single Solid Background Layer -->
+  <!-- Clean Plain Solid Background Layer -->
   <div class="absolute inset-0 bg-[#f8fafc] dark:bg-[#070b14] transition-colors duration-300"></div>
-
-  <!-- Background Grid Pattern with Mask -->
-  <div class="absolute inset-0 bg-grid-pattern dark:bg-grid-pattern-dark bg-grid opacity-85 dark:opacity-35 contain-strict transition-all duration-300">
-    <!-- Horizontal Flowing Lines (Deep Concentrated Blue - GPU Accelerated) -->
-    <div
-      class="absolute h-[4.5px] sm:h-[5.5px] w-[260px] sm:w-[360px] rounded-full bg-gradient-to-r from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="top: 14vh; animation: beam-h 7s linear infinite; animation-delay: 0s;"
-    ></div>
-    <div
-      class="absolute h-[4.5px] sm:h-[5.5px] w-[260px] sm:w-[360px] rounded-full bg-gradient-to-l from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="top: 34vh; animation: beam-h-reverse 8s linear infinite; animation-delay: 1.5s;"
-    ></div>
-    <div
-      class="absolute h-[4.5px] sm:h-[5.5px] w-[260px] sm:w-[360px] rounded-full bg-gradient-to-r from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="top: 54vh; animation: beam-h 8.5s linear infinite; animation-delay: 3.2s;"
-    ></div>
-    <div
-      class="absolute h-[4.5px] sm:h-[5.5px] w-[260px] sm:w-[360px] rounded-full bg-gradient-to-l from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="top: 74vh; animation: beam-h-reverse 9s linear infinite; animation-delay: 0.8s;"
-    ></div>
-    <div
-      class="absolute h-[4.5px] sm:h-[5.5px] w-[260px] sm:w-[360px] rounded-full bg-gradient-to-r from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="top: 90vh; animation: beam-h 7.8s linear infinite; animation-delay: 2.2s;"
-    ></div>
-
-    <!-- Vertical Flowing Lines (Deep Concentrated Blue - GPU Accelerated) -->
-    <div
-      class="absolute w-[4.5px] sm:w-[5.5px] h-[240px] sm:h-[340px] rounded-full bg-gradient-to-b from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="left: 12vw; animation: beam-v 7.5s linear infinite; animation-delay: 0.4s;"
-    ></div>
-    <div
-      class="absolute w-[4.5px] sm:w-[5.5px] h-[240px] sm:h-[340px] rounded-full bg-gradient-to-t from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="left: 36vw; animation: beam-v-reverse 9s linear infinite; animation-delay: 2.2s;"
-    ></div>
-    <div
-      class="absolute w-[4.5px] sm:w-[5.5px] h-[240px] sm:h-[340px] rounded-full bg-gradient-to-b from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="left: 62vw; animation: beam-v 8s linear infinite; animation-delay: 3.8s;"
-    ></div>
-    <div
-      class="absolute w-[4.5px] sm:w-[5.5px] h-[240px] sm:h-[340px] rounded-full bg-gradient-to-t from-transparent via-[#1e40af] via-[#2563eb] to-transparent dark:from-transparent dark:via-[#1d4ed8] dark:via-[#3b82f6] dark:to-transparent shadow-[0_0_12px_rgba(30,64,175,0.85),0_0_4px_rgba(37,99,235,1)] dark:shadow-[0_0_15px_rgba(37,99,235,0.9),0_0_5px_rgba(59,130,246,1)] will-change-transform"
-      style="left: 86vw; animation: beam-v-reverse 9.5s linear infinite; animation-delay: 1.1s;"
-    ></div>
-  </div>
 </div>
